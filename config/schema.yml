@@ -1,0 +1,28 @@
+propel:
+  trends_query:
+    _attributes: { phpName: Query }
+    id:
+    query:       varchar(255)
+    created_at:
+  trends_trend:
+    _attributes: { phpName: Trend }
+    id:
+    name:        varchar(255)
+    created_at:
+  trends_trend_query:
+    _attributes: { phpName: TrendQuery }
+    query_id:    { type: integer, required: true, primaryKey: true, foreignTable: trends_query, foreignReference: id }
+    trend_id:    { type: integer, required: true, primaryKey: true, foreignTable: trends_trend, foreignReference: id }
+    created_at:
+  trends_engine:
+    _attributes: { phpName: Engine }
+    id:
+    alias:       varchar(255)
+    created_at:
+  trends_query_result:
+    _attributes: { phpName: QueryResult }
+    query_id:    { type: integer, required: true, primaryKey: true, foreignTable: trends_query, foreignReference: id }
+    engine_id:   { type: integer, required: true, primaryKey: true, foreignTable: trends_engine, foreignReference: id }
+    fetch_date:  { type: timestamp, required: true, primaryKey: true }
+    result_size: { type: integer, required: true }
+    created_at:
