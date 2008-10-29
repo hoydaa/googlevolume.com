@@ -1,28 +1,27 @@
 propel:
-  trends_query:
-    _attributes: { phpName: Query }
-    id:
-    query:       varchar(255)
-    created_at:
-  trends_trend:
-    _attributes: { phpName: Trend }
-    id:
-    name:        varchar(255)
-    created_at:
-  trends_trend_query:
-    _attributes: { phpName: TrendQuery }
-    query_id:    { type: integer, required: true, primaryKey: true, foreignTable: trends_query, foreignReference: id }
-    trend_id:    { type: integer, required: true, primaryKey: true, foreignTable: trends_trend, foreignReference: id }
-    created_at:
-  trends_engine:
-    _attributes: { phpName: Engine }
-    id:
-    alias:       varchar(255)
-    created_at:
-  trends_query_result:
-    _attributes: { phpName: QueryResult }
-    query_id:    { type: integer, required: true, primaryKey: true, foreignTable: trends_query, foreignReference: id }
-    engine_id:   { type: integer, required: true, primaryKey: true, foreignTable: trends_engine, foreignReference: id }
-    fetch_date:  { type: timestamp, required: true, primaryKey: true }
-    result_size: { type: integer, required: true }
-    created_at:
+  projecty_query:
+    _attributes:      { phpName: Query }
+    id:               ~
+    query:            { type: varchar, size: 255, required: true }
+    title:            { type: varchar, size: 255, required: false }
+    created_at:       ~
+
+  projecty_report:
+    _attributes:      { phpName: Report }
+    id:               ~
+    title:            { type: varchar, size: 255, required: true }
+    created_at:       ~
+    updated_at:       ~
+
+  projecty_report_query:
+    _attributes:      { phpName: ReportQuery }
+    query_id:         { type: integer, required: true, primaryKey: true, foreignTable: projecty_query, foreignReference: id }
+    report_id:        { type: integer, required: true, primaryKey: true, foreignTable: projecty_report, foreignReference: id }
+    created_at:       ~
+
+  projecty_query_result:
+    _attributes:      { phpName: QueryResult }
+    query_id:         { type: integer, required: true, primaryKey: true, foreignTable: projecty_query, foreignReference: id }
+    fetch_date:       { type: timestamp, required: true, primaryKey: true }
+    result_size:      { type: integer, required: true }
+    created_at:       ~
