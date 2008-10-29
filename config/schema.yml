@@ -3,7 +3,6 @@ propel:
     _attributes:      { phpName: Query }
     id:               ~
     query:            { type: varchar, size: 255, required: true }
-    title:            { type: varchar, size: 255, required: false }
     created_at:       ~
 
   projecty_report:
@@ -17,6 +16,7 @@ propel:
     _attributes:      { phpName: ReportQuery }
     query_id:         { type: integer, required: true, primaryKey: true, foreignTable: projecty_query, foreignReference: id }
     report_id:        { type: integer, required: true, primaryKey: true, foreignTable: projecty_report, foreignReference: id }
+    title:            { type: varchar, size: 255, required: false }
     created_at:       ~
 
   projecty_query_result:
