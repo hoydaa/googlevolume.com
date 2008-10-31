@@ -18,7 +18,8 @@ class ReportForm extends ObjectForm
       'query_text_4'   => new sfWidgetFormInput(),
       'query_title_4'  => new sfWidgetFormInput(),
       'query_text_5'   => new sfWidgetFormInput(),
-      'query_title_5'  => new sfWidgetFormInput()
+      'query_title_5'  => new sfWidgetFormInput(),
+      'tags'           => new sfWidgetFormInput(array(), array('autocomplete' => 'off'))
     ));
     
     $this->widgetSchema->setLabels(array(
@@ -34,6 +35,7 @@ class ReportForm extends ObjectForm
       'query_title_4'  => 'Query Title 4',
       'query_text_5'   => 'Query Text 5',
       'query_title_5'  => 'Query Title 5',
+      'tags'           => 'Tags'
     ));
     
     $this->setValidators(array(
@@ -49,7 +51,8 @@ class ReportForm extends ObjectForm
       'query_text_4'   => new sfValidatorString(array('required' => false)),
       'query_title_4'  => new sfValidatorString(array('required' => false)),
       'query_text_5'   => new sfValidatorString(array('required' => false)),
-      'query_title_5'  => new sfValidatorString(array('required' => false))
+      'query_title_5'  => new sfValidatorString(array('required' => false)),
+      'tags'           => new sfValidatorString(array('required' => false))
     ));
     
     $this->validatorSchema->setPostValidator(
@@ -84,6 +87,7 @@ class ReportForm extends ObjectForm
     $defaults['id']          = $this->object->getId();
     $defaults['title']       = $this->object->getTitle();
     $defaults['description'] = $this->object->getDescription();
+    $defaults['tags']        = $this->object->getTag();
     
     $counter = 1;
     foreach($this->object->getReportQuerys() as $report_query)
@@ -104,10 +108,29 @@ class ReportForm extends ObjectForm
       {
         $report_query->delete();
       }
+      
+      foreach ($this->object->getTags() as $tag)
+      {
+        $tag->delete();
+      }
     }
 
   	$this->object->setTitle($this->getValue('title'));
   	$this->object->setDescription($this->getValue('description'));
+
+    $tag_names = explode(',', $this->getValue('tags'));
+    foreach ($tag_names as $tag_name)
+    {
+      if (!($tag_name = strtolower(trim($tag_name))))
+      {
+        continue;
+      }
+
+      $tag = new Tag();
+      $tag->setName($tag_name);
+
+      $this->object->addTag($tag);
+    }
 
 	for($i = 1; $i < 6; $i++)
 	{
