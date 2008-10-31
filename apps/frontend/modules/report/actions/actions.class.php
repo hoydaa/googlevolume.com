@@ -43,7 +43,7 @@ class reportActions extends sfActions
       $this->setTemplate('edit');
 	} else 
 	{
-	  return $this->redirect('report/show'); 
+	  return $this->redirect("report/show?id=$id"); 
 	}
   }
   
@@ -56,6 +56,11 @@ class reportActions extends sfActions
     $this->report = ReportPeer::retrieveByPK($id);
     
     $this->forward404Unless($this->report);
+  }
+  
+  public function executeChart($request)
+  {
+  
   }
 
 }
