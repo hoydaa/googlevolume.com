@@ -23,4 +23,10 @@
 		</tr>
 		<?php $i++ ?>
 	<?php endforeach; ?>
+	<tr>
+		<th><?php echo __('Tags') ?></th>
+		<td><?php echo $report->getTag() ?></td>
+	</tr>
 </table>
+
+<?php include_partial('report/report', array('report' => $report)) ?>
