@@ -10,6 +10,7 @@ abstract class BaseChart
   private $title = null;
   private $width = self::DEFAULT_WIDTH;
   private $height = self::DEFAULT_HEIGHT;
+  protected $colors = array('ff0000', '00ff00', '0000ff');
   
   public function setTitle($title)
   {
@@ -39,6 +40,11 @@ abstract class BaseChart
   public function getHeight()
   {
     return $this->height;
+  }
+  
+  public function setColors($colors)
+  {
+    $this->colors = $colors;
   }
   
   public function __toString()
