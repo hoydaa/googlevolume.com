@@ -1,0 +1,14 @@
+# This stipulates the mailer program to be used to send mails, 
+# and deactivates the sending of mails in the development 
+# environment - the emails in the test data are fake anyway.
+dev:
+  deliver:    on
+
+all:
+#  mailer:     sendmail
+  mailer:     smtp
+#  domain:     sis-nav.com
+  hostname:   mail.sis-nav.com
+  username:   umut.utkan@sis-nav.com
+  password:   gahve123
+  port:       25
