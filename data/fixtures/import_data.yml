@@ -1,0 +1,29 @@
+Report:
+  obama_vs_mccain:
+    title: Obama vs McCain
+
+Query:
+  obama:
+    query: Obama
+  mccain:
+    query: McCain
+
+QueryResult:
+  obama-02.11.2008:
+    query_id: obama
+    fetch_date: 2008-11-02
+    result_size: 100000000
+  mccain-02.11.2008:
+    query_id: mccain
+    fetch_date: 2008-11-02
+    result_size: 75000000
+
+ReportQuery:
+  obama_vs_mccain-obama:
+    report_id: obama_vs_mccain
+    query_id: obama
+    title: Obama
+  obama_vs_mccain-mccain:
+    report_id: obama_vs_mccain
+    query_id: mccain
+    title: McCain
