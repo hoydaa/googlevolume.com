@@ -1,4 +1,15 @@
 propel:
+  sf_guard_user_profile:
+    _attributes:            { phpName: sfGuardUserProfile }
+    id:                     ~
+    user_id:                { type: integer, required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: cascade }
+    email:                  { type: varchar, size: 255, required: true }
+    first_name:             { type: varchar, size: 255, required: true }
+    last_name:              { type: varchar, size: 255, required: true }
+    activation_key:           { type: varchar, size: 32 }
+    gender:                 { type: char, size: 1, required: false }
+    birthday:               { type: date, required: false }
+
   projecty_query:
     _attributes:      { phpName: Query }
     id:               ~
@@ -23,7 +34,7 @@ propel:
   projecty_query_result:
     _attributes:      { phpName: QueryResult }
     query_id:         { type: integer, required: true, primaryKey: true, foreignTable: projecty_query, foreignReference: id }
-    fetch_date:       { type: timestamp, required: true, primaryKey: true }
+    fetch_date:       { type: date, required: true, primaryKey: true }
     result_size:      { type: integer, required: true }
     created_at:       ~
 
