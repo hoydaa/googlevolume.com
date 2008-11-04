@@ -1,0 +1,46 @@
+Query:
+  caine:
+    query: Caine
+  obama:
+    query: Obama
+    
+Report:
+  obamavscaine:
+    title: Obama vs Caine
+    description: Search results for Obama and Caine
+    
+ReportQuery:
+  tcaine1:
+    query_id: caine
+    report_id: obamavscaine
+    title: Caine
+  tobama:
+    query_id: obama
+    report_id: obamavscaine
+    title: Caine
+    
+QueryResult:
+  cained1:
+    query_id: caine
+    created_at: 10/10/2008
+    result_size: 100
+  caine2:
+    query_id: caine
+    created_at: 10/11/2008
+    result_size: 110
+  caine3:
+    query_id: caine
+    created_at: 10/12/2008
+    result_size: 120
+  obama1:
+    query_id: obama
+    created_at: 10/10/2008
+    result_size: 110
+  obama2:
+    query_id: obama
+    created_at: 10/11/2008
+    result_size: 140
+  obama3:
+    query_id: obama
+    created_at: 10/12/2008
+    result_size: 170
