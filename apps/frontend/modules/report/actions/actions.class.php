@@ -49,6 +49,8 @@ class reportActions extends sfActions
   
   public function executeShow($request)
   {
+    $this->form = new DateSelectorForm();
+  
     $id = $request->getParameter('id');
     
     $this->forward404Unless($id);
