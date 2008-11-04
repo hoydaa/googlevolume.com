@@ -29,4 +29,4 @@
 	</tr>
 </table>
 
-<?php include_partial('report/report', array('report' => $report)) ?>
+<?php include_partial('report/report', array('report' => $report, 'form' => $form)) ?>
