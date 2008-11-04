@@ -8,6 +8,7 @@ class Series
   private $x_labels = array();
   private $y_labels = array();
   private $max_of_all = null;
+  private $min_of_all = null;
 
   //$rtn .= '&chxr=0,0,200|1,0,500';
   //$rtn .= '&chxl=0:|1|2|3|4'
@@ -39,6 +40,10 @@ class Series
     {
       $this->calculateMax();
     }
+    if(!$this->min_of_all)
+    {
+      $this->calculateMin();
+    }
     foreach($this->series as $serie)
     {
       $serie->normalize($this->max_of_all);
@@ -55,13 +60,34 @@ class Series
     $this->max_of_all = max($max_of_series);
   }
   
-  public function autoSetYLabels()
+  private function calculateMin()
+  {
+    $min_of_series = array();
+    foreach($this->series as $serie)
+    {
+      $min_of_series[] = $serie->getMin();
+    }
+    $this->min_of_all = min($min_of_series);
+  }
+  
+  public function autoSetYLabels($count = 3)
   {
     if(!$this->max_of_all)
     {
       $this->calculateMax();
     }
-    $this->y_labels = array(0, $this->max_of_all);
+    if(!$this->min_of_all)
+    {
+      $this->calculateMin();
+    }
+    $this->y_labels = array();
+    $this->y_labels[] = 0;
+    for($i = 1; $i < $count - 1; $i++)
+    {
+      $this->y_labels[] = round($this->max_of_all / ($count - 1), 1) * $i;
+    }
+    $this->y_labels[] = $this->max_of_all;
+    //$this->y_labels = array(0, round($this->max_of_all / 2.0, 0), $this->max_of_all);
   }
   
   public function __toString() 

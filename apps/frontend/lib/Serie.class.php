@@ -53,6 +53,11 @@ class Serie
     return max($this->data);
   }
   
+  public function getMin()
+  {
+    return min($this->data);
+  }
+  
   public function normalize($max)
   {
     for($i = 0; $i < sizeof($this->data); $i++)
