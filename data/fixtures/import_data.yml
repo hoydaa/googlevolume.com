@@ -11,12 +11,44 @@ Query:
 QueryResult:
   obama-02.11.2008:
     query_id: obama
-    fetch_date: 2008-11-02
-    result_size: 100000000
+    created_at: 2008-11-02
+    result_size: 110000000
+  obama-03.11.2008:
+    query_id: obama
+    created_at: 2008-11-03
+    result_size: 108000000
+  obama-04.11.2008:
+    query_id: obama
+    created_at: 2008-11-04
+    result_size: 111000000
+  obama-05.11.2008:
+    query_id: obama
+    created_at: 2008-11-05
+    result_size: 114000000
+  obama-06.11.2008:
+    query_id: obama
+    created_at: 2008-11-06
+    result_size: 121000000
   mccain-02.11.2008:
     query_id: mccain
-    fetch_date: 2008-11-02
+    created_at: 2008-11-02
     result_size: 75000000
+  mccain-03.11.2008:
+    query_id: mccain
+    created_at: 2008-11-03
+    result_size: 76000000
+  mccain-04.11.2008:
+    query_id: mccain
+    created_at: 2008-11-04
+    result_size: 75500000
+  mccain-05.11.2008:
+    query_id: mccain
+    created_at: 2008-11-05
+    result_size: 75200000
+  mccain-06.11.2008:
+    query_id: mccain
+    created_at: 2008-11-06
+    result_size: 76500000
 
 ReportQuery:
   obama_vs_mccain-obama:
