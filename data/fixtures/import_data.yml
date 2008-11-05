@@ -29,6 +29,22 @@ QueryResult:
     query_id: obama
     created_at: 2008-11-06
     result_size: 121000000
+  obama-07.11.2008:
+    query_id: obama
+    created_at: 2008-11-07
+    result_size: 121000000
+  obama-08.11.2008:
+    query_id: obama
+    created_at: 2008-11-08
+    result_size: 121000000
+  obama-09.11.2008:
+    query_id: obama
+    created_at: 2008-11-09
+    result_size: 121000000
+  obama-10.11.2008:
+    query_id: obama
+    created_at: 2008-11-10
+    result_size: 121000000
   mccain-02.11.2008:
     query_id: mccain
     created_at: 2008-11-02
@@ -36,19 +52,19 @@ QueryResult:
   mccain-03.11.2008:
     query_id: mccain
     created_at: 2008-11-03
-    result_size: 76000000
+    result_size: 96000000
   mccain-04.11.2008:
     query_id: mccain
     created_at: 2008-11-04
-    result_size: 75500000
+    result_size: 97600000
   mccain-05.11.2008:
     query_id: mccain
     created_at: 2008-11-05
-    result_size: 75200000
+    result_size: 99200000
   mccain-06.11.2008:
     query_id: mccain
     created_at: 2008-11-06
-    result_size: 76500000
+    result_size: 86500000
 
 ReportQuery:
   obama_vs_mccain-obama:
