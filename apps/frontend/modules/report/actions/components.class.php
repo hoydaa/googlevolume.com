@@ -18,18 +18,21 @@ class reportComponents extends sfComponents
     //$series->normalize();
     //$series->autoSetYLabels();
     
+    $temp = array();
+    $titles = array();
     foreach($this->report->getReportQuerys() as $report_query)
     {
       $arr = QueryResultPeer::retrieveByQueryIdDateRange(
         $report_query->getQueryId(), QueryResultPeer::FREQUENCY_DAY);
-      print_r($arr);
-      $serie = array();
-      foreach($arr as $key => $value)
-      {
-        $serie[] = $value;
-      }
-      $series->addSerie(new Serie($serie, $report_query->getTitle()));
+      $temp[] = $arr;
+      $titles[] = $report_query->getTitle();
     }
+    $arrays = Utils::mergeArrays($temp);
+    for($i = 0; $i < sizeof($arrays); $i++)
+    {
+      $series->addSerie(new Serie(Utils::arrayValues($arrays[$i]), $titles[$i]));
+    }
+    
     $series->normalize();
     $series->autoSetYLabels(5);
 
