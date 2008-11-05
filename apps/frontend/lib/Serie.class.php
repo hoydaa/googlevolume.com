@@ -56,7 +56,15 @@ class Serie
   
   public function calculateMin()
   {
-    return min($this->data);
+    $temp = array();
+    foreach($this->data as $value)
+    {
+      if($value != -1)
+      {
+        $temp[] = $value;
+      }
+    }
+    return min($temp);
   }
   
   public function normalize($max)
