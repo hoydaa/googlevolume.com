@@ -21,7 +21,7 @@ class reportComponents extends sfComponents
     foreach($this->report->getReportQuerys() as $report_query)
     {
       $arr = QueryResultPeer::retrieveByQueryIdDateRange(
-        $report_query->getQueryId(), QueryResultPeer::FREQUENCY_DAY, '2008-09-10', '2008-10-12');
+        $report_query->getQueryId(), QueryResultPeer::FREQUENCY_DAY);
       print_r($arr);
       $serie = array();
       foreach($arr as $key => $value)

@@ -6,6 +6,7 @@ class Serie
   private $label = null;
   private $data = array();
   private $color = '00ff00';
+  private $markers_enabled = true;
   
   public function __construct($data = array(), $label = null)
   {
@@ -41,6 +42,16 @@ class Serie
   public function getColor()
   {
     return $this->color;
+  }
+  
+  public function isMarkersEnabled()
+  {
+    return $this->markers_enabled;
+  }
+  
+  public function setMarkersEnabled($markers_enabled) 
+  {
+    $this->markers_enabled = $markers_enabled;
   }
   
   public function __toString()

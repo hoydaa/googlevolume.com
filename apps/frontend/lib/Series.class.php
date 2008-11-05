@@ -9,6 +9,7 @@ class Series
   private $y_labels = array();
   private $max_of_all = null;
   private $min_of_all = null;
+  private $markers_enabled = true;
 
   //$rtn .= '&chxr=0,0,200|1,0,500';
   //$rtn .= '&chxl=0:|1|2|3|4'
@@ -81,12 +82,20 @@ class Series
       $this->calculateMin();
     }
     $this->y_labels = array();
-    $this->y_labels[] = 0;
+    
+    $this->y_labels[] = $this->min_of_all;
     for($i = 1; $i < $count - 1; $i++)
     {
-      $this->y_labels[] = round($this->max_of_all / ($count - 1), 1) * $i;
+      $this->y_labels[] = round(($this->max_of_all-$this->min_of_all) / ($count - 1), 1) * $i;
     }
     $this->y_labels[] = $this->max_of_all;
+    
+    //$this->y_labels[] = 0;
+    //for($i = 1; $i < $count - 1; $i++)
+    //{
+    //  $this->y_labels[] = round($this->max_of_all / ($count - 1), 1) * $i;
+    //}
+    //$this->y_labels[] = $this->max_of_all;
     //$this->y_labels = array(0, round($this->max_of_all / 2.0, 0), $this->max_of_all);
   }
   
@@ -100,15 +109,24 @@ class Series
       
       $labels_arr = array();
       $colors_arr = array();
+      $markers_arr = array();
+      $counter = 0;
       foreach($this->series as $serie)
       {
         $labels_arr[] = $serie->getLabel();
         $colors_arr[] = $serie->getColor();
+        $markers_arr[] = 'd,'.$serie->getColor().','.$counter.',-1,8';
+        $counter++;
       }
       $labels_text = 'chdl=' . implode('|', $labels_arr);
       $rtn .= '&' . $labels_text;
       $colors_text = 'chco=' . implode(',', $colors_arr);
       $rtn .= '&' . $colors_text;
+      if($this->markers_enabled)
+      {
+        $rtn .= '&chm=' . implode('|', $markers_arr);
+      }
+      $rtn .= '&chds='.($this->min_of_all/$this->max_of_all*100).',100';
       
       $colors_arr = array();
      
