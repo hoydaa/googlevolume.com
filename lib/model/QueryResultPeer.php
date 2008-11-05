@@ -14,11 +14,75 @@ class QueryResultPeer extends BaseQueryResultPeer
   const FREQUENCY_WEEK  = 'WEEK';
   const FREQUENCY_MONTH = 'MONTH';
 
-  public static function retrieveByQueryIdDateRange($query_id, $frequency, $start_date, $end_date)
+  public static function retrieveByQueryIdDateRange($query_id, $frequency, $start_date = null, $end_date = null)
   {
     if($frequency == self::FREQUENCY_DAY)
     {
-      $query = "SELECT %s as result_date, %s as result_size FROM %s WHERE %s >= '%s' AND %s <= '%s' AND %s = %s ORDER BY %s";
+      if($start_date && $end_date)
+      {
+        $query = "
+          SELECT %s as result_date, AVG(%s) as result_size 
+          FROM %s 
+          WHERE %s >= '%s' AND %s <= '%s' AND %s = %s 
+          GROUP BY %s 
+          ORDER BY %s";
+      } else 
+      {
+        $query = "
+          SELECT %s as result_date, AVG(%s) as result_size
+          FROM %s
+          WHERE %s = %s 
+          GROUP BY %s
+          ORDER BY %s
+          LIMIT 100";
+      }
+    } else if($frequency == self::FREQUENCY_WEEK)
+    {
+      if($start_date && $end_date)
+      {
+        $query = "
+          SELECT CONCAT(YEAR(%s), WEEK(%s)) as result_date, AVG(%s) as result_size 
+          FROM %s 
+          WHERE %s >= '%s' AND %s <= '%s' AND %s = %s 
+          GROUP BY WEEK(%s) 
+          ORDER BY %s";
+      } else
+      {
+        $query = "
+          SELECT CONCAT(YEAR(%s), WEEK(%s)) as result_date, AVG(%s) as result_size
+          FROM %s
+          WHERE %s = %s 
+          GROUP BY WEEK(%s)
+          ORDER BY %s
+          LIMIT 100";
+      }
+    } else if($frequency == self::FREQUENCY_MONTH)
+    {
+      if($start_date && $end_date)
+      {
+        $query = "
+          SELECT CONCAT(YEAR(%s), MONTH(%s)) as result_date, %s as result_size 
+          FROM %s 
+          WHERE %s >= '%s' AND %s <= '%s' AND %s = %s 
+          GROUP BY MONTH(%s) 
+          ORDER BY %s";
+      } else
+      {
+        $query = "
+          SELECT CONCAT(YEAR(%s), MONTH(%s)) as result_date, %s as result_size
+          FROM %s
+          WHERE %s = %s 
+          GROUP BY MONTH(%s)
+          ORDER BY %s
+          LIMIT 100";
+      }
+    } else 
+    {
+      return null;
+    }
+    
+    if($start_date && $end_date)
+    {
       $query = sprintf($query,
         QueryResultPeer::CREATED_AT,
         QueryResultPeer::RESULT_SIZE,
@@ -29,46 +93,22 @@ class QueryResultPeer extends BaseQueryResultPeer
         $end_date,
         QueryResultPeer::QUERY_ID,
         $query_id,
+        QueryResultPeer::CREATED_AT,
         QueryResultPeer::CREATED_AT
       );
-    } else if($frequency == self::FREQUENCY_WEEK)
+    } else
     {
-      $query = "SELECT CONCAT(YEAR(%s), WEEK(%s)) as result_date, AVG(%s) as result_size FROM %s WHERE %s >= '%s' AND %s <= '%s' AND %s = %s GROUP BY WEEK(%s) ORDER BY %s";
       $query = sprintf($query,
-        QueryResultPeer::CREATED_AT,
         QueryResultPeer::CREATED_AT,
         QueryResultPeer::RESULT_SIZE,
         QueryResultPeer::TABLE_NAME,
-        QueryResultPeer::CREATED_AT,
-        $start_date,
-        QueryResultPeer::CREATED_AT,
-        $end_date,
-        QueryResultPeer::ID,
+        QueryResultPeer::QUERY_ID,
         $query_id,
         QueryResultPeer::CREATED_AT,
         QueryResultPeer::CREATED_AT
       );
-    } else if($frequency == self::FREQUENCY_MONTH)
-    {
-      $query = "SELECT CONCAT(YEAR(%s), MONTH(%s)) as result_date, %s as result_size FROM %s WHERE %s >= '%s' AND %s <= '%s' AND %s = %s GROUP BY MONTH(%s) ORDER BY %s";
-      $query = sprintf($query,
-        QueryResultPeer::CREATED_AT,
-        QueryResultPeer::CREATED_AT,
-        QueryResultPeer::RESULT_SIZE,
-        QueryResultPeer::TABLE_NAME,
-        QueryResultPeer::CREATED_AT,
-        $start_date,
-        QueryResultPeer::CREATED_AT,
-        $end_date,
-        QueryResultPeer::ID,
-        $query_id,
-        QueryResultPeer::CREATED_AT,
-        QueryResultPeer::CREATED_AT
-      );
-    } else 
-    {
-      return null;
     }
+    
     $connection = Propel::getConnection();
     $statement = $connection->prepareStatement($query);
     $resultset = $statement->executeQuery();
