@@ -14,9 +14,9 @@ class Serie
     $this->label = $label;
   }
   
-  public function setData($data)
+  public function getLabel()
   {
-    $this->data = $data;
+    return $this->label;
   }
   
   public function setLabel($label)
@@ -24,24 +24,14 @@ class Serie
     $this->label = $label;
   }
   
-  public function addData($data) 
+  public function getColor()
   {
-    $this->data[] = $data;
-  }
-  
-  public function getLabel()
-  {
-    return $this->label;
+    return $this->color;
   }
   
   public function setColor($color)
   {
     $this->color = $color;
-  }
-  
-  public function getColor()
-  {
-    return $this->color;
   }
   
   public function isMarkersEnabled()
@@ -54,17 +44,17 @@ class Serie
     $this->markers_enabled = $markers_enabled;
   }
   
-  public function __toString()
+  public function addData($data) 
   {
-    return $this->data ? implode(',', $this->data) : '';
+    $this->data[] = $data;
   }
   
-  public function getMax()
+  public function calculateMax()
   {
     return max($this->data);
   }
   
-  public function getMin()
+  public function calculateMin()
   {
     return min($this->data);
   }
@@ -76,4 +66,10 @@ class Serie
       $this->data[$i] =  round(100 / $max * $this->data[$i], 1);
     }
   }
+  
+  public function __toString()
+  {
+    return $this->data ? implode(',', $this->data) : '';
+  }
+  
 }

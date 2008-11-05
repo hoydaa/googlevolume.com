@@ -31,7 +31,7 @@ class reportComponents extends sfComponents
       $series->addSerie(new Serie($serie, $report_query->getTitle()));
     }
     $series->normalize();
-    $series->autoSetYLabels();
+    $series->autoSetYLabels(5);
 
     $this->line_chart->setSeries($series);
   }

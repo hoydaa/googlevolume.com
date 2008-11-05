@@ -4,15 +4,26 @@ class Series
 {
   
   private $series = array();
-  protected $colors = array('ff0000', '00ff00', '0000ff');
+  
+  protected $colors = array('0000ff', '008000', 'ff0000', 'ffff00');
+  
   private $x_labels = array();
+  
   private $y_labels = array();
+  
   private $max_of_all = null;
+  
   private $min_of_all = null;
+  
   private $markers_enabled = true;
 
   //$rtn .= '&chxr=0,0,200|1,0,500';
   //$rtn .= '&chxl=0:|1|2|3|4'
+
+  public function getColors()
+  {
+    return $this->colors;
+  }
 
   public function setColors($colors)
   {
@@ -37,66 +48,51 @@ class Series
   
   public function normalize()
   {
-    if(!$this->max_of_all)
-    {
-      $this->calculateMax();
-    }
-    if(!$this->min_of_all)
-    {
-      $this->calculateMin();
-    }
+    $this->calculateMin();
     foreach($this->series as $serie)
     {
-      $serie->normalize($this->max_of_all);
+      $serie->normalize($this->calculateMax());
     }
   }
   
   private function calculateMax()
   {
-    $max_of_series = array();
-    foreach($this->series as $serie)
+    if(!$this->max_of_all)
     {
-      $max_of_series[] = $serie->getMax();
-    } 
-    $this->max_of_all = max($max_of_series);
+      $max_of_series = array();
+      foreach($this->series as $serie)
+      {
+        $max_of_series[] = $serie->calculateMax();
+      } 
+      $this->max_of_all = max($max_of_series);
+    }
+    return $this->max_of_all;
   }
   
   private function calculateMin()
   {
-    $min_of_series = array();
-    foreach($this->series as $serie)
+    if(!$this->min_of_all)
     {
-      $min_of_series[] = $serie->getMin();
+      $min_of_series = array();
+      foreach($this->series as $serie)
+      {
+        $min_of_series[] = $serie->calculateMin();
+      }
+      $this->min_of_all = min($min_of_series);
     }
-    $this->min_of_all = min($min_of_series);
+    return $this->min_of_all;
   }
   
   public function autoSetYLabels($count = 3)
   {
-    if(!$this->max_of_all)
-    {
-      $this->calculateMax();
-    }
-    if(!$this->min_of_all)
-    {
-      $this->calculateMin();
-    }
     $this->y_labels = array();
     
-    $this->y_labels[] = $this->min_of_all;
+    $this->y_labels[] = $this->calculateMin();
     for($i = 1; $i < $count - 1; $i++)
     {
-      $this->y_labels[] = round(($this->max_of_all-$this->min_of_all) / ($count - 1), 1) * $i;
+      $this->y_labels[] = ((int) round(($this->calculateMax() - $this->calculateMin()) / ($count - 1), 1) * $i) + $this->calculateMin();
     }
-    $this->y_labels[] = $this->max_of_all;
-    
-    //$this->y_labels[] = 0;
-    //for($i = 1; $i < $count - 1; $i++)
-    //{
-    //  $this->y_labels[] = round($this->max_of_all / ($count - 1), 1) * $i;
-    //}
-    //$this->y_labels[] = $this->max_of_all;
-    //$this->y_labels = array(0, round($this->max_of_all / 2.0, 0), $this->max_of_all);
+    $this->y_labels[] = $this->calculateMax();
   }
   
   public function __toString() 
@@ -104,9 +100,11 @@ class Series
     $rtn = '';
     if(sizeof($this->series) > 0)
     {
+      // chart data
       $series_text = 'chd=t:' . implode('|', $this->series);
       $rtn .= '&' . $series_text;
       
+      // labels, colors, markers
       $labels_arr = array();
       $colors_arr = array();
       $markers_arr = array();
@@ -126,10 +124,9 @@ class Series
       {
         $rtn .= '&chm=' . implode('|', $markers_arr);
       }
-      $rtn .= '&chds='.($this->min_of_all/$this->max_of_all*100).',100';
       
-      $colors_arr = array();
-     
+      // chart scaling
+      $rtn .= '&chds=' . ($this->calculateMin() / $this->calculateMax() * 100) . ',100';
     }
     
     $rtn .= '&chxt=x,y';
