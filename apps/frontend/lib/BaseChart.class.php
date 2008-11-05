@@ -11,19 +11,14 @@ abstract class BaseChart
   private $width = self::DEFAULT_WIDTH;
   private $height = self::DEFAULT_HEIGHT;
   
-  public function setTitle($title)
-  {
-    $this->title = $title;
-  }
-  
   public function getTitle()
   {
     return $this->title;
   }
   
-  public function setWidth($width)
+  public function setTitle($title)
   {
-    $this->width = $width;
+    $this->title = $title;
   }
   
   public function getWidth() 
@@ -31,9 +26,9 @@ abstract class BaseChart
     return $this->width;
   }
   
-  public function setHeight($height)
+  public function setWidth($width)
   {
-    $this->height = $height;
+    $this->width = $width;
   }
   
   public function getHeight()
@@ -41,10 +36,19 @@ abstract class BaseChart
     return $this->height;
   }
   
+  public function setHeight($height)
+  {
+    $this->height = $height;
+  }
+  
   public function __toString()
   {
     $representation = $this->getStringRepresentation();
+    
+    // chart size
     $rtn = 'chs=' . $this->width . 'x' . $this->height;
+    
+    // chart title
     if($this->title)
     {
       $rtn .= '&' . 'chtt=' . $this->title;
