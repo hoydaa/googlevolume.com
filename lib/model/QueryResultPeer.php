@@ -21,7 +21,7 @@ class QueryResultPeer extends BaseQueryResultPeer
       if($start_date && $end_date)
       {
         $query = "
-          SELECT %s as result_date, AVG(%s) as result_size 
+          SELECT DATE(%s) as result_date, AVG(%s) as result_size 
           FROM %s 
           WHERE %s >= '%s' AND %s <= '%s' AND %s = %s 
           GROUP BY %s 
@@ -29,12 +29,12 @@ class QueryResultPeer extends BaseQueryResultPeer
       } else 
       {
         $query = "
-          SELECT %s as result_date, AVG(%s) as result_size
+          SELECT DATE(%s) as result_date, AVG(%s) as result_size
           FROM %s
           WHERE %s = %s 
           GROUP BY %s
           ORDER BY %s
-          LIMIT 100";
+          LIMIT 30";
       }
     } else if($frequency == self::FREQUENCY_WEEK)
     {
