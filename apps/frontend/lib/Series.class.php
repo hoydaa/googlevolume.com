@@ -40,6 +40,11 @@ class Series
     $this->y_labels = $y_labels;
   }
 
+  public function setMarkersEnabled($markers_enabled)
+  {
+    $this->markers_enabled = $markers_enabled;
+  }
+
   public function addSerie($serie)
   {
     $serie->setColor($this->colors[sizeof($this->series)%sizeof($this->colors)]);
@@ -113,7 +118,7 @@ class Series
       {
         $labels_arr[] = $serie->getLabel();
         $colors_arr[] = $serie->getColor();
-        $markers_arr[] = 'd,'.$serie->getColor().','.$counter.',-1,8';
+        $markers_arr[] = 'o,'.$serie->getColor().','.$counter.',-1,6';
         $counter++;
       }
       $labels_text = 'chdl=' . implode('|', $labels_arr);
