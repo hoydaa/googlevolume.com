@@ -84,4 +84,28 @@ class Utils
     return $rtn;
   }
 
+  public static function years_array()
+  {
+    $end = date('Y');
+    $start = $end - 100;
+
+    $years = range($start, $end);
+
+    return array_combine($years, $years);
+  }
+
+  public static function date($date)
+  {
+    $year = $date['year'];
+    $month = $date['month'];
+    $day = $date['day'];
+
+    if ($year == '' || $month == '' && $day == '')
+    {
+      return null;
+    }
+
+    return $year . '-' . $month . '-' . $day;
+  }
+
 }
