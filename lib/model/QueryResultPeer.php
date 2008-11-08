@@ -13,6 +13,7 @@ class QueryResultPeer extends BaseQueryResultPeer
   const FREQUENCY_DAY   = 'DAY';
   const FREQUENCY_WEEK  = 'WEEK';
   const FREQUENCY_MONTH = 'MONTH';
+  public static $frequency_arr = array(self::FREQUENCY_DAY, self::FREQUENCY_WEEK, self::FREQUENCY_MONTH);
 
   public static function retrieveByQueryIdDateRange($query_id, $frequency, $start_date = null, $end_date = null)
   {
