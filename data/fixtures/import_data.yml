@@ -1,3 +1,27 @@
+sfGuardUser:
+  umut.utkan:
+    username: umut.utkan
+    password: pass-word
+  utku.utkan:
+    username: utku.utkan
+    password: pass-word
+
+sfGuardUserProfile:
+  umut.utkan-profile:
+    user_id: umut.utkan
+    email: umut.utkan@gmail.com
+    first_name: Umut
+    last_name: Utkan
+    gender: M
+    birthday: 1979-02-23
+  utku.utkan-profile:
+    user_id: utku.utkan
+    email: utku.utkan@gmail.com
+    first_name: Utku
+    last_name: Utkan
+    gender: M
+    birthday: 1984-05-13
+
 Report:
   obama_vs_mccain:
     title: Obama vs McCain
