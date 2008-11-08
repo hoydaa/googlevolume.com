@@ -4,7 +4,7 @@ class userActions extends sfActions
 {
   public function executeSignUp($request)
   {
-    $this->form = new SignUpForm();
+    $this->form = new SignUpForm(array(), array('class' => 'panel'));
 
     if ($request->isMethod('get'))
     {
@@ -106,7 +106,8 @@ class userActions extends sfActions
       $this->form->setDefaults(array(
         'first_name' => $profile->getFirstName(),
         'last_name' => $profile->getLastName(),
-        'gender' => $profile->getGender()
+        'gender' => $profile->getGender(),
+        'birthday' => $profile->getBirthday()
       ));
 
       return;
@@ -119,9 +120,10 @@ class userActions extends sfActions
       return;
     }
 
-    $profile->setFirstName($request->getParameter('profile[first_name]'));
-    $profile->setLastName($request->getParameter('profile[last_name]'));
-    $profile->setGender($request->getParameter('profile[gender]') ? $request->getParameter('profile[gender]') : null);
+    $profile->setFirstName($this->form->getValue('first_name'));
+    $profile->setLastName($this->form->getValue('last_name'));
+    $profile->setGender($this->form->getValue('gender'));
+    $profile->setBirthday($this->form->getValue('birthday'));
 
     $profile->save();
 
@@ -139,8 +141,40 @@ class userActions extends sfActions
 
     $this->form->bind($request->getParameter('form'));
 
-    $password = $request->getParameter('form[password]');
-    $email = $request->getParameter('form[email]');
+    if (!$this->form->isValid())
+    {
+      return;
+    }
+
+    $profile = $this->getUser()->getProfile();
+    $profile->setEmail($this->form->getValue('email'));
+    $profile->save();
+
+    $this->getUser()->setFlash('error', 'Your email address has been changed.');
+    $this->forward('site', 'message');
+  }
+
+  public function executeChangePassword($request)
+  {
+    $this->form = new ChangePasswordForm();
+
+    if ($request->isMethod('get'))
+    {
+      return;
+    }
+
+    $this->form->bind($request->getParameter('form'));
+
+    if (!$this->form->isValid())
+    {
+      return;
+    }
+
+    $this->getUser()->getGuardUser()->setPassword($this->form->getValue('password'));
+    $this->getUser()->getGuardUser()->save();
+
+    $this->getUser()->setFlash('error', 'Your password has been changed.');
+    $this->forward('site', 'message');
   }
 
 }
