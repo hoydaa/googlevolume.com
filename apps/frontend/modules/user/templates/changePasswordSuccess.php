@@ -1,6 +1,6 @@
-<h1>Change Email Address</h1>
+<h1>Change Password</h1>
 
-<form action="<?php echo url_for('user/changeEmail') ?>" method="post" class="panel">
+<form action="<?php echo url_for('user/changePassword') ?>" method="post" class="panel">
     <?php echo $form ?>
     <div class="right_col">
         <input type="submit" value="Submit" />

@@ -19,7 +19,7 @@
         <label><?php echo __('Birthday') ?></label>
         <?php echo $sf_params->get('birthday') ? format_date($sf_params->get('birthday')) : '-' ?>
     </div>
-    <div class="right-col">
+    <div class="right_col">
         <?php echo link_to(__('Edit'), 'user/updateAccountSettings') ?><br />
     </div>
 </div>
