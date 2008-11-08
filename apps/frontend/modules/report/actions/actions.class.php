@@ -50,6 +50,7 @@ class reportActions extends sfActions
   public function executeShow($request)
   {
     $this->form = new DateSelectorForm();
+    $this->form->bind($request->getParameter('date_selector'));
   
     $id = $request->getParameter('id');
     
@@ -62,7 +63,18 @@ class reportActions extends sfActions
   
   public function executeChart($request)
   {
+    $this->form = new DateSelectorForm();
+    $this->form->bind($request->getParameter('date_selector'));
   
+    $this->getLogger()->log('UMUTUTKAN: ' . $this->form->getValue('start_date'));
+  
+    $id = $request->getParameter('id');
+    
+    $this->forward404Unless($id);
+    
+    $this->report = ReportPeer::retrieveByPK($id);
+    
+    $this->forward404Unless($this->report);
   }
 
 }

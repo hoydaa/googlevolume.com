@@ -1,1 +1,1 @@
-<?php include_component('report', 'chart') ?>
+<?php include_partial('report/report', array('report' => $report, 'form' => $form)) ?>
