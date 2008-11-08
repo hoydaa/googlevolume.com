@@ -15,7 +15,7 @@ class SignUpForm extends sfForm
       'first_name' => new sfWidgetFormInput(),
       'last_name' => new sfWidgetFormInput(),
       'gender' => new sfWidgetFormSelect(array('choices' => self::$genders)),
-      'birthday' => new sfWidgetFormDate()
+      'birthday' => new sfWidgetFormDate(array('years' => Utils::years_array()))
     ));
 
     $this->widgetSchema->setNameFormat('signUp[%s]');
