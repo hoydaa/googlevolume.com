@@ -18,4 +18,9 @@ class sfGuardUserProfile extends BasesfGuardUserProfile
 
     parent::save($conn);
   }
+
+  public function getFullName()
+  {
+    return $this->getFirstName() . ' ' . $this->getLastName();
+  }
 }
