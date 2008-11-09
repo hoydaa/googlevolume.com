@@ -5,6 +5,7 @@ class ChangeEmailForm extends sfForm
   public function configure()
   {
     $this->setWidgets(array(
+      'password' => new sfWidgetFormInputPassword(),
       'email' => new sfWidgetFormInput(),
       'email_again' => new sfWidgetFormInput()
     ));
@@ -12,6 +13,7 @@ class ChangeEmailForm extends sfForm
     $this->widgetSchema->setNameFormat('form[%s]');
 
     $this->setValidators(array(
+      'password' => new sfValidatorPassword(array('required' => true)),
       'email' => new sfValidatorEmail(array('required' => true)),
       'email_again' => new sfValidatorString(array('required' => false))
     ));
