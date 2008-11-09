@@ -4,50 +4,63 @@ class userActions extends sfActions
 {
   public function executeSignUp($request)
   {
-    $this->form = new SignUpForm(array(), array('class' => 'panel'));
+    $this->form = new SignUpForm();
 
     if ($request->isMethod('get'))
     {
       return;
     }
 
-    $this->form->bind($request->getParameter('signUp'));
+    $this->form->bind($request->getParameter('form'));
 
     if (!$this->form->isValid())
     {
       return;
     }
 
-    $username = $request->getParameter('signUp[username]');
-    $password = $request->getParameter('signUp[password]');
-    $email = $request->getParameter('signUp[email]');
-    $first_name = $request->getParameter('signUp[first_name]');
-    $last_name = $request->getParameter('signUp[last_name]');
-    $gender = $request->getParameter('signUp[gender]');
-    $birthday = $request->getParameter('signUp[birthday]');
+    $sfGuardUser = new sfGuardUser();
+    $sfGuardUser->setUsername($this->form->getValue('username'));
+    $sfGuardUser->setPassword($this->form->getValue('password'));
+    $sfGuardUser->setIsActive(false);
 
-    $user = new sfGuardUser();
-    $user->setUsername($username);
-    $user->setPassword($password);
-    $user->setIsActive(false);
+    $sfGuardUser->save();
 
-    $user->save();
+    $sfGuardUserProfile = new sfGuardUserProfile();
+    $sfGuardUserProfile->setSfGuardUser($sfGuardUser);
+    $sfGuardUserProfile->setEmail($this->form->getValue('email'));
+    $sfGuardUserProfile->setFirstName($this->form->getValue('first_name'));
+    $sfGuardUserProfile->setLastName($this->form->getValue('last_name'));
+    $sfGuardUserProfile->setGender($this->form->getValue('gender'));
+    $sfGuardUserProfile->setBirthday($this->form->getValue('birthday'));
 
-    $profile = new sfGuardUserProfile();
-    $profile->setSfGuardUser($user);
-    $profile->setEmail($email);
-    $profile->setFirstName($first_name);
-    $profile->setLastName($last_name);
-    $profile->setGender($gender ? $gender : null);
+    $sfGuardUserProfile->save();
 
-    $profile->save();
+    try
+    {
+      $connection = new Swift_Connection_SMTP('mail.sis-nav.com', 25);
+      $connection->setUsername('umut.utkan@sis-nav.com');
+      $connection->setPassword('gahve123');
 
-    $request->setAttribute('email', $profile->getEmail());
-    $request->setAttribute('first_name', $profile->getFirstName());
-    $request->setAttribute('activation_key', $profile->getActivationKey());
+      $mailer = new Swift($connection);
 
-    //$raw_email = $this->sendEmail('mail', 'signUp');  
-    //$this->logMessage($raw_email, 'debug');
+      $message = new Swift_Message('Account Confirmation');
+
+      $mailContext = array(
+        'email' => $sfGuardUserProfile->getEmail(),
+        'full_name' => $sfGuardUserProfile->getFullName(),
+        'activation_key' => $sfGuardUserProfile->getActivationKey()
+      );
+
+      $message->attach(new Swift_Message_Part($this->getPartial('mail/requestPasswordHtmlBody', $mailContext), 'text/html'));
+      $message->attach(new Swift_Message_Part($this->getPartial('mail/requestPasswordTextBody', $mailContext), 'text/plain'));
+
+      $mailer->send($message, $sfGuardUserProfile->getEmail(), 'admin@project-y.com');
+      $mailer->disconnect();
+    }
+    catch (Exception $e)
+    {
+      $mailer->disconnect();
+    }
 
     $this->getUser()->setFlash('info', 'A confirmation email has been sent to your email address.');
     $this->forward('site', 'message');
@@ -170,7 +183,7 @@ class userActions extends sfActions
       return;
     }
 
-    $this->getUser()->getGuardUser()->setPassword($this->form->getValue('password'));
+    $this->getUser()->getGuardUser()->setPassword($this->form->getValue('new_password'));
     $this->getUser()->getGuardUser()->save();
 
     $this->getUser()->setFlash('error', 'Your password has been changed.');
