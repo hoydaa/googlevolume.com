@@ -21,6 +21,7 @@
                     <?php if($sf_user->isAuthenticated()): ?>
                         <?php include_component('user', 'user') ?>
                     <?php endif; ?>
+                    <?php include_component('tag', 'cloud') ?>
                 </div>
                 <div id="content">
                     <?php echo $sf_content ?>
