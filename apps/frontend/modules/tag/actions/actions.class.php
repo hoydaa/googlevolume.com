@@ -14,6 +14,11 @@ class tagActions extends sfActions
   {
     $tag = $request->getParameter('report[tags]');
 
-    $this->tags = TagPeer::getTagsByName($tag);
+    $this->tags = ReportTagPeer::getTagsByName($tag);
+  }
+
+  public function executeList()
+  {
+    $this->tags = ReportTagPeer::getPopularTags(100);
   }
 }
