@@ -7,8 +7,8 @@ body {
 /* layout */
 
 #header-wrapper {
-    background-color: #E5ECF9;
-    border-bottom: 1px solid #3366CC;
+    background-color: #EFEFEF;
+    border-bottom: 1px solid #DDDDDD;
 }
 
 #header {
@@ -35,8 +35,8 @@ body {
 
 #footer-wrapper {
     clear: right;
-    background-color: #E5ECF9;
-    border-top: 1px solid #3366CC;
+    background-color: #EFEFEF;
+    border-top: 1px solid #DDDDDD;
 }
 
 #footer {
@@ -85,4 +85,68 @@ ul.error_list li {
     padding-left: 16px;
     background: url("/images/bullet_error.png") no-repeat;
     color: #FF0000;
+}
+
+/* TAG CLOUD */
+
+ul.tag_cloud {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    line-height: normal;
+    text-align: center;
+}
+
+ul.tag_cloud li {
+    display: inline;
+}
+
+ul.tag_cloud li.rank_1 {
+    font-size: 0.7em;
+    font-weight: 100;
+}
+
+ul.tag_cloud li.rank_2 {
+    font-size: 0.8em;
+    font-weight: 200;
+}
+
+ul.tag_cloud li.rank_3 {
+    font-size: 0.9em;
+    font-weight: 300;
+}
+
+ul.tag_cloud li.rank_4 {
+    font-size: 1.0em;
+    font-weight: 400;
+}
+
+ul.tag_cloud li.rank_5 {
+    font-size: 1.2em;
+    font-weight: 500;
+}
+
+ul.tag_cloud li.rank_6 {
+    font-size: 1.4em;
+    font-weight: 600;
+}
+
+ul.tag_cloud li.rank_7 {
+    font-size: 1.6em;
+    font-weight: 700;
+}
+
+ul.tag_cloud li.rank_8 {
+    font-size: 1.8em;
+    font-weight: 800;
+}
+
+ul.tag_cloud li.rank_9 {
+    font-size: 2.2em;
+    font-weight: 900;
+}
+
+ul.tag_cloud li.rank_10 {
+    font-size: 2.5em;
+    font-weight: 900;
 }
