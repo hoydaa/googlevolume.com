@@ -39,7 +39,7 @@ propel:
     created_at:       ~
 
   projecty_report_tag:
-    _attributes:      { phpName: Tag }
-    snippet_id:       { type: integer, required: true, primaryKey: true, foreignTable: projecty_report, foreignReference: id, onDelete: cascade }
+    _attributes:      { phpName: ReportTag }
+    report_id:       { type: integer, required: true, primaryKey: true, foreignTable: projecty_report, foreignReference: id, onDelete: cascade }
     name:             { type: varchar, size: 100, required: true, primaryKey: true }
     created_at:       ~
