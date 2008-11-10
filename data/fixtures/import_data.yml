@@ -22,10 +22,6 @@ sfGuardUserProfile:
     gender: M
     birthday: 1984-05-13
 
-Report:
-  obama_vs_mccain:
-    title: Obama vs McCain
-
 Query:
   obama:
     query: Obama
@@ -90,6 +86,10 @@ QueryResult:
     created_at: 2008-11-06
     result_size: 86500000
 
+Report:
+  obama_vs_mccain:
+    title: Obama vs McCain
+
 ReportQuery:
   obama_vs_mccain-obama:
     report_id: obama_vs_mccain
@@ -99,3 +99,14 @@ ReportQuery:
     report_id: obama_vs_mccain
     query_id: mccain
     title: McCain
+
+ReportTag:
+  obama_vs_mccain-obama:
+    report_id: obama_vs_mccain
+    name: obama
+  obama_vs_mccain-mccain:
+    report_id: obama_vs_mccain
+    name: mccain
+  obama_vs_mccain-president:
+    report_id: obama_vs_mccain
+    name: president
