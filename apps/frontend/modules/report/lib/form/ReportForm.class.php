@@ -19,6 +19,7 @@ class ReportForm extends ObjectForm
       'query_title_4'  => new sfWidgetFormInput(),
       'query_text_5'   => new sfWidgetFormInput(),
       'query_title_5'  => new sfWidgetFormInput(),
+      'public'         => new sfWidgetFormInputCheckbox(),
       'tags'           => new sfWidgetFormInput(array(), array('autocomplete' => 'off'))
     ));
     
@@ -35,6 +36,7 @@ class ReportForm extends ObjectForm
       'query_title_4'  => 'Query Title 4',
       'query_text_5'   => 'Query Text 5',
       'query_title_5'  => 'Query Title 5',
+      'public'         => 'Public',
       'tags'           => 'Tags'
     ));
     
@@ -52,6 +54,7 @@ class ReportForm extends ObjectForm
       'query_title_4'  => new sfValidatorString(array('required' => false)),
       'query_text_5'   => new sfValidatorString(array('required' => false)),
       'query_title_5'  => new sfValidatorString(array('required' => false)),
+      'public'         => new sfValidatorString(array('required' => false)),
       'tags'           => new sfValidatorString(array('required' => false))
     ));
     
