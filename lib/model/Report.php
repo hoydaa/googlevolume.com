@@ -13,7 +13,7 @@ class Report extends BaseReport
   public function getTag()
   {
     $tag_names = array();
-    $tags = $this->getTags();
+    $tags = $this->getReportTags();
 
     foreach($tags as $tag)
     {
