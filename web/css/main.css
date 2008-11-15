@@ -150,3 +150,21 @@ ul.tag_cloud li.rank_10 {
     font-size: 2.5em;
     font-weight: 900;
 }
+
+/* sidebox */
+
+.sidebox {
+    margin-bottom: 40px;
+}
+
+/* pager navigation */
+
+ul.pager-nav {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+ul.pager-nav li {
+    display: inline;
+}
