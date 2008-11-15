@@ -9,11 +9,7 @@
     </div>
 
     <?php if (isset($pager)): ?>
-        <ul class="pager-res">
-            <?php foreach ($pager->getResults() as $report): ?>
-                <li><?php echo $report->getTitle() ?></li>
-            <?php endforeach; ?>
-        </ul>
+        <?php include_partial('report/list', array('reports' => $pager->getResults())) ?>
         <?php if ($pager->haveToPaginate()): ?>
             <ul class="pager-nav">
                 <?php if ($pager->getPage() != $pager->getPreviousPage()): ?>
