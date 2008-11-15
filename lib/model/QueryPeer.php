@@ -23,7 +23,7 @@ class QueryPeer extends BaseQueryPeer
     }
 
     $c = new Criteria();
-    $c->add(self::ID, $query_ids, Criteria::NOT_IN);
+    //$c->add(self::ID, $query_ids, Criteria::NOT_IN);
 
     return QueryPeer::doSelect($c);
   }
