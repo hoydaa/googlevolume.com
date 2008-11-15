@@ -14,8 +14,8 @@ class ReportTagPeer extends BaseReportTagPeer
     $connection = Propel::getConnection();
   
     $query = "SELECT DISTINCT %s as tag FROM %s WHERE %s like '%s' ORDER BY %s ASC";
-    $query = sprintf($query, TagPeer::NAME, TagPeer::TABLE_NAME, TagPeer::NAME, 
-        $tag.'%', TagPeer::NAME, TagPeer::NAME);
+    $query = sprintf($query, ReportTagPeer::NAME, ReportTagPeer::TABLE_NAME, ReportTagPeer::NAME, 
+        $tag.'%', ReportTagPeer::NAME, ReportTagPeer::NAME);
     
     $statement = $connection->prepareStatement($query);
     $statement->setLimit($max);

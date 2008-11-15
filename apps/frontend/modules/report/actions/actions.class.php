@@ -10,6 +10,10 @@ class reportActions extends sfActions
   
   public function executeEdit($request)
   {
+    if($this->getUser()->isAuthenticated())
+    {
+      echo "armut";
+    }
     $id = $request->getParameter('id');
     
     $report = null;
@@ -43,7 +47,7 @@ class reportActions extends sfActions
       $this->setTemplate('edit');
 	} else 
 	{
-	  return $this->redirect("report/show?id=$id"); 
+	  return $this->redirect("report/show?id=" . $report->getId()); 
 	}
   }
   

@@ -91,6 +91,7 @@ class ReportForm extends ObjectForm
     $defaults['title']       = $this->object->getTitle();
     $defaults['description'] = $this->object->getDescription();
     $defaults['tags']        = $this->object->getTag();
+    $defaults['public']      = $this->object->getPublicRecord();
     
     $counter = 1;
     foreach($this->object->getReportQuerys() as $report_query)
@@ -120,6 +121,10 @@ class ReportForm extends ObjectForm
 
   	$this->object->setTitle($this->getValue('title'));
   	$this->object->setDescription($this->getValue('description'));
+  	if($this->getValue('public') == 'on')
+  	{
+      $this->object->setPublicRecord(true);
+    }
 
     $tag_names = explode(',', $this->getValue('tags'));
     foreach ($tag_names as $tag_name)
@@ -129,10 +134,10 @@ class ReportForm extends ObjectForm
         continue;
       }
 
-      $tag = new Tag();
+      $tag = new ReportTag();
       $tag->setName($tag_name);
 
-      $this->object->addTag($tag);
+      $this->object->addReportTag($tag);
     }
 
 	for($i = 1; $i < 6; $i++)

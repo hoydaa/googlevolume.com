@@ -1,14 +1,14 @@
 propel:
   sf_guard_user_profile:
-    _attributes:            { phpName: sfGuardUserProfile }
-    id:                     ~
-    user_id:                { type: integer, required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: cascade }
-    email:                  { type: varchar, size: 255, required: true }
-    first_name:             { type: varchar, size: 255, required: true }
-    last_name:              { type: varchar, size: 255, required: true }
-    activation_key:           { type: varchar, size: 32 }
-    gender:                 { type: char, size: 1, required: false }
-    birthday:               { type: date, required: false }
+    _attributes:      { phpName: sfGuardUserProfile }
+    id:               ~
+    user_id:          { type: integer, required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: cascade }
+    email:            { type: varchar, size: 255, required: true }
+    first_name:       { type: varchar, size: 255, required: true }
+    last_name:        { type: varchar, size: 255, required: true }
+    activation_key:   { type: varchar, size: 32 }
+    gender:           { type: char, size: 1, required: false }
+    birthday:         { type: date, required: false }
 
   projecty_query:
     _attributes:      { phpName: Query }
@@ -19,9 +19,10 @@ propel:
   projecty_report:
     _attributes:      { phpName: Report }
     id:               ~
-    user_id:          { type: integer, required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: cascade }
+    user_id:          { type: integer, foreignTable: sf_guard_user, foreignReference: id, onDelete: cascade }
     title:            { type: varchar, size: 255, required: true }
     description:      { type: varchar, size: 255, required: false }
+    public_record:    { type: boolean, required: true, default: false }
     created_at:       ~
     updated_at:       ~
 
@@ -41,6 +42,6 @@ propel:
 
   projecty_report_tag:
     _attributes:      { phpName: ReportTag }
-    report_id:       { type: integer, required: true, primaryKey: true, foreignTable: projecty_report, foreignReference: id, onDelete: cascade }
+    report_id:        { type: integer, required: true, primaryKey: true, foreignTable: projecty_report, foreignReference: id, onDelete: cascade }
     name:             { type: varchar, size: 100, required: true, primaryKey: true }
     created_at:       ~
