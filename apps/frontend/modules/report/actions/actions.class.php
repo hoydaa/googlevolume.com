@@ -95,4 +95,9 @@ class reportActions extends sfActions
 
     $this->pager = ReportPeer::search($this->form->getValue('query'), $this->form->getValue('page'), 1);
   }
+
+  public function executeListMyReports($request)
+  {
+    $this->pager = ReportPeer::findByUser($this->getUser()->getGuardUser()->getId(), $request->getParameter('page', 1), 1);
+  }
 }
