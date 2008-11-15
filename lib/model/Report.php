@@ -22,5 +22,15 @@ class Report extends BaseReport
 
     return implode(', ', $tag_names);
   }
+  
+  public function getQueryTitles()
+  {
+    $titles = array();
+    foreach($this->getReportQuerys() as $report_query)
+    {
+      $titles[] = $report_query->getTitle();
+    }
+    return $titles;
+  }
 
 }

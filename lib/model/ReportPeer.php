@@ -74,4 +74,17 @@ class ReportPeer extends BaseReportPeer
 
     return $pager;
   }
+
+  public static function getQueryResults($report_id, $start_date, $end_date, $frequency = QueryResultPeer::FREQUENCY_DAY)
+  {
+    $report = ReportPeer::retrieveByPK($report_id);
+    $temp = array();
+    foreach($report->getReportQuerys() as $report_query)
+    {
+      $arr = QueryResultPeer::getChartData($report_query->getQueryId(), $frequency, $start_date, $end_date);
+      $temp[] = $arr;
+    }
+    return $temp;
+  }
+
 }
