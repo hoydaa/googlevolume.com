@@ -77,4 +77,22 @@ class reportActions extends sfActions
     $this->forward404Unless($this->report);
   }
 
+  public function executeSearch($request)
+  {
+    $this->form = new SearchReportForm();
+
+    if ($request->isMethod('get'))
+    {
+      return;
+    }
+
+    $this->form->bind($request->getParameter('searchreport'));
+
+    if (!$this->form->isValid())
+    {
+      return;
+    }
+
+    $this->pager = ReportPeer::search($this->form->getValue('query'), $this->form->getValue('page'), 1);
+  }
 }
