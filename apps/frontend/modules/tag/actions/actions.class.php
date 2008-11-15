@@ -21,4 +21,9 @@ class tagActions extends sfActions
   {
     $this->tags = ReportTagPeer::getPopularTags(100);
   }
+
+  public function executeShow($request)
+  {
+    $this->pager = ReportPeer::findByTag($request->getParameter('tag'), $request->getParameter('page'), 1);
+  }
 }
