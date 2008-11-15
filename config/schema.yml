@@ -19,6 +19,7 @@ propel:
   projecty_report:
     _attributes:      { phpName: Report }
     id:               ~
+    user_id:          { type: integer, required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: cascade }
     title:            { type: varchar, size: 255, required: true }
     description:      { type: varchar, size: 255, required: false }
     created_at:       ~
