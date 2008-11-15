@@ -10,10 +10,6 @@ class reportActions extends sfActions
   
   public function executeEdit($request)
   {
-    if($this->getUser()->isAuthenticated())
-    {
-      echo "armut";
-    }
     $id = $request->getParameter('id');
     
     $report = null;
@@ -21,6 +17,12 @@ class reportActions extends sfActions
     {
       $report = ReportPeer::retrieveByPK($id);
       $this->forward404Unless($report);
+      
+      if(!Utils::isUserRecord('ReportPeer', $id, $this->getUser()->getId()))
+      {
+        $this->getUser()->setFlash('error', 'You don\'t have enough credentials to edit this snippet.');
+        $this->forward('site', 'message');
+      }
     }
     
     $this->form = new ReportForm($report);
@@ -37,7 +39,11 @@ class reportActions extends sfActions
   	  
   	  $this->forward404Unless($report);
   	  
-  	  $report = ReportPeer::retrieveByPK($id);
+      if(!Utils::isUserRecord('ReportPeer', $id, $this->getUser()->getId()))
+      {
+        $this->getUser()->setFlash('error', 'You don\'t have enough credentials to edit this snippet.');
+        $this->forward('site', 'message');
+      }
   	}
   	
   	$this->form = new ReportForm($report);

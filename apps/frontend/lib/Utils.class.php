@@ -202,4 +202,13 @@ class Utils
     return $line_chart;
   }
   
+  public static function isUserRecord($class_name, $record_id, $user_id) {
+    $class = new ReflectionClass($class_name);
+    $c = new Criteria();
+    $c->add($class->getConstant('USER_ID'), $user_id);
+    $c->add($class->getConstant('ID'), $record_id);
+    $record = $class->getMethod('doSelectOne')->invoke(null, $c);
+    return $record != null;
+  }
+  
 }
