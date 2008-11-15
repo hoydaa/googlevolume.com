@@ -2,10 +2,9 @@
 
 class Series
 {
+  protected $colors = array('0000ff', '008000', 'ff0000', 'ffff00');
   
   private $series = array();
-  
-  protected $colors = array('0000ff', '008000', 'ff0000', 'ffff00');
   
   private $x_labels = array();
   
@@ -16,15 +15,22 @@ class Series
   private $min_of_all = null;
   
   private $markers_enabled = true;
-
-  //$rtn .= '&chxr=0,0,200|1,0,500';
-  //$rtn .= '&chxl=0:|1|2|3|4'
-
+  
+  private $x_labels_enabled = true;
+  
+  private $y_labels_enabled = true;
+  
+  private $scale_min = null;
+  
+  private $scale_max = null;
+  
+  private $serie_labels_enabled = true;
+  
   public function getColors()
   {
     return $this->colors;
   }
-
+  
   public function setColors($colors)
   {
     $this->colors = $colors;
@@ -45,10 +51,20 @@ class Series
     $this->markers_enabled = $markers_enabled;
   }
 
+  public function setSerieLabelsEnabled($enabled)
+  {
+    $this->serie_labels_enabled = $enabled;
+  }
+
   public function addSerie($serie)
   {
     $serie->setColor($this->colors[sizeof($this->series)%sizeof($this->colors)]);
     $this->series[] = $serie;
+  }
+  
+  public function getSeries() 
+  {
+    return $this->series;
   }
   
   public function normalize()
@@ -88,19 +104,23 @@ class Series
     return $this->min_of_all;
   }
   
-  public function autoSetYLabels($count = 3)
+  public function autoSetYLabels($count = 5)
   {
+    $diff = ($this->calculateMax() - $this->calculateMin());
+    $step = Utils::find_maximum_decimal_factor($diff) / 10;
+    $up = ceil($this->calculateMax() / $step) * $step;
+    $down  = floor($this->calculateMin() / $step) * $step;
+    $diff = ($up - $down) / $count;
     $this->y_labels = array();
-    
-    $this->y_labels[] = $this->calculateMin();
-    for($i = 1; $i < $count - 1; $i++)
+    for($i = 0; $i < $count + 1; $i++)
     {
-      $this->y_labels[] = ((int) round(($this->calculateMax() - $this->calculateMin()) / ($count - 1), 1) * $i) + $this->calculateMin();
-    }
-    $this->y_labels[] = $this->calculateMax();
+      $this->y_labels[] = number_format($down + $diff * $i);
+    } 
+    $this->scale_min = round($down / $this->calculateMax() * 100, 1);
+    $this->scale_max = round($up / $this->calculateMax() * 100, 1);
   }
   
-  public function __toString() 
+  public function __toString()
   {
     $rtn = '';
     if(sizeof($this->series) > 0)
@@ -121,17 +141,26 @@ class Series
         $markers_arr[] = 'o,'.$serie->getColor().','.$counter.',-1,6';
         $counter++;
       }
-      $labels_text = 'chdl=' . implode('|', $labels_arr);
-      $rtn .= '&' . $labels_text;
+      // serie labels
+      if($this->serie_labels_enabled)
+      {
+        $labels_text = 'chdl=' . implode('|', $labels_arr);
+        $rtn .= '&' . $labels_text;
+      }
       $colors_text = 'chco=' . implode(',', $colors_arr);
       $rtn .= '&' . $colors_text;
       if($this->markers_enabled)
       {
         $rtn .= '&chm=' . implode('|', $markers_arr);
       }
-      
-      // chart scaling
-      $rtn .= '&chds=' . ($this->calculateMin() / $this->calculateMax() * 100) . ',100';
+	      
+      if($this->scale_min)
+      {
+        $rtn .= '&chds=' . $this->scale_min . ',' . $this->scale_max;
+      } else
+      {
+        $rtn .= '&chds=' . round(($this->calculateMin() / $this->calculateMax() * 100), 1) . ',100';
+      }
     }
     
     $rtn .= '&chxt=x,y';
@@ -148,6 +177,11 @@ class Series
       {
         $rtn .= '|1:|' . implode('|', $this->y_labels);
       }
+    }
+    
+    if($this->x_labels && $this->y_labels)
+    {
+      $rtn .= '&chg=' . (round(100 / (sizeof($this->x_labels) - 1), 2) - 0.02) . ',' . (round(100 / (sizeof($this->y_labels) - 1), 2) - 0.02);
     }
     
     return $rtn;

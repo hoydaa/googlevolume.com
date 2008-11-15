@@ -2,17 +2,23 @@
 
 class Serie
 {
-
   private $label = null;
+  
   private $data = array();
+  
   private $color = '00ff00';
+  
   private $markers_enabled = true;
+  
+  
   
   public function __construct($data = array(), $label = null)
   {
     $this->data = $data;
     $this->label = $label;
   }
+  
+  
   
   public function getLabel()
   {
@@ -43,6 +49,8 @@ class Serie
   {
     $this->markers_enabled = $markers_enabled;
   }
+  
+  
   
   public function addData($data) 
   {
