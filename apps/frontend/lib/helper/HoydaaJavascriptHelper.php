@@ -23,6 +23,18 @@ function hoydaa_date_array_to_date($arr)
   return $arr['year'] . '-' . _fill_with_zero($arr['month'], 2) . '-' . _fill_with_zero($arr['day'], 2);
 }
 
+function hoydaa_link_to_overlib($text, $url, $content, $options = array())
+{
+  $response = sfContext::getInstance()->getResponse(); 
+  $response->addJavascript('overlib/overlib.js');
+  
+  echo "<div id=\"overDiv" . rand(0,100) . "\" style=\"position:absolute; visibility:hidden; z-index:1000;\"></div>";
+  
+  $options['onmouseover'] = "return overlib('". $content ."');";
+  $options['onmouseout']  = "return nd();";
+  echo link_to($text, $url, $options);
+}
+
 function _fill_with_zero($num, $len)
 {
   if(strlen($num) < $len)
