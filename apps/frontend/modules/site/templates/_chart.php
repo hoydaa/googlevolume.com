@@ -11,13 +11,13 @@
                     $chart, 
                     array('alt' => $report->getTitle(), 'style' => 'border-style: none;')), 
                 'report/show?id=' . $report->getId(), 
-                get_serie_label_content($labels)); ?>
+                get_serie_label_content($chart)); ?>
         </td>
     </tr>
     <tr>
         <td>
-            <?php foreach($labels as $label): ?>
-                <span style="background-color: <?php echo $label['color'] ?>"><?php echo $label['title'] ?></span>
+            <?php foreach($chart->getSeries()->getSeries() as $serie): ?>
+                <span style="background-color: #<?php echo $serie->getColor() ?>"><?php echo $serie->getLabel() ?></span>
             <?php endforeach; ?>
         </td>
     </tr>
