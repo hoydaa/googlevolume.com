@@ -75,7 +75,7 @@ class ReportPeer extends BaseReportPeer
     return $pager;
   }
 
-  public static function getReportChart($report, $start_date, $end_date, $frequency)
+  public static function getReportChart($report, $start_date, $end_date, $frequency, $decorator = null)
   {
     $line_chart = new LineChart();
     $line_chart->setTitle($report->getTitle());
@@ -128,8 +128,14 @@ class ReportPeer extends BaseReportPeer
     
     $series->autoSetYLabels(5);
     $series->normalize();
-
+    
     $line_chart->setSeries($series);
+    
+    if($decorator)
+    {
+      $decorator->decorate($line_chart);
+    }
+    
     return $line_chart;
   }
 

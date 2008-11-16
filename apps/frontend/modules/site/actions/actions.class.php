@@ -21,13 +21,12 @@ class siteActions extends sfActions
     $frequency = QueryResultPeer::FREQUENCY_DAY;
     
     $x_labels = array($start_date, $end_date);
+    $decorator = new ThumbnailChartDecorator($x_labels);
+    
     $charts = array();
-    $serie_labels = array();
     foreach($reports as $report)
     {
-      $chart = ReportPeer::getReportChart($report, $start_date, $end_date, $frequency);
-      $decorator = new ThumbnailChartDecorator($x_labels);
-      $decorator->decorate($chart);
+      $chart = ReportPeer::getReportChart($report, $start_date, $end_date, $frequency, $decorator);
       
       $charts[] = $chart;
     }
