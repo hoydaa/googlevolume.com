@@ -4,13 +4,13 @@
     <?php for($i = 0; $i < sizeof($charts) / 2; $i++): ?>
         <tr>
             <td>
-                <?php include_partial('report/mini', array('report' => $reports[$i * 2], 'chart' => $charts[$i * 2], 'labels' => $serie_labels[$i * 2])); ?>
+                <?php include_partial('report/mini', array('report' => $reports[$i * 2], 'chart' => $charts[$i * 2])); ?>
             </td>
             <td>
                 <?php 
                     if($i * 2 + 2 <= sizeof($charts))
                     {
-                        echo include_partial('report/mini', array('report' => $reports[$i * 2 + 1], 'chart' => $charts[$i * 2 + 1], 'labels' => $serie_labels[$i * 2 + 1]));
+                        echo include_partial('report/mini', array('report' => $reports[$i * 2 + 1], 'chart' => $charts[$i * 2 + 1]));
                     }
                 ?>
             </td>
@@ -22,12 +22,12 @@
 </table>
 
 <?php
-  function get_serie_label_content($array)
+  function get_serie_label_content($chart)
   {
     $rtn = "";
-    foreach($array as $item)
+    foreach($chart->getSeries()->getSeries() as $serie)
     {
-      $rtn .= '<span style="background-color: '. $item['color'] .'">'.$item['title'].'</span><br/>';
+      $rtn .= '<span style="background-color: #'. $serie->getColor() .'">'.$serie->getLabel().'</span><br/>';
     }
     return $rtn;
   }

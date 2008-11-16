@@ -3,10 +3,10 @@
 	<img src="<?php echo $chart ?>" alt="<?php echo $report->getTitle() ?>" />
 </a>
 <ul class="labels">
-	<?php foreach($labels as $label): ?>
+	<?php foreach($chart->getSeries()->getSeries() as $serie): ?>
 		<li>
-			<div style="background-color: <?php echo $label['color'] ?>"></div>
-			<span><?php echo $label['title'] ?></span>
+			<div style="background-color: #<?php echo $serie->getColor() ?>"></div>
+			<span><?php echo $serie->getLabel() ?></span>
 		</li>
 	<?php endforeach; ?>
 </ul>
