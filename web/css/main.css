@@ -157,6 +157,14 @@ ul.tag_cloud li.rank_10 {
     margin-bottom: 40px;
 }
 
+/* pager results */
+
+ul.pager-res {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
 /* pager navigation */
 
 ul.pager-nav {
@@ -167,4 +175,29 @@ ul.pager-nav {
 
 ul.pager-nav li {
     display: inline;
+}
+
+/* labels */
+
+ul.labels {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+ul.labels li {
+	clear: left;
+	margin-bottom: 5px;
+}
+
+ul.labels li div {
+	float: left;
+	width: 15px;
+	height: 15px;
+}
+
+/* image */
+
+img {
+	border: none;
 }
