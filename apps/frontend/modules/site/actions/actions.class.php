@@ -26,8 +26,8 @@ class siteActions extends sfActions
     foreach($reports as $report)
     {
       $chart = Utils::get_report_chart($report, $start_date, $end_date, $frequency);
-      $chart->setWidth(300);
-      $chart->setHeight(150);
+      $chart->setWidth(250);
+      $chart->setHeight(125);
       $chart->getSeries()->setXLabels($x_labels);
       $chart->getSeries()->autoSetYLabels(2);
       $chart->getSeries()->setSerieLabelsEnabled(false);
