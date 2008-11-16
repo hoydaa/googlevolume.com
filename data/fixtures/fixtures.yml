@@ -27,6 +27,10 @@ Query:
     query: Obama
   mccain:
     query: McCain
+  fenerbahce:
+    query: Fenerbahce
+  galatasaray:
+    query: Galatasaray
 
 QueryResult:
   obama-02.11.2008:
@@ -85,6 +89,39 @@ QueryResult:
     query_id: mccain
     created_at: 2008-11-06
     result_size: 86500000
+  fenerbahce-02.11.2008:
+    query_id: fenerbahce
+    created_at: 2008-11-02
+    result_size: 100
+  fenerbahce-03.11.2008:
+    query_id: fenerbahce
+    created_at: 2008-11-03
+    result_size: 150
+  fenerbahce-04.11.2008:
+    query_id: fenerbahce
+    created_at: 2008-11-04
+    result_size: 200
+  fenerbahce-05.11.2008:
+    query_id: fenerbahce
+    created_at: 2008-11-05
+    result_size: 250
+
+  galatasaray-02.11.2008:
+    query_id: galatasaray
+    created_at: 2008-11-02
+    result_size: 100
+  galatasaray-03.11.2008:
+    query_id: galatasaray
+    created_at: 2008-11-03
+    result_size: 125
+  galatasaray-04.11.2008:
+    query_id: galatasaray
+    created_at: 2008-11-04
+    result_size: 175
+  galatasaray-05.11.2008:
+    query_id: galatasaray
+    created_at: 2008-11-05
+    result_size: 200
 
 Report:
   obama_vs_mccain:
@@ -103,6 +140,14 @@ ReportQuery:
     report_id: obama_vs_mccain
     query_id: mccain
     title: McCain
+  fenerbahce_vs_galatasaray-fenerbahce:
+    report_id: fenerbahce_vs_galatasaray
+    query_id: fenerbahce
+    title: Fenerbahce
+  fenerbahce_vs_galatasaray-galatasaray:
+    report_id: fenerbahce_vs_galatasaray
+    query_id: galatasaray
+    title: Galatasaray
 
 ReportTag:
   obama_vs_mccain-obama:
