@@ -25,28 +25,15 @@ class siteActions extends sfActions
     $serie_labels = array();
     foreach($reports as $report)
     {
-      $chart = Utils::get_report_chart($report, $start_date, $end_date, $frequency);
-      $chart->setWidth(250);
-      $chart->setHeight(125);
-      $chart->getSeries()->setXLabels($x_labels);
-      $chart->getSeries()->autoSetYLabels(2);
-      $chart->getSeries()->setSerieLabelsEnabled(false);
-      $chart->setTitle(null);
-      //$chart->setTitleFont(11);
-      
-      $serie_label = array();
-      foreach($chart->getSeries()->getSeries() as $serie)
-      {
-        $serie_label[] = array('color' => '#' . $serie->getColor(), 'title' => $serie->getLabel());
-      }
-      $serie_labels[] = $serie_label;
+      $chart = ReportPeer::getReportChart($report, $start_date, $end_date, $frequency);
+      $decorator = new ThumbnailChartDecorator($x_labels);
+      $decorator->decorate($chart);
       
       $charts[] = $chart;
     }
     
     $this->charts = $charts;
     $this->reports = $reports;
-    $this->serie_labels = $serie_labels;
   }
 
   public function executeMessage()
