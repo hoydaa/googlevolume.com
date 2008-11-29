@@ -26,6 +26,10 @@ class reportActions extends sfActions
         }
 
         $this->form = new ReportForm($report);
+        if(!$id)
+        {
+            $this->form->setDefaults(array('public' => true));   
+        }
     }
 
     public function executeUpdate($request)
@@ -47,7 +51,12 @@ class reportActions extends sfActions
         }
          
         $this->form = new ReportForm($report);
-        $successful = $this->form->bindAndSave($request->getParameter('report'));
+        $temp = $request->getParameter('report');
+        if($this->getUser()->isAuthenticated())
+        {
+            $temp['user_id'] = $this->getUser()->getId();
+        }
+        $successful = $this->form->bindAndSave($temp);
         if(!$successful)
         {
             $this->setTemplate('edit');
