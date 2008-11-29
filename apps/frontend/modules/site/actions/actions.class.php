@@ -12,11 +12,7 @@ class siteActions extends sfActions
 {
     public function executeIndex($request)
     {
-        $c = new Criteria();
-        $c->setLimit(9);
-        $reports = ReportPeer::doSelect($c);
-        
-        $this->reports = $reports;
+        $this->reports = ReportPeer::findByPopularity();
     }
 
     public function executeMessage()
