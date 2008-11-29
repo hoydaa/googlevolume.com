@@ -14,6 +14,14 @@
             <div id="header">
                 <h1><?php echo link_to('Project-Y', '@homepage') ?></h1>
             </div>
+            <ul id="nav">
+            	<li><?php echo link_to('Create New', 'report/edit') ?></li>
+            	<?php if(!$sf_user->isAuthenticated()): ?>
+            		<li><?php echo link_to('Login', '@sf_guard_signin') ?></li>
+            	<?php else: ?>
+            		<li><?php echo link_to('Logout', '@sf_guard_signout') ?></li>
+            	<?php endif; ?>
+            </ul>
         </div>
         <div id="main-wrapper">
             <div id="main">
