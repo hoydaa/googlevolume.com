@@ -16,8 +16,14 @@ abstract class BaseChart
     private $width = self::DEFAULT_WIDTH;
 
     private $height = self::DEFAULT_HEIGHT;
-
     
+    private $cacheable = null;
+    
+    
+    public function __construct($cacheable = false) {
+        $this->cacheable = $cacheable;
+    }
+
     public function getTitle()
     {
         return $this->title;
@@ -52,7 +58,17 @@ abstract class BaseChart
     {
         return $this->title_font;
     }
+    
+    public function isCacheable() 
+    {
+        return $this->cacheable;    
+    }
 
+    public function setCacheable($cacheable)
+    {
+        $this->cacheable = $cacheable;
+    }
+    
     public function setTitleFont($font)
     {
         $this->title_font = $font;
@@ -88,17 +104,21 @@ abstract class BaseChart
     {
         $google_url = $this->getGoogleUrl();
 
-        $relative_url = md5($google_url) . '.png';
-        $local_url = '/home/umututkan/workspace/project-y/web/' . $relative_url;
-
-        //print_r(file_exists($local_url));
-
-        if(!file_exists($local_url))
+        if($this->cacheable)
         {
-            file_put_contents($local_url, file_get_contents($google_url));
+            $relative_url = md5($google_url) . '.png';
+            $local_url = '/home/umututkan/workspace_pdt/project-y/web/' . $relative_url;
+    
+            if(!file_exists($local_url))
+            {
+                file_put_contents($local_url, file_get_contents($google_url));
+            }
+    
+            return 'http://www.mytrends.com/' . $relative_url;
+        } else
+        {
+            return $google_url;
         }
-
-        return 'http://www.mytrends.com/' . $relative_url;
     }
 
     abstract protected function getStringRepresentation();

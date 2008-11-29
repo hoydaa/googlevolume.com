@@ -10,32 +10,33 @@
  */
 class siteActions extends sfActions
 {
-  public function executeIndex($request)
-  {
-    $c = new Criteria();
-    $c->setLimit(9);
-    $reports = ReportPeer::doSelect($c);
-    
-    $start_date = date('Y-m-d', strtotime(date('Ymd') . ' -12 days'));
-    $end_date  = date('Y-m-d');
-    $frequency = QueryResultPeer::FREQUENCY_DAY;
-    
-    $x_labels = array($start_date, $end_date);
-    $decorator = new ThumbnailChartDecorator($x_labels);
-    
-    $charts = array();
-    foreach($reports as $report)
+    public function executeIndex($request)
     {
-      $chart = ReportPeer::getReportChart($report, $start_date, $end_date, $frequency, $decorator);
-      
-      $charts[] = $chart;
-    }
-    
-    $this->charts = $charts;
-    $this->reports = $reports;
-  }
+        $c = new Criteria();
+        $c->setLimit(9);
+        $reports = ReportPeer::doSelect($c);
 
-  public function executeMessage()
-  {
-  }
+        $start_date = date('Y-m-d', strtotime(date('Ymd') . ' -12 days'));
+        $end_date  = date('Y-m-d');
+        $frequency = QueryResultPeer::FREQUENCY_DAY;
+
+        $x_labels = array($start_date, $end_date);
+        $decorator = new ThumbnailChartDecorator($x_labels);
+
+        $charts = array();
+        foreach($reports as $report)
+        {
+            $chart = ReportPeer::getReportChart($report, $start_date, $end_date, $frequency, $decorator);
+            $chart->setCacheable(true);
+
+            $charts[] = $chart;
+        }
+         
+        $this->charts = $charts;
+        $this->reports = $reports;
+    }
+
+    public function executeMessage()
+    {
+    }
 }
