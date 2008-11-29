@@ -2,5 +2,7 @@
 
 interface ChartDecorator
 {
-  public function decorate($chart); 
+    
+    public function decorate($chart);
+
 }
