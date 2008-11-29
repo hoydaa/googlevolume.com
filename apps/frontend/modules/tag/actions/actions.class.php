@@ -24,6 +24,6 @@ class tagActions extends sfActions
 
   public function executeShow($request)
   {
-    $this->pager = ReportPeer::findByTag($request->getParameter('tag'), $request->getParameter('page'), 1);
+    $this->pager = ReportPeer::findByTag($request->getParameter('tag'), $request->getParameter('page', 1), 10);
   }
 }
