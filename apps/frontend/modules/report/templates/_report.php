@@ -1,11 +1,13 @@
 <?php use_helper('Javascript', 'HoydaaJavascript') ?>
 
 <div id="report-container">
-	<?php include_component('report', 'chart', array(
-	  'report'     => $report, 
-	  'start_date' => $form->getValue('start_date'), 
-	  'end_date'   => $form->getValue('end_date'),
-	  'frequency'  => $form->getValue('frequency'))) ?>
+	<?php if($form->isValid()): ?>
+	    <?php include_component('report', 'chart', array(
+	  		'report'     => $report, 
+	  		'start_date' => $form->getValue('start_date'), 
+	  		'end_date'   => $form->getValue('end_date'),
+	  		'frequency'  => $form->getValue('frequency'))) ?>
+	<?php endif; ?>
 	<div id="date-container">
 		<?php echo form_remote_tag(
 			array('url' => 'report/chart?id=' . $report->getId(), 'update' => 'report-container'), 
@@ -14,6 +16,13 @@
 			<tr>
 				<td colspan="2" align="left"><?php echo link_to('<<', '#') ?></td>
 				<td colspan="2" align="right"><?php echo link_to('>>', '#') ?></td>
+			</tr>
+			<tr>
+				<td colspan="4" align="left">
+					<?php echo $form['start_date']->renderError(); ?>
+					<?php echo $form['end_date']->renderError(); ?>
+					<?php echo $form['frequency']->renderError(); ?>
+				</td>
 			</tr>
 			<tr>
 				<td><?php echo $form['start_date']->renderLabel(); ?></td>
