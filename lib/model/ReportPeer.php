@@ -75,6 +75,19 @@ class ReportPeer extends BaseReportPeer
 
         return $pager;
     }
+    
+    /**
+     * TODO: Will be improved
+     *
+     * @param unknown_type $max
+     * @return unknown
+     */
+    public static function findByPopularity($max = 10)
+    {
+        $c = new Criteria();
+        $c->setLimit($max);
+        return ReportPeer::doSelect($c);
+    }
 
     public static function getReportChart($report, $start_date, $end_date, $frequency, $decorator = null)
     {    
