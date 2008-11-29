@@ -107,14 +107,14 @@ abstract class BaseChart
         if($this->cacheable)
         {
             $relative_url = md5($google_url) . '.png';
-            $local_url = '/home/umututkan/workspace_pdt/project-y/web/' . $relative_url;
+            $local_url = sfConfig::get('app_web_images_charts') . '/' . $relative_url;
     
             if(!file_exists($local_url))
             {
                 file_put_contents($local_url, file_get_contents($google_url));
             }
     
-            return 'http://www.mytrends.com/' . $relative_url;
+            return 'http://www.mytrends.com/images/charts/' . $relative_url;
         } else
         {
             return $google_url;
