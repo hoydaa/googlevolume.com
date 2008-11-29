@@ -115,6 +115,6 @@ class reportActions extends sfActions
 
     public function executeListMyReports($request)
     {
-        $this->pager = ReportPeer::findByUser($this->getUser()->getGuardUser()->getId(), $request->getParameter('page', 1), 1);
+        $this->pager = ReportPeer::findByUser($this->getUser()->getGuardUser()->getId(), $request->getParameter('page', 1), 10);
     }
 }
