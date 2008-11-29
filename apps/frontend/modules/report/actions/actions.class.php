@@ -110,7 +110,7 @@ class reportActions extends sfActions
             return;
         }
 
-        $this->pager = ReportPeer::search($this->search_form->getValue('query'), $this->search_form->getValue('page'), 1);
+        $this->pager = ReportPeer::search($this->search_form->getValue('query'), $this->search_form->getValue('page', 1), 10);
     }
 
     public function executeListMyReports($request)
