@@ -116,7 +116,7 @@ class ReportForm extends ObjectForm
         $report_query->delete();
       }
       
-      foreach ($this->object->getTags() as $tag)
+      foreach ($this->object->getReportTags() as $tag)
       {
         $tag->delete();
       }
