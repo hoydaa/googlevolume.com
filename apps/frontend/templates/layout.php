@@ -21,6 +21,7 @@
             	<?php else: ?>
             		<li><?php echo link_to('Logout', '@sf_guard_signout') ?></li>
             	<?php endif; ?>
+            	<li><?php echo link_to('Search', 'report/search') ?></li>
             </ul>
         </div>
         <div id="main-wrapper">

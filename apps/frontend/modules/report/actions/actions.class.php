@@ -96,21 +96,21 @@ class reportActions extends sfActions
 
     public function executeSearch($request)
     {
-        $this->form = new SearchReportForm();
+        $this->search_form = new SearchReportForm();
 
         if ($request->isMethod('get'))
         {
             return;
         }
 
-        $this->form->bind($request->getParameter('searchreport'));
+        $this->search_form->bind($request->getParameter('searchreport'));
 
-        if (!$this->form->isValid())
+        if (!$this->search_form->isValid())
         {
             return;
         }
 
-        $this->pager = ReportPeer::search($this->form->getValue('query'), $this->form->getValue('page'), 1);
+        $this->pager = ReportPeer::search($this->search_form->getValue('query'), $this->search_form->getValue('page'), 1);
     }
 
     public function executeListMyReports($request)

@@ -3,7 +3,7 @@
 <h1>Search Report</h1>
 
 <form name="form" action="<?php echo url_for('report/search') ?>" method="post" class="panel">
-    <?php echo $form ?>
+    <?php echo $search_form ?>
     <div class="right_col">
         <input type="submit" value="Search" />
     </div>
