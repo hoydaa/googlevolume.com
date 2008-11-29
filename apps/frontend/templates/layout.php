@@ -12,7 +12,7 @@
     <body>
         <div id="header-wrapper">
             <div id="header">
-                <h1>Project-Y</h1>
+                <h1><?php echo link_to('Project-Y', '@homepage') ?></h1>
             </div>
         </div>
         <div id="main-wrapper">
