@@ -77,7 +77,7 @@ class ReportPeer extends BaseReportPeer
     }
 
     public static function getReportChart($report, $start_date, $end_date, $frequency, $decorator = null)
-    {
+    {    
         $line_chart = new LineChart();
         $line_chart->setTitle($report->getTitle());
 
