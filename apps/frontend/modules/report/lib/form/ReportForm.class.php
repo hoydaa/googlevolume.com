@@ -20,7 +20,8 @@ class ReportForm extends ObjectForm
       'query_text_5'   => new sfWidgetFormInput(),
       'query_title_5'  => new sfWidgetFormInput(),
       'public'         => new sfWidgetFormInputCheckbox(),
-      'tags'           => new sfWidgetFormInput(array(), array('autocomplete' => 'off'))
+      'tags'           => new sfWidgetFormInput(array(), array('autocomplete' => 'off')),
+      'user_id'        => new sfWidgetFormInputHidden()
     ));
     
     $this->widgetSchema->setLabels(array(
@@ -37,7 +38,8 @@ class ReportForm extends ObjectForm
       'query_text_5'   => 'Query Text 5',
       'query_title_5'  => 'Query Title 5',
       'public'         => 'Public',
-      'tags'           => 'Tags'
+      'tags'           => 'Tags',
+      'user_id'        => 'User Id'
     ));
     
     $this->setValidators(array(
@@ -55,7 +57,8 @@ class ReportForm extends ObjectForm
       'query_text_5'   => new sfValidatorString(array('required' => false)),
       'query_title_5'  => new sfValidatorString(array('required' => false)),
       'public'         => new sfValidatorString(array('required' => false)),
-      'tags'           => new sfValidatorString(array('required' => false))
+      'tags'           => new sfValidatorString(array('required' => false)),
+      'user_id'        => new sfValidatorString(array('required' => false))
     ));
     
     $this->validatorSchema->setPostValidator(
@@ -157,6 +160,10 @@ class ReportForm extends ObjectForm
 	    $report_query->setTitle($query_title);
 	    $this->object->addReportQuery($report_query);
 	  }
+	}
+	if($this->getValue('user_id'))
+	{
+	    $this->object->setUserId($this->getValue('user_id'));
 	}
   }
   
