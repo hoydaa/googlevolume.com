@@ -22,7 +22,7 @@ propel:
     user_id:          { type: integer, foreignTable: sf_guard_user, foreignReference: id, onDelete: cascade }
     title:            { type: varchar, size: 255, required: true }
     description:      { type: varchar, size: 255, required: false }
-    public_record:    { type: boolean, required: true, default: false }
+    public_record:    { type: boolean, required: true, default: true }
     created_at:       ~
     updated_at:       ~
 
