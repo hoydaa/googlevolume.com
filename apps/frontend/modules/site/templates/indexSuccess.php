@@ -1,16 +1,16 @@
 <?php use_helper('HoydaaJavascript') ?>
 
 <table width="100%">
-    <?php for($i = 0; $i < sizeof($charts) / 2; $i++): ?>
+    <?php for($i = 0; $i < sizeof($reports) / 2; $i++): ?>
         <tr>
             <td>
-                <?php include_partial('report/mini', array('report' => $reports[$i * 2], 'chart' => $charts[$i * 2])); ?>
+                <?php include_component('report', 'miniChart', array('report' => $reports[$i * 2])); ?>
             </td>
             <td>
                 <?php 
-                    if($i * 2 + 2 <= sizeof($charts))
+                    if($i * 2 + 2 <= sizeof($reports))
                     {
-                        echo include_partial('report/mini', array('report' => $reports[$i * 2 + 1], 'chart' => $charts[$i * 2 + 1]));
+                        echo include_component('report', 'miniChart', array('report' => $reports[$i * 2 + 1]));
                     }
                 ?>
             </td>
