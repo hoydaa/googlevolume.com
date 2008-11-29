@@ -2,7 +2,7 @@
 
 class DefaultChartDecorator implements ChartDecorator
 {
-  public function decorate($chart)
-  {
-  }
+
+    public function decorate($chart){}
+
 }
