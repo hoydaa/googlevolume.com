@@ -62,7 +62,7 @@ class reportActions extends sfActions
             $this->setTemplate('edit');
         } else
         {
-            return $this->redirect("report/show?id=" . $report->getId());
+            return $this->redirect("report/show?id=" . $report->getFriendlyUrl());
         }
     }
 
