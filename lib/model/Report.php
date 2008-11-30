@@ -34,3 +34,12 @@ class Report extends BaseReport
   }
 
 }
+
+sfPropelBehavior::add('Report',
+  array(
+    'sfPropelFriendlyUrlBehavior' => array(
+      'source_column' => 'title',
+      'target_column' => 'stripped_title'
+    )
+  )
+);
