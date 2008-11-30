@@ -75,8 +75,10 @@ class reportActions extends sfActions
         $this->form = new DateSelectorForm();
         //$this->form->bind($request->getParameter('date_selector'));
 
-        $this->report = ReportPeer::retrieveByPK($id);
-
+        //$this->report = ReportPeer::retrieveByPK($id);
+        ReportPeer::retrieveByPK(1);
+        $this->report = sfPropelFriendlyUrl::retrieveByFriendlyUrl('Report', $id);
+        
         $this->forward404Unless($this->report);
     }
 
