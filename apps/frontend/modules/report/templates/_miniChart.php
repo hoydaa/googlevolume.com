@@ -1,5 +1,5 @@
 <h2><?php echo $report->getTitle(); ?></h2>
-<a href="<?php echo url_for('report/show?id=' . $report->getId()) ?>">
+<a href="<?php echo url_for('report/show?id=' . $report->getFriendlyUrl()) ?>">
 	<img src="<?php echo $chart ?>" alt="<?php echo $report->getTitle() ?>" />
 </a>
 <ul class="labels">
