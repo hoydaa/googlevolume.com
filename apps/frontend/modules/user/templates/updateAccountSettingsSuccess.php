@@ -3,6 +3,6 @@
 <form action="<?php echo url_for('user/updateAccountSettings') ?>" method="post" class="panel">
     <?php echo $form ?>
     <div class="right_col">
-        <input type="submit" value="Update" />
+        <input type="submit" value="Update" /> <?php echo link_to('Cancel', 'user/showAccountSettings') ?>
     </div>
 </form>
