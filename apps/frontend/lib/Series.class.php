@@ -26,7 +26,13 @@ class Series
     private $scale_max = null;
 
     private $serie_labels_enabled = true;
+    
+    private $serie_labels_position = BaseChart::PLACEMENT_RIGHT;
 
+    
+    public function setSerieLabelsPosition($position) {
+        $this->serie_labels_position = $position;
+    }
     
     public function getColors()
     {
@@ -148,6 +154,23 @@ class Series
             {
                 $labels_text = 'chdl=' . implode('|', $labels_arr);
                 $rtn .= '&' . $labels_text;
+                switch($this->serie_labels_position) {
+                    case BaseChart::PLACEMENT_BOTTOM:
+                        $rtn .= "&chdlp=b";
+                        break;
+                    case BaseChart::PLACEMENT_LEFT:
+                        $rtn .= "&chdlp=l";
+                        break;
+                    case BaseChart::PLACEMENT_RIGHT:
+                        $rtn .= "&chdlp=r";
+                        break;
+                    case BaseChart::PLACEMENT_TOP:
+                        $rtn .= "&chdlp=t";
+                        break;
+                    default:
+                        $rtn .= "&chdlp=r";
+                        break;
+                } 
             }
             $colors_text = 'chco=' . implode(',', $colors_arr);
             $rtn .= '&' . $colors_text;
