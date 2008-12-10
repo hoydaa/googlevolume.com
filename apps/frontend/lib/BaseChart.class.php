@@ -7,6 +7,14 @@ abstract class BaseChart
     const DEFAULT_WIDTH = 600;
     
     const DEFAULT_HEIGHT = 300;
+    
+    const PLACEMENT_TOP = 1;
+    
+    const PLACEMENT_BOTTOM = 2;
+    
+    const PLACEMENT_LEFT = 3;
+    
+    const PLACEMENT_RIGHT = 4;
 
     
     private $title = null;
