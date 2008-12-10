@@ -1,7 +1,7 @@
 body {
     margin: 0;
     font-family: Verdana,Arial,Helvetica,sans-serif;
-    font-size: 0.7em;
+    font-size: 0.8em;
 }
 
 /* layout */
@@ -25,6 +25,7 @@ body {
 #content {
     margin-right: 310px;
     padding: 10px 0;
+    border-right: 1px solid #DDDDDD;
 }
 
 #sidebar {
@@ -200,4 +201,28 @@ ul.labels li div {
 
 img {
 	border: none;
+}
+
+/* menu */
+
+#nav {
+    position: absolute;
+    top: 50px;
+    margin: 0 0 0 300px;
+    padding: 0;
+}
+
+#nav li {
+    display: inline;
+}
+
+#nav a {
+    text-decoration: none;
+    color: #0F0FCF;
+    padding: 5px;
+}
+
+#nav a:hover {
+    background-color: #0F0FCF;
+    color: #FFFFFF;
 }
