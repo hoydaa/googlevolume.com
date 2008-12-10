@@ -3,10 +3,10 @@
 <table width="100%">
     <?php for($i = 0; $i < sizeof($reports) / 2; $i++): ?>
         <tr>
-            <td>
+            <td valign="top">
                 <?php include_component('report', 'miniChart', array('report' => $reports[$i * 2])); ?>
             </td>
-            <td>
+            <td valign="top">
                 <?php 
                     if($i * 2 + 2 <= sizeof($reports))
                     {
