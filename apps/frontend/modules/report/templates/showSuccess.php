@@ -12,5 +12,3 @@
 <?php include_partial('report/createdBy', array('report' => $report)) ?>
 
 <?php include_partial('report/report', array('report' => $report, 'form' => $form)) ?>
-
-<p><?php echo $report->getDescription() ?></p>
