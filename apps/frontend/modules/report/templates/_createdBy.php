@@ -1,6 +1,6 @@
 Created by 
 <?php if($report->getSfGuardUser()): ?>
-    <?php echo $report->getSfGuardUser()  ?>
+    <?php echo link_to($report->getSfGuardUser(), 'report/userReports?username=' . $report->getSfGuardUser()->getUsername())  ?>
 <?php else: ?>
 	anonymous
 <?php endif; ?>
