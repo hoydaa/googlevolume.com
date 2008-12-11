@@ -1,6 +1,7 @@
 <?php use_helper('Javascript', 'HoydaaJavascript') ?>
 
 <div id="report-container">
+	<p><strong>Description: </strong><?php echo $report->getDescription() ?></p>
 	<?php if($form->isValid()): ?>
 	    <?php include_component('report', 'chart', array(
 	  		'report'     => $report, 
@@ -13,10 +14,6 @@
 			array('url' => 'report/chart?id=' . $report->getId(), 'update' => 'report-container'), 
 			array('id' => 'date_selector_form')) ?>
 		<table>
-			<tr>
-				<td colspan="2" align="left"><?php echo link_to('<<', '#') ?></td>
-				<td colspan="2" align="right"><?php echo link_to('>>', '#') ?></td>
-			</tr>
 			<tr>
 				<td colspan="4" align="left">
 					<?php echo $form['start_date']->renderError(); ?>
@@ -34,7 +31,7 @@
 				<td><?php echo $form['start_date']; ?></td>
 				<td><?php echo $form['end_date']; ?></td>
 				<td><?php echo $form['frequency']; ?></td>
-				<td><input type="submit" value="Update" /></td>
+				<td><input type="submit" value="Update Chart" /></td>
 			</tr>
 		</table>
 		</form>
