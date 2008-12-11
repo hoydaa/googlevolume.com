@@ -76,6 +76,20 @@ class ReportPeer extends BaseReportPeer
         return $pager;
     }
     
+    public static function findByUserAndPublic($user_id, $public, $page, $size) 
+    {
+        $c = new Criteria();
+        $c->add(ReportPeer::USER_ID, $user_id);
+        $c->add(ReportPeer::PUBLIC_RECORD, $public);
+        
+        $pager = new sfPropelPager('Report', $size);
+        $pager->setCriteria($c);
+        $pager->setPage($page);
+        $pager->init();
+        
+        return $pager;
+    }
+    
     /**
      * TODO: Will be improved
      *
@@ -85,6 +99,7 @@ class ReportPeer extends BaseReportPeer
     public static function findByPopularity($max = 10)
     {
         $c = new Criteria();
+        $c->add(ReportPeer::PUBLIC_RECORD, true);
         $c->setLimit($max);
         return ReportPeer::doSelect($c);
     }
