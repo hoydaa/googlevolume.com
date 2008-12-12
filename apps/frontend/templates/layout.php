@@ -12,12 +12,13 @@
     <body>
         <div id="header-wrapper">
             <div id="header">
-                <h1><?php echo link_to('Project-Y', '@homepage', array('title' => 'homepage')) ?></h1>
+                <h1><?php echo link_to('Google Volume', '@homepage', array('title' => 'homepage')) ?></h1>
             </div>
             <ul id="nav">
             	<li><?php echo link_to('Create New', 'report/edit', array('title' => 'create new report')) ?></li>
             	<?php if(!$sf_user->isAuthenticated()): ?>
             		<li><?php echo link_to('Sign In', '@sf_guard_signin', array('title' => 'sign in')) ?></li>
+            		<li><?php echo link_to('Sign Up', 'user/signUp', array('title' => 'sign up')) ?></li>
             	<?php else: ?>
             		<li><?php echo link_to('Sign Out', '@sf_guard_signout', array('title' => 'sign out')) ?></li>
             	<?php endif; ?>
