@@ -4,4 +4,6 @@ $ cd lib/vendor
 $ svn propedit svn:externals .
 Then add the following line
 swift http://swiftmailer.svn.sourceforge.net/svnroot/swiftmailer/tags/php5/3.3.3/lib/
+and run
+$ svn update
 
