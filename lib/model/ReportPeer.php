@@ -9,7 +9,7 @@
  */
 class ReportPeer extends BaseReportPeer
 {
-    
+
     public static function search($query, $page, $size)
     {
         $keywords = split(' ', trim($query));
@@ -75,21 +75,21 @@ class ReportPeer extends BaseReportPeer
 
         return $pager;
     }
-    
-    public static function findByUserAndPublic($user_id, $public, $page, $size) 
+
+    public static function findByUserAndPublic($user_id, $public, $page, $size)
     {
         $c = new Criteria();
         $c->add(ReportPeer::USER_ID, $user_id);
         $c->add(ReportPeer::PUBLIC_RECORD, $public);
-        
+
         $pager = new sfPropelPager('Report', $size);
         $pager->setCriteria($c);
         $pager->setPage($page);
         $pager->init();
-        
+
         return $pager;
     }
-    
+
     /**
      * TODO: Will be improved
      *
@@ -105,7 +105,7 @@ class ReportPeer extends BaseReportPeer
     }
 
     public static function getReportChart($report, $start_date, $end_date, $frequency, $decorator = null)
-    {    
+    {
         $line_chart = new LineChart();
         $line_chart->setTitle($report->getTitle());
 
@@ -114,14 +114,14 @@ class ReportPeer extends BaseReportPeer
         $temp = ReportPeer::getQueryResults($report->getId(), $start_date, $end_date, $frequency);
         $titles = $report->getQueryTitles();
         $arrays = ReportPeer::fillWithEmptyValues($temp, $start_date, $end_date, $frequency);
-
+        
         for($i = 0; $i < sizeof($arrays); $i++)
         {
             $series->addSerie(new Serie(array_values($arrays[$i]), $titles[$i]));
         }
 
         $factors = Utils::find_factors(sizeof($arrays[0]) - 1, 10);
-        if($frequency == QueryResultPeer::FREQUENCY_WEEK)
+        if($frequency == QueryResultPeer::FREQUENCY_WEEK || $frequency == QueryResultPeer::FREQUENCY_DAY)
         {
             $factor = $factors[sizeof($factors) - 1];
             $labels = array();
@@ -132,27 +132,12 @@ class ReportPeer extends BaseReportPeer
             $temp = array_keys($arrays[0]);
             for($j = 0; $j < sizeof($labels); $j++)
             {
-                $labels[$j] = $temp[$j];
+                $labels[$j] = $temp[$j * (sizeof($arrays[0]) - 1) / $factor];
             }
             $series->setXLabels($labels);
         } else if($frequency == QueryResultPeer::FREQUENCY_MONTH)
         {
             $series->setXLabels(Utils::date_array_to_format(array_keys($arrays[0]), 'M y'));
-        } else
-        {
-            $factors = Utils::find_factors(sizeof($arrays[0]) - 1, 10);
-            $factor = $factors[sizeof($factors) - 1];
-            $labels = array();
-            for($j = 0; $j < $factor + 1; $j++)
-            {
-                $labels[] = ($j + 1);
-            }
-            $temp = array_keys($arrays[0]);
-            for($j = 0; $j < sizeof($labels); $j++)
-            {
-                $labels[$j] = $temp[$j];
-            }
-            $series->setXLabels($labels);
         }
 
         $series->autoSetYLabels(5);
@@ -177,6 +162,7 @@ class ReportPeer extends BaseReportPeer
             $arr = QueryResultPeer::getChartData($report_query->getQueryId(), $frequency, $start_date, $end_date);
             $temp[] = $arr;
         }
+
         return $temp;
     }
 
