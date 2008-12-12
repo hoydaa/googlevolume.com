@@ -114,31 +114,30 @@ class ReportPeer extends BaseReportPeer
         $temp = ReportPeer::getQueryResults($report->getId(), $start_date, $end_date, $frequency);
         $titles = $report->getQueryTitles();
         $arrays = ReportPeer::fillWithEmptyValues($temp, $start_date, $end_date, $frequency);
-        
+
         for($i = 0; $i < sizeof($arrays); $i++)
         {
             $series->addSerie(new Serie(array_values($arrays[$i]), $titles[$i]));
         }
 
         $factors = Utils::find_factors(sizeof($arrays[0]) - 1, 10);
-        if($frequency == QueryResultPeer::FREQUENCY_WEEK || $frequency == QueryResultPeer::FREQUENCY_DAY)
+        $factor = $factors[sizeof($factors) - 1];
+        $labels = array();
+        for($j = 0; $j < $factor + 1; $j++)
         {
-            $factor = $factors[sizeof($factors) - 1];
-            $labels = array();
-            for($j = 0; $j < $factor + 1; $j++)
+            $labels[] = ($j + 1);
+        }
+        $temp = array_keys($arrays[0]);
+        for($j = 0; $j < sizeof($labels); $j++)
+        {
+            if($frequency == QueryResultPeer::FREQUENCY_MONTH)
             {
-                $labels[] = ($j + 1);
-            }
-            $temp = array_keys($arrays[0]);
-            for($j = 0; $j < sizeof($labels); $j++)
-            {
+                $labels[$j] = date('M y', strtotime($temp[$j * (sizeof($arrays[0]) - 1) / $factor]));
+            } else {
                 $labels[$j] = $temp[$j * (sizeof($arrays[0]) - 1) / $factor];
             }
-            $series->setXLabels($labels);
-        } else if($frequency == QueryResultPeer::FREQUENCY_MONTH)
-        {
-            $series->setXLabels(Utils::date_array_to_format(array_keys($arrays[0]), 'M y'));
         }
+        $series->setXLabels($labels);
 
         $series->autoSetYLabels(5);
         $series->normalize();
