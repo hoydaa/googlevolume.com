@@ -53,7 +53,7 @@ class DateSelectorForm extends sfForm
             }
         } else if($values['frequency'] == QueryResultPeer::FREQUENCY_WEEK)
         {
-            $weeks = date('w', $end_date) - date('w', $start_date);
+            $weeks = (date('y', $end_date) - date('y', $start_date)) * 52 + date('W', $end_date) - date('W', $start_date);
             if($weeks > DateSelectorForm::LIMIT_WEEK)
             {
                 $error = new sfValidatorError($validator, 'Too much data.');
