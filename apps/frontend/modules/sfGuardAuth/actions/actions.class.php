@@ -31,7 +31,7 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
     try
     {
       $connection = new Swift_Connection_SMTP('mail.sis-nav.com', 25);
-      $connection->setUsername('umut.utkan@sis-nav.com');
+      $connection->setUsername('umut.utkan@sistemas.com.tr');
       $connection->setPassword('gahve123');
 
       $mailer = new Swift($connection);

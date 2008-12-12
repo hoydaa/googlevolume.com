@@ -38,7 +38,7 @@ class userActions extends sfActions
         try
         {
             $connection = new Swift_Connection_SMTP('mail.sis-nav.com', 25);
-            $connection->setUsername('umut.utkan@sis-nav.com');
+            $connection->setUsername('umut.utkan@sistemas.com.tr');
             $connection->setPassword('gahve123');
 
             $mailer = new Swift($connection);
@@ -46,13 +46,13 @@ class userActions extends sfActions
             $message = new Swift_Message('Account Confirmation');
 
             $mailContext = array(
-        'email' => $sfGuardUserProfile->getEmail(),
-        'full_name' => $sfGuardUserProfile->getFullName(),
-        'activation_key' => $sfGuardUserProfile->getActivationKey()
+        		'email' => $sfGuardUserProfile->getEmail(),
+        		'full_name' => $sfGuardUserProfile->getFullName(),
+        		'activation_key' => $sfGuardUserProfile->getActivationKey()
             );
 
-            $message->attach(new Swift_Message_Part($this->getPartial('mail/requestPasswordHtmlBody', $mailContext), 'text/html'));
-            $message->attach(new Swift_Message_Part($this->getPartial('mail/requestPasswordTextBody', $mailContext), 'text/plain'));
+            $message->attach(new Swift_Message_Part($this->getPartial('mail/signUpHtmlBody', $mailContext), 'text/html'));
+            $message->attach(new Swift_Message_Part($this->getPartial('mail/signUpTextBody', $mailContext), 'text/plain'));
 
             $mailer->send($message, $sfGuardUserProfile->getEmail(), 'admin@project-y.com');
             $mailer->disconnect();
@@ -66,7 +66,7 @@ class userActions extends sfActions
         $this->forward('site', 'message');
     }
 
-    public function executeActivate($request)
+    public function executeConfirmation($request)
     {
         $key = $request->getParameter('key');
 
