@@ -150,5 +150,71 @@ EOF;
         'end_date' => date('Y-m-d')
       )
     );
+    
+    $this->addReport(
+      array(
+        'queries' => array(
+          'Fusion' => array(
+            'rand' => 10,
+            'rand_start' => 10000,
+            'rand_diff' => 5,
+            'rand_min' => -10,
+            'rand_max' => 12
+         ),
+          'Fision' => array(
+            'rand' => 10,
+            'rand_start' => 10000,
+            'rand_diff' => 5,
+            'rand_min' => -10,
+            'rand_max' => 12
+         )),
+        'start_date' => '2007-01-01', 
+        'end_date' => date('Y-m-d')
+      )
+    );
+
+    $this->addReport(
+      array(
+        'queries' => array(
+          'Bad' => array(
+            'rand' => 10,
+            'rand_start' => 10000,
+            'rand_diff' => 5,
+            'rand_min' => -10,
+            'rand_max' => 12
+         ),
+          'Good' => array(
+            'rand' => 10,
+            'rand_start' => 10000,
+            'rand_diff' => 5,
+            'rand_min' => -10,
+            'rand_max' => 12
+         )),
+        'start_date' => '2007-01-01', 
+        'end_date' => date('Y-m-d')
+      )
+    );
+    
+    $this->addReport(
+      array(
+        'queries' => array(
+          'Peace' => array(
+            'rand' => 10,
+            'rand_start' => 10000,
+            'rand_diff' => 5,
+            'rand_min' => -10,
+            'rand_max' => 12
+         ),
+          'War' => array(
+            'rand' => 10,
+            'rand_start' => 10000,
+            'rand_diff' => 5,
+            'rand_min' => -10,
+            'rand_max' => 12
+         )),
+        'start_date' => '2007-01-01', 
+        'end_date' => date('Y-m-d')
+      )
+    );
   }
 }
