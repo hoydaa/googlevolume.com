@@ -58,7 +58,7 @@ class QueryResultPeer extends BaseQueryResultPeer
       		SELECT CONCAT(YEAR(%s), (WEEK(%s) + 1)) as result_date, AVG(%s) as result_size 
       		FROM %s 
       		WHERE %s >= '%s' AND %s <= '%s' AND %s = %s 
-      		GROUP BY WEEK(%s) 
+      		GROUP BY CONCAT(YEAR(%s), WEEK(%s)) 
       		ORDER BY %s";
         $query = sprintf($query,
         QueryResultPeer::CREATED_AT,
@@ -71,6 +71,7 @@ class QueryResultPeer extends BaseQueryResultPeer
         $end_date,
         QueryResultPeer::QUERY_ID,
         $query_id,
+        QueryResultPeer::CREATED_AT,
         QueryResultPeer::CREATED_AT,
         QueryResultPeer::CREATED_AT
         );
