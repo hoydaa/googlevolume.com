@@ -1,6 +1,6 @@
 <?php
 
-class SignUpForm extends sfForm
+class SignInForm extends sfForm
 {
   protected static $genders = array(null, 'M' => 'Male', 'F' => 'Female');
 
