@@ -2,11 +2,11 @@
 
 class DateSelectorForm extends sfForm
 {
-    const LIMIT_DAY       = 12;
+    const LIMIT_DAY       = 30;
 
-    const LIMIT_WEEK      = 12;
+    const LIMIT_WEEK      = 30;
 
-    const LIMIT_MONTH     = 12;
+    const LIMIT_MONTH     = 30;
 
     protected static $frequencies = array(
     QueryResultPeer::FREQUENCY_DAY => 'Daily',
