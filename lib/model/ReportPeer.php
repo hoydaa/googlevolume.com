@@ -114,7 +114,7 @@ class ReportPeer extends BaseReportPeer
         $temp = ReportPeer::getQueryResults($report->getId(), $start_date, $end_date, $frequency);
         $titles = $report->getQueryTitles();
         $arrays = ReportPeer::fillWithEmptyValues($temp, $start_date, $end_date, $frequency);
-
+        
         for($i = 0; $i < sizeof($arrays); $i++)
         {
             $series->addSerie(new Serie(array_values($arrays[$i]), $titles[$i]));
