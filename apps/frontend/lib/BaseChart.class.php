@@ -162,7 +162,7 @@ abstract class BaseChart
     {
         $this->title_font = $font;
     }
-    
+
     /**
      * Returns if the chart will be cached
      *
@@ -228,6 +228,7 @@ abstract class BaseChart
     {
         $google_url = $this->getGoogleUrl();
 
+        // if chart is cacheable save the image to temp and return the url, otherwise only return the url.
         if($this->cacheable)
         {
             $relative_url = md5($google_url) . '.png';
