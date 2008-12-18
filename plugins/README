@@ -1,4 +1,0 @@
-execute the following command in this folder
-    $ svn propedit svn:externals .
-and add the following lines and save
-    https://hoydaa.org/svnroot/symfony-plugins/sfPropelFriendlyUrlBehaviorPlugin/trunk sfPropelFriendlyUrlBehaviorPlugin
