@@ -143,26 +143,51 @@ abstract class BaseChart
         $this->height = $height;
     }
 
+    /**
+     * Returns font size for the chart title
+     *
+     * @return size
+     */
     public function getTitleFont()
     {
         return $this->title_font;
     }
 
+    /**
+     * Sets font size for the chart title
+     *
+     * @param integer $font
+     */
+    public function setTitleFont($font)
+    {
+        $this->title_font = $font;
+    }
+    
+    /**
+     * Returns if the chart will be cached
+     *
+     * @return cacheable
+     */
     public function isCacheable()
     {
         return $this->cacheable;
     }
 
+    /**
+     * Sets it the chart will be cached
+     *
+     * @param boolean $cacheable
+     */
     public function setCacheable($cacheable)
     {
         $this->cacheable = $cacheable;
     }
 
-    public function setTitleFont($font)
-    {
-        $this->title_font = $font;
-    }
-
+    /**
+     * Returns the google url for the chart
+     *
+     * @return google_url
+     */
     private function getGoogleUrl()
     {
         $representation = $this->getStringRepresentation();
@@ -184,11 +209,21 @@ abstract class BaseChart
         return self::URL . '?' . $rtn;
     }
 
+    /**
+     * Returns the string representation of the chart
+     *
+     * @return string_representation
+     */
     public function __toString()
     {
         return $this->saveAndReturnUrl();
     }
 
+    /**
+     * Saves the chart and returns the url for the chart
+     *
+     * @return url
+     */
     private function saveAndReturnUrl()
     {
         $google_url = $this->getGoogleUrl();
@@ -210,5 +245,8 @@ abstract class BaseChart
         }
     }
 
+    /**
+     * Custom string representation of the chart
+     */
     abstract protected function getStringRepresentation();
 }
