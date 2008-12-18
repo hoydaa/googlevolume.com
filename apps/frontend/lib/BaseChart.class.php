@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @author Umut Utkan, <umut.utkan@hoydaa.org>
+ */
 abstract class BaseChart
 {
     /**
