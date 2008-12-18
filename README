@@ -1,1 +1,5 @@
-symfony plugin:install sfGuardPlugin --release=2.2.0
+after svn co https://hoydaa.org/svnroot/project-y/trunk blahblahblah follow the steps given below.
+    symfony generate:project project-name
+    edit config/databases.yml
+    edit config/propel.ini
+    symfony plugin:install sfGuardPlugin --release=2.2.0
