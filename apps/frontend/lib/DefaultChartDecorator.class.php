@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Default chart decorater
+ *
+ * @author Umut Utkan, <umut.utkan@hoydaa.org>
+ */
 class DefaultChartDecorator implements ChartDecorator
 {
 
