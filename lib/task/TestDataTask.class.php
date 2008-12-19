@@ -8,7 +8,10 @@ class TestDataTask extends sfPropelBaseTask
   private $BASE_MCCAIN = 98000000;
   const DIFF_OBAMA           = 19000;
   const DIFF_MCCAIN          = 9000;
-
+  
+  const RANDOM_TEXT          = 'lorem ipsum le scala ';
+  private static $TAGS = array('hede', 'hodo', 'pede', 'podo', 'dede', 'dodo', 'modo');
+  
   protected function configure()
   {
     $this->namespace        = 'test';
@@ -30,6 +33,7 @@ EOF;
   private function addReport($options)
   {
     $report = new Report();
+    $report->setDescription(self::generateDescription());
     $report->setTitle(implode(', ', array_keys($options['queries'])));
     $report->save();
     
@@ -62,6 +66,13 @@ EOF;
         }
 	    $date_start = strtotime(date('Y-m-d', $date_start) . ' +1 days');
 	  }
+    }
+    
+    $tags = self::generateTags();
+    foreach($tags as $tag)
+    {
+        $tag->setReport($report);
+        $tag->save();
     }
   }
 
@@ -216,5 +227,31 @@ EOF;
         'end_date' => date('Y-m-d')
       )
     );
+  }
+  
+  private static function generateDescription()
+  {
+      $rtn = '';
+      $count = rand(5, 10);
+      for($i = 0; $i < $count; $i++)
+      {
+          $rtn .= self::RANDOM_TEXT;
+      }
+      return $rtn;
+  }
+  
+  private static function generateTags()
+  {
+      $tags = array();
+      $tag_count = rand(1, 5);
+      $tag_start = rand(0, sizeof(self::$TAGS) - 1);
+      for($i = 0; $i < $tag_count; $i++)
+      {
+          $tag = new ReportTag();
+          $tag->setName(self::$TAGS[$tag_start]);
+          $tags[] = $tag;
+          $tag_start = $tag_start >= (sizeof(self::$TAGS) - 1) ? 0 : ($tag_start + 1);
+      }
+      return $tags;
   }
 }
