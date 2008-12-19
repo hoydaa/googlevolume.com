@@ -21,3 +21,46 @@ sfGuardUserProfile:
     last_name: Utkan
     gender: M
     birthday: 1984-05-13
+    
+Query:
+  opel:
+    query: opel
+  renault:
+    query: renault
+  ford:
+    query: ford
+  volkswagen:
+    query: volkswagen
+
+Report:
+  cars:
+    title: Top Car Manufacturers
+    description: Top Car Manufacturers: mostly the ones that operate in Europe.
+    public_record: true
+    user_id: umut.utkan
+     
+ReportTag:
+  car-manufacturer:
+    report_id: cars
+    name: manufacturer
+  car-car:
+    report_id: cars
+    name: car
+    
+ReportQuery:
+  qopel:
+    query_id: opel
+    report_id: cars
+    title: Opel
+  qrenault:
+    query_id: renault
+    report_id: cars
+    title: Renault
+  qford:
+    query_id: ford
+    report_id: cars
+    title: Ford
+  qvolkswagen:
+    query_id: volkswagen
+    report_id: cars
+    title: Volkswagen
