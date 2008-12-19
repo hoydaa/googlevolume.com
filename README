@@ -1,7 +1,14 @@
 after svn co https://hoydaa.org/svnroot/project-y/trunk blahblahblah follow the steps given below.
     symfony generate:project project-name
+    symfony plugin:install sfGuardPlugin --release=2.2.0
     create the database and edit the following files accordingly
         edit config/databases.yml
         edit config/propel.ini
-    symfony plugin:install sfGuardPlugin --release=2.2.0
+    change the following behavior in config/propel.ini
+        propel.builder.addBehaviors = true
+    symfony propel:build-all
+    rm -rf lib/form
     
+in order to load test data execute the following commands
+    symfony propel:data-load frontend
+    symfony test:TestDataTask frontend
