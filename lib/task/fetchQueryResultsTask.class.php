@@ -29,8 +29,10 @@ EOF;
         foreach ($queries as $query)
         {
             $today = date('Y-m-d');
+            
             $c = new Criteria();
-            $c->add(QueryResultPeer::CREATED_AT, $today, Criteria::NOT_EQUAL);
+            $c->add(QueryResultPeer::QUERY_ID, $query->getId());
+            $c->add(QueryResultPeer::CREATED_AT, $today, Criteria::GREATER_THAN);
             if(QueryResultPeer::doCount($c) > 0)
             {
                 echo sprintf("Query '%s' has already a result for date %s.\n", $query->getQuery(), $today);
@@ -42,7 +44,6 @@ EOF;
             $qr->setResultSize($searchEngine->search($query->getQuery()));
 
             $qr->save();
-            echo $searchEngine->search($query->getQuery()) . "\n";
         }
     }
 }
