@@ -6,7 +6,7 @@ class clearChartCacheTask extends sfBaseTask
      * One day of duration.
      */
     const TIME_TO_LIVE = 86400;
-    
+
     protected function configure()
     {
         $this->namespace        = '';
@@ -39,7 +39,7 @@ EOF;
                     {
                         unlink($info->getPathname());
                         $count++;
-                    }                    
+                    }
                 }
             }
         }
