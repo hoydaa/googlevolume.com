@@ -112,6 +112,11 @@ class ReportPeer extends BaseReportPeer
         $series = new Series();
 
         $temp = ReportPeer::getQueryResults($report->getId(), $start_date, $end_date, $frequency);
+        if(self::isEmpty($temp))
+        {
+            return null;
+        }
+        
         $titles = $report->getQueryTitles();
         $arrays = ReportPeer::fillWithEmptyValues($temp, $start_date, $end_date, $frequency);
         
@@ -241,6 +246,18 @@ class ReportPeer extends BaseReportPeer
         }
 
         return $rtn;
+    }
+    
+    private static function isEmpty($array)
+    {
+        foreach($array as $inner_array)
+        {
+            if($inner_array)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
 }

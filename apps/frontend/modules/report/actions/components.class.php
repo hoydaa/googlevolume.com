@@ -6,13 +6,14 @@ class reportComponents extends sfComponents
     public function executeChart($request)
     {
         $decorator = new DefaultChartDecorator();
-        $this->line_chart = ReportPeer::getReportChart($this->report, $this->start_date, $this->end_date, $this->frequency, $decorator);
+        $end_date = date('Y-m-d', strtotime($this->end_date . ' +1 days'));
+        $this->line_chart = ReportPeer::getReportChart($this->report, $this->start_date, $end_date, $this->frequency, $decorator);
     }
     
     public function executeMiniChart($request)
     {
         $start_date = date('Y-m-d', strtotime(date('Ymd') . ' -12 days'));
-        $end_date  = date('Y-m-d');
+        $end_date  = date('Y-m-d', strtotime(date('Ymd') . ' +1 days'));
         $frequency = QueryResultPeer::FREQUENCY_DAY;
 
         $x_labels = array($start_date, $end_date);
