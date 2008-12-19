@@ -28,6 +28,15 @@ EOF;
         echo sprintf("There are %s queries to process.\n", sizeof($queries));
         foreach ($queries as $query)
         {
+            $today = date('Y-m-d');
+            $c = new Criteria();
+            $c->add(QueryResultPeer::CREATED_AT, $today, Criteria::NOT_EQUAL);
+            if(QueryResultPeer::doCount($c) > 0)
+            {
+                echo sprintf("Query '%s' has already a result for date %s.\n", $query->getQuery(), $today);
+                continue;
+            }
+                        
             $qr = new QueryResult();
             $qr->setQuery($query);
             $qr->setResultSize($searchEngine->search($query->getQuery()));
