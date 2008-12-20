@@ -124,7 +124,7 @@ class Series
         {
             $this->y_labels[] = number_format($down + $diff * $i);
         }
-        $this->scale_min = round($down / $this->calculateMax() * 100, 1);
+        $this->scale_min = round($down / $this->calculateMax() * 100, 1) - 0.1;
         $this->scale_max = round($up / $this->calculateMax() * 100, 1);
     }
 

@@ -155,7 +155,10 @@ class Serie
     {
         for($i = 0; $i < sizeof($this->data); $i++)
         {
-            $this->data[$i] =  round(100 / $max * $this->data[$i], 1);
+            if($this->data[$i] != -1)
+            {
+                $this->data[$i] =  round(100 / $max * $this->data[$i], 1);
+            }
         }
     }
 
