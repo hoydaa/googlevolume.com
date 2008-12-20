@@ -2,9 +2,21 @@
 
 require_once('simple_html_dom.php');
 
+/**
+ * Grabs search results size of a specified query from google.com
+ *
+ * @author Utku Utkan, <utku.utkan@hoydaa.org>
+ * @author Umut Utkan, <umut.utkan@hoydaa.org>
+ */
 class Google implements SearchEngine
 {
     
+    /**
+     * Gets result size
+     *
+     * @param string $query
+     * @return string
+     */
     public function search($query)
     {   
         $request = new HttpRequest('http://www.google.com/search', HttpRequest::METH_GET);
