@@ -124,7 +124,7 @@ class ReportPeer extends BaseReportPeer
         {
             $series->addSerie(new Serie(array_values($arrays[$i]), $titles[$i]));
         }
-
+        
         $factors = Utils::find_factors(sizeof($arrays[0]) - 1, 7);
         $factor = $factors[sizeof($factors) - 1];
         $labels = array();
@@ -153,7 +153,7 @@ class ReportPeer extends BaseReportPeer
         {
             $decorator->decorate($line_chart);
         }
-
+        
         return $line_chart;
     }
 
