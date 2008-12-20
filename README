@@ -1,6 +1,7 @@
 after svn co https://hoydaa.org/svnroot/project-y/trunk blahblahblah follow the steps given below.
     symfony generate:project project-name
     symfony plugin:install sfGuardPlugin --release=2.2.0
+    symfony plugin:install isicsSitemapXMLPlugin --release=0.9.1 
     create the database and edit the following files accordingly
         edit config/databases.yml
         edit config/propel.ini
@@ -8,6 +9,10 @@ after svn co https://hoydaa.org/svnroot/project-y/trunk blahblahblah follow the 
         propel.builder.addBehaviors = true
     symfony propel:build-all
     rm -rf lib/form
+    pear install pecl_http
+      in order to install pecl_http you have to install the following debian packages
+        apt-get install make php5-dev libcurl3-dev
+
     
 in order to load test data execute the following commands
     symfony propel:data-load frontend
