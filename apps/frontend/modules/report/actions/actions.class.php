@@ -82,6 +82,32 @@ class reportActions extends sfActions
         $this->forward404Unless($this->report);
     }
 
+    public function executeDelete($request)
+    {
+        $id = $request->getParameter('id');
+
+        $this->forward404Unless($id);
+        
+        if(!Utils::isUserRecord('ReportPeer', $id, $this->getUser()->getId()))
+        {
+            $this->getUser()->setFlash('error', 'You don\'t have enough credentials to delete this snippet.');
+            $this->forward('site', 'message');
+        }
+        
+        $this->form = new DateSelectorForm();
+
+        $this->report = ReportPeer::retrieveByPK($id);
+        
+        $this->forward404Unless($this->report);
+        
+        if($request->getParameter('delete') == 'Yes')
+        {
+            ReportPeer::doDelete(array($id));
+            $this->getUser()->setFlash('info', sprintf('Report %s is deleted.', $this->report->getTitle()));
+            $this->forward('site', 'message');
+        }
+    }
+    
     public function executeChart($request)
     {
         $this->form = new DateSelectorForm();
