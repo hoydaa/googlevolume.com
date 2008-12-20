@@ -10,13 +10,7 @@ require_once('simple_html_dom.php');
  */
 class Google implements SearchEngine
 {
-    
-    /**
-     * Gets result size
-     *
-     * @param string $query
-     * @return string
-     */
+
     public function search($query)
     {   
         $request = new HttpRequest('http://www.google.com/search', HttpRequest::METH_GET);

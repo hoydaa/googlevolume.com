@@ -1,8 +1,19 @@
 <?php
 
+/**
+ * Interface for search engines to grab search result size
+ *
+ * @author Umut Utkan, <umut.utkan@hoydaa.org>
+ */
 interface SearchEngine
 {
 
-  public function search($query);
+    /**
+     * Gets result size
+     *
+     * @param string $query
+     * @return string
+     */
+    public function search($query);
 
 }
