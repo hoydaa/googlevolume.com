@@ -100,6 +100,7 @@ class ReportPeer extends BaseReportPeer
     {
         $c = new Criteria();
         $c->add(ReportPeer::PUBLIC_RECORD, true);
+        $c->addDescendingOrderByColumn(ReportPeer::CREATED_AT);
         $c->setLimit($max);
         return ReportPeer::doSelect($c);
     }
