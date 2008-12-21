@@ -1,3 +1,5 @@
+<?php use_helper('I18N') ?>
+
 <?php
     $sf_controller = $sf_context->getController();
     $params = $sf_request->getParameterHolder()->getAll();
