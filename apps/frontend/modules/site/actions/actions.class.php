@@ -12,7 +12,7 @@ class siteActions extends sfActions
 {
     public function executeIndex($request)
     {
-        $this->reports = ReportPeer::findByPopularity();
+        $this->pager = ReportPeer::findByPopularity($request->getParameter('page', 1), 10);
     }
 
     public function executeMessage()

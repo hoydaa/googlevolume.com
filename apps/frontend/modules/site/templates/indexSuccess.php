@@ -1,1 +1,1 @@
-<?php include_partial('report/list', array('reports' => $reports)) ?>
+<?php include_partial('report/pager', array('pager' => $pager)) ?>
