@@ -3,10 +3,12 @@
 	<img src="<?php echo $chart ?>" alt="<?php echo $report->getTitle() ?>" />
 </a>
 <ul class="labels">
+	<?php $counter = 0; ?>
 	<?php foreach($chart->getSeries()->getSeries() as $serie): ?>
+	    <?php $arr = $report->getReportQuerys(); ?>
 		<li>
 			<div style="background-color: #<?php echo $serie->getColor() ?>"></div>
-			<span><?php echo $serie->getLabel() ?></span>
+			<span><a href="http://www.google.com/search?q=<?php echo urlencode($arr[$counter++]->getQuery()->getQuery()) ?>"><?php echo $serie->getLabel() ?></a></span>
 		</li>
 	<?php endforeach; ?>
 </ul>
