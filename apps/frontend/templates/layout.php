@@ -13,7 +13,7 @@
         <div id="header-wrapper">
             <div id="header">
                 <h1><?php echo link_to('Google Volume', '@homepage', array('title' => 'homepage')) ?></h1>
-                <?php echo sprintf('Currently watching <b>%s</b> distinct queries.', QueryPeer::doCount(new Criteria())) ?>
+                <?php include_component('site', 'statistics') ?>
             </div>
             <ul id="nav">
             	<li><?php echo link_to('Create New', 'report/edit', array('title' => 'create new report')) ?></li>
