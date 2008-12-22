@@ -38,7 +38,7 @@ propel:
     _attributes:      { phpName: QueryResult }
     id:               ~
     query_id:         { type: integer, required: true, primaryKey: true, foreignTable: projecty_query, foreignReference: id }
-    result_size:      { type: integer, required: true }
+    result_size:      { type: bigint, required: true }
     created_at:       ~
 
   projecty_report_tag:
