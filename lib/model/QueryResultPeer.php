@@ -131,7 +131,7 @@ class QueryResultPeer extends BaseQueryResultPeer
         $rtn = array();
         while($resultset->next())
         {
-            $rtn[$resultset->getString('result_date')] = ((int)$resultset->getString('result_size'));
+            $rtn[$resultset->getString('result_date')] = $resultset->getString('result_size');
         }
          
         return $rtn;
