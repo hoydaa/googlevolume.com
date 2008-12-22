@@ -3,7 +3,7 @@
 class Series
 {
     
-    protected $colors = array('0000ff', '008000', 'ff0000', 'ffff00', '000000');
+    protected $colors = array('0000ff', '008000', 'ff0000', 'ffff00', '76A4FB');
 
     private $series = array();
 
