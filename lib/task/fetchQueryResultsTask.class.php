@@ -21,7 +21,7 @@ EOF;
 
     protected function execute($arguments = array(), $options = array())
     {
-        $searchEngine = new Google();
+        $searchEngine = new GoogleRegexp();
         $databaseManager = new sfDatabaseManager($this->configuration);
         $queries = QueryPeer::doSelect(new Criteria());
 
@@ -41,9 +41,13 @@ EOF;
                         
             $qr = new QueryResult();
             $qr->setQuery($query);
-            $qr->setResultSize($searchEngine->search($query->getQuery()));
+            $result_size = $searchEngine->search($query->getQuery());
+            $qr->setResultSize($result_size);
 
+            echo sprintf("Found %s results for %s.\n", $result_size, $query->getQuery());
+            
             $qr->save();
         }
+        echo sprintf("Finished processing.");
     }
 }
