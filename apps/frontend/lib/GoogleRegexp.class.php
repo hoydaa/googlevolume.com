@@ -13,10 +13,10 @@ class GoogleRegexp implements SearchEngine
         $request = new HttpRequest('http://www.google.com/search', HttpRequest::METH_GET);
         $request->addQueryData(array('q' => $query));
 
-        //change to log
-        //echo "Going to send request to url: " . $request->getUrl() . " with query data: \n";
-        //print_r($request->getQueryData());
-        //echo "\n";
+		if (sfConfig::get('sf_logging_enabled'))
+		{
+  			sfContext::getInstance()->getLogger()->info(sprintf('Requesting search results for \'%s\'', $query));
+		}
         
         try
         {
@@ -24,25 +24,35 @@ class GoogleRegexp implements SearchEngine
         }
         catch (HttpException $e)
         {
-            //change to log
-            //echo sprintf("There is an error with the http request: %s\n", $e->__toString());
+        	if (sfConfig::get('sf_logging_enabled'))
+			{
+  				sfContext::getInstance()->getLogger()->info(sprintf('There is an error with the http request: %s', $e->__toString()));
+			}
         }
 
         $res = $request->getResponseBody();
+        $result_count = self::findResultCount($res);
         
-		return self::findResultCount($res);
+    	if (sfConfig::get('sf_logging_enabled'))
+		{
+  			sfContext::getInstance()->getLogger()->info(sprintf('Found %s results for \'%s\'', $result_count, $query));
+		}
+        
+        return $result_count;
     }
     
     //Results <b>1</b> - <b>10</b> of about <b>789</b> for <b>&quot;Umut Utkan&quot;</b>.  (<b>0.05</b> seconds)
     public static function findResultCount($content)
     {
-    	$pattern = '/Results <b>(\d+)<\/b> - <b>(\d+)<\/b> of (about )?<b>(\d+)<\/b>/';
+    	$pattern = '/Results <b>1<\/b> - <b>(\d+)<\/b> of (about )?<b>([0-9,]+)<\/b>/';
     	$matches = null;
     	preg_match($pattern, $content, $matches);
     	
-		if(sizeof($matches) == 5)
+    	print_r($matches);
+    	
+		if(sizeof($matches) == 4)
 		{
-			return $matches[4];
+			return preg_replace("/,/", "", $matches[3]);
 		}
     	return 0;
     }
