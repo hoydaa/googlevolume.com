@@ -14,6 +14,7 @@ generator:
       fields:
         created_at:         { params: date_format='dd/MM/yyyy' }
       sort: id      
+      filters:              [id, query]
       
     edit:
       title:                query add & edit
