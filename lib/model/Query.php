@@ -25,7 +25,7 @@ class Query extends BaseQuery
             $query_result = new QueryResult();
             $query_result->setQuery($this);
 
-            $searchEngine = new Google();
+            $searchEngine = new GoogleRegexp();
             $count = $searchEngine->search($this->getQuery());
 
             $query_result->setResultSize($count);

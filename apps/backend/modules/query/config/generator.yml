@@ -1,0 +1,24 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+    model_class:      Query
+    theme:            default
+
+    fields:
+      query:                { name: Query Text}
+      created_at:           { name: Create Date }
+
+    list:
+      title:                query list
+      display:              [id, _google, _num_of_results, created_at]
+      fields:
+        created_at:         { params: date_format='dd/MM/yyyy' }
+      sort: id      
+      
+    edit:
+      title:                query add & edit
+      display:
+        "Editable":         [query]
+        "Informative":      [created_at]
+      fields:
+        created_at:         {type: plain}
