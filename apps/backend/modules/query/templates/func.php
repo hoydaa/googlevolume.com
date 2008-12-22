@@ -2,10 +2,10 @@
 
 function addTrailingSpaces($num)
 {
-	$str = "";
-	for($i = 0; $i < 20 - strlen($num); $i++) 
+	$str = $num;
+	while(strlen($str) != 20)
 	{
-		$str .= "&nbsp;";
+		$str = " $str";
 	}
-	return $str . $num;
+	return $str;
 }
