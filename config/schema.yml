@@ -14,6 +14,7 @@ propel:
     _attributes:      { phpName: Query }
     id:               ~
     query:            { type: varchar, size: 255, required: true }
+    managed:          { type: boolean, required: true, default: false }
     created_at:       ~
 
   projecty_report:

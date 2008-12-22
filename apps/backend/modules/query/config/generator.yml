@@ -6,20 +6,21 @@ generator:
 
     fields:
       query:                { name: Query Text}
+      managed:              { name: Managed }
       created_at:           { name: Create Date }
 
     list:
       title:                query list
-      display:              [id, _google, _num_of_results, created_at]
+      display:              [id, managed, _google, _num_of_results, created_at]
       fields:
         created_at:         { params: date_format='dd/MM/yyyy' }
       sort: id      
-      filters:              [id, query]
+      filters:              [id, managed, query]
       
     edit:
       title:                query add & edit
       display:
-        "Editable":         [query]
+        "Editable":         [query, managed]
         "Informative":      [created_at]
       fields:
         created_at:         {type: plain}
