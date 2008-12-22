@@ -48,8 +48,6 @@ class GoogleRegexp implements SearchEngine
     	$matches = null;
     	preg_match($pattern, $content, $matches);
     	
-    	print_r($matches);
-    	
 		if(sizeof($matches) == 4)
 		{
 			return preg_replace("/,/", "", $matches[3]);
