@@ -3,7 +3,7 @@
 function addTrailingSpaces($num)
 {
 	$str = $num;
-	while(strlen($str) != 20)
+	while(strlen($str) != 15)
 	{
 		$str = " $str";
 	}
