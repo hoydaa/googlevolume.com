@@ -11,7 +11,7 @@ generator:
 
     list:
       title:                query list
-      display:              [id, managed, _google, _num_of_results, created_at]
+      display:              [id, managed, _google, _num_of_results, _num_of_reports, created_at]
       fields:
         created_at:         { params: date_format='dd/MM/yyyy' }
       sort: id      
