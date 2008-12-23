@@ -1,6 +1,6 @@
 <?php
 
-class ThumbnailChartDecorator implements ChartDecorator
+class ThumbnailChartDecorator extends BaseChartDecorator
 {
     
     private $xLabels = null;
@@ -15,7 +15,7 @@ class ThumbnailChartDecorator implements ChartDecorator
         $this->xLabels = $xLabels;
     }
 
-    public function decorate($chart)
+    public function selfDecorate($chart)
     {
         $chart->setWidth('250');
         $chart->setHeight('125');
@@ -26,7 +26,7 @@ class ThumbnailChartDecorator implements ChartDecorator
         {
             $chart->getSeries()->setXLabels($this->xLabels);
         }
-        //return $chart;
+        self::formatYLabels($chart);
     }
 
 }

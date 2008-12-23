@@ -5,10 +5,10 @@
  *
  * @author Umut Utkan, <umut.utkan@hoydaa.org>
  */
-class DefaultChartDecorator implements ChartDecorator
+class DefaultChartDecorator extends BaseChartDecorator
 {
 
-    public function decorate($chart) {
+    public function selfDecorate($chart) {
         $chart->getSeries()->setSerieLabelsPosition(BaseChart::PLACEMENT_BOTTOM);
         $chart->setWidth(580);
     }

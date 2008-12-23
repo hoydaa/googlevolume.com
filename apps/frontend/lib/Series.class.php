@@ -53,6 +53,11 @@ class Series
     {
         $this->y_labels = $y_labels;
     }
+    
+    public function getYLabels()
+    {
+        return $this->y_labels;
+    }
 
     public function setMarkersEnabled($markers_enabled)
     {
@@ -122,7 +127,7 @@ class Series
         $this->y_labels = array();
         for($i = 0; $i < $count + 1; $i++)
         {
-            $this->y_labels[] = number_format($down + $diff * $i);
+            $this->y_labels[] = $down + $diff * $i;
         }
         $this->scale_min = round($down / $this->calculateMax() * 100, 1) - 0.1;
         $this->scale_max = round($up / $this->calculateMax() * 100, 1);
