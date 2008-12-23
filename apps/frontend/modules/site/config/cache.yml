@@ -1,3 +1,6 @@
 _statistics:
   enabled:  on
   lifetime: 120
+_logo:
+  enabled: on
+  lifetime: 120

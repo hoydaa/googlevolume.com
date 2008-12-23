@@ -12,6 +12,7 @@
     <body>
         <div id="header-wrapper">
             <div id="header">
+            	<?php include_partial('site/logo') ?>
                 <h1><?php echo link_to('Google Volume', '@homepage', array('title' => 'homepage')) ?></h1>
                 <?php include_component('site', 'statistics') ?>
             </div>
