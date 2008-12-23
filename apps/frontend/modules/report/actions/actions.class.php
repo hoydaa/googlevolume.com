@@ -25,7 +25,7 @@ class reportActions extends sfActions
             }
         }
 
-        $this->form = new ReportForm($report);
+        $this->form = new NewReportForm($report);
         if(!$id)
         {
             $this->form->setDefaults(array('public' => true));   
@@ -50,7 +50,7 @@ class reportActions extends sfActions
             }
         }
          
-        $this->form = new ReportForm($report);
+        $this->form = new NewReportForm($report);
         $temp = $request->getParameter('report');
         if($this->getUser()->isAuthenticated())
         {
