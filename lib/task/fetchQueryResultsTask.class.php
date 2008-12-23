@@ -1,5 +1,7 @@
 <?php
 
+include('include.php');
+
 class fetchQueryResultsTask extends sfBaseTask
 {
     protected function configure()
@@ -21,11 +23,15 @@ EOF;
 
     protected function execute($arguments = array(), $options = array())
     {
+        $stop_watch = new StopWatch();
+        $stop_watch->start();
+        logline('Started processing.');
+        
         $searchEngine = new GoogleRegexp();
         $databaseManager = new sfDatabaseManager($this->configuration);
         $queries = QueryPeer::doSelect(new Criteria());
 
-        echo sprintf("There are %s queries to process.\n", sizeof($queries));
+        logline(sprintf("There are %s queries to process.", sizeof($queries)));
         foreach ($queries as $query)
         {
             $today = date('Y-m-d');
@@ -35,7 +41,7 @@ EOF;
             $c->add(QueryResultPeer::CREATED_AT, $today, Criteria::GREATER_THAN);
             if(QueryResultPeer::doCount($c) > 0)
             {
-                echo sprintf("Query '%s' has already a result for date %s.\n", $query->getQuery(), $today);
+                logline(sprintf("Query '%s' has already a result for date %s.", $query->getQuery(), $today));
                 continue;
             }
                         
@@ -44,10 +50,13 @@ EOF;
             $result_size = $searchEngine->search($query->getQuery());
             $qr->setResultSize($result_size);
 
-            echo sprintf("Found %s results for %s.\n", $result_size, $query->getQuery());
+            logline(sprintf("Found %s results for %s.", $result_size, $query->getQuery()));
             
             $qr->save();
         }
-        echo sprintf("Finished processing.");
+        
+        logline(sprintf("Finished processing."));
+        $stop_watch->end();
+        logline(sprintf('Execution time: %s seconds.', $stop_watch->getTime()));
     }
 }
