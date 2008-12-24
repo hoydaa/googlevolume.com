@@ -133,10 +133,6 @@ class QueryResultPeer extends BaseQueryResultPeer
         {
             $rtn[$resultset->getString('result_date')] = $resultset->getString('result_size');
         }
-         
-        echo "<pre>";
-        print_r($rtn);
-        echo "</pre>";
         
         return $rtn;
     }
