@@ -36,17 +36,17 @@ class QueryResultPeer extends BaseQueryResultPeer
       		GROUP BY %s 
       		ORDER BY %s";
         $query = sprintf($query,
-        QueryResultPeer::CREATED_AT,
+        QueryResultPeer::RESULT_DATE,
         QueryResultPeer::RESULT_SIZE,
         QueryResultPeer::TABLE_NAME,
-        QueryResultPeer::CREATED_AT,
+        QueryResultPeer::RESULT_DATE,
         $start_date,
-        QueryResultPeer::CREATED_AT,
+        QueryResultPeer::RESULT_DATE,
         $end_date,
         QueryResultPeer::QUERY_ID,
         $query_id,
-        QueryResultPeer::CREATED_AT,
-        QueryResultPeer::CREATED_AT
+        QueryResultPeer::RESULT_DATE,
+        QueryResultPeer::RESULT_DATE
         );
 
         return self::_execute_query($query);
@@ -61,19 +61,19 @@ class QueryResultPeer extends BaseQueryResultPeer
       		GROUP BY CONCAT(YEAR(%s), WEEK(%s)) 
       		ORDER BY %s";
         $query = sprintf($query,
-        QueryResultPeer::CREATED_AT,
-        QueryResultPeer::CREATED_AT,
+        QueryResultPeer::RESULT_DATE,
+        QueryResultPeer::RESULT_DATE,
         QueryResultPeer::RESULT_SIZE,
         QueryResultPeer::TABLE_NAME,
-        QueryResultPeer::CREATED_AT,
+        QueryResultPeer::RESULT_DATE,
         $start_date,
-        QueryResultPeer::CREATED_AT,
+        QueryResultPeer::RESULT_DATE,
         $end_date,
         QueryResultPeer::QUERY_ID,
         $query_id,
-        QueryResultPeer::CREATED_AT,
-        QueryResultPeer::CREATED_AT,
-        QueryResultPeer::CREATED_AT
+        QueryResultPeer::RESULT_DATE,
+        QueryResultPeer::RESULT_DATE,
+        QueryResultPeer::RESULT_DATE
         );
 
         $temp = self::_execute_query($query);
@@ -95,19 +95,19 @@ class QueryResultPeer extends BaseQueryResultPeer
       		GROUP BY CONCAT(YEAR(%s), MONTH(%s))
       		ORDER BY %s";
         $query = sprintf($query,
-        QueryResultPeer::CREATED_AT,
-        QueryResultPeer::CREATED_AT,
+        QueryResultPeer::RESULT_DATE,
+        QueryResultPeer::RESULT_DATE,
         QueryResultPeer::RESULT_SIZE,
         QueryResultPeer::TABLE_NAME,
-        QueryResultPeer::CREATED_AT,
+        QueryResultPeer::RESULT_DATE,
         $start_date,
-        QueryResultPeer::CREATED_AT,
+        QueryResultPeer::RESULT_DATE,
         $end_date,
         QueryResultPeer::QUERY_ID,
         $query_id,
-        QueryResultPeer::CREATED_AT,
-        QueryResultPeer::CREATED_AT,
-        QueryResultPeer::CREATED_AT
+        QueryResultPeer::RESULT_DATE,
+        QueryResultPeer::RESULT_DATE,
+        QueryResultPeer::RESULT_DATE
         );
 
         $temp = self::_execute_query($query);
