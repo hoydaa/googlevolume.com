@@ -22,7 +22,7 @@ class Query extends BaseQuery
         // for the queries and get the results.
         if($going_to_save)
         {
-            $query_result = new QueryResult();
+            $query_result = new QueryResultBulk();
             $query_result->setQuery($this);
 
             $searchEngine = new GoogleRegexp();

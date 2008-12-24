@@ -9,4 +9,5 @@
  */ 
 class QueryResult extends BaseQueryResult
 {
+
 }

@@ -35,8 +35,17 @@ propel:
     title:            { type: varchar, size: 255, required: false }
     created_at:       ~
 
-  projecty_query_result:
+  projecty_query_result_daily:
     _attributes:      { phpName: QueryResult }
+    query_id:         { type: integer, required: true, primaryKey: true, foreignTable: projecty_query, foreignReference: id }
+    result_size:      { type: bigint, required: true }
+    result_date:      { type: date, required: true }
+    result_count:     { type: integer, required: true, default: 1 }
+    created_at:       ~
+    updated_at:       ~
+
+  projecty_query_result:
+    _attributes:      { phpName: QueryResultBulk }
     id:               ~
     query_id:         { type: integer, required: true, primaryKey: true, foreignTable: projecty_query, foreignReference: id }
     result_size:      { type: bigint, required: true }
