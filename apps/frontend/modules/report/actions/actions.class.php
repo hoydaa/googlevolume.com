@@ -80,6 +80,9 @@ class reportActions extends sfActions
         $this->report = sfPropelFriendlyUrl::retrieveByFriendlyUrl('Report', $id);
         
         $this->forward404Unless($this->report);
+        
+        $this->report->incrementCounter();
+        $this->report->save();
     }
 
     public function executeDelete($request)

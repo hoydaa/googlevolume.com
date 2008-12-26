@@ -101,6 +101,7 @@ class ReportPeer extends BaseReportPeer
     {
         $c = new Criteria();
         $c->add(ReportPeer::PUBLIC_RECORD, true);
+        $c->addDescendingOrderByColumn(ReportPeer::VIEW_COUNT);
         $c->addDescendingOrderByColumn(ReportPeer::CREATED_AT);
         
         $pager = new sfPropelPager('Report', $size);

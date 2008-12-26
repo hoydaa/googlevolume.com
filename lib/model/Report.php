@@ -32,6 +32,17 @@ class Report extends BaseReport
     }
     return $titles;
   }
+  
+  public function incrementCounter()
+  {
+      $this->setViewCount($this->getViewCount() + 1);
+      
+  }
+  
+  public function decrementCounter()
+  {
+      $this->setViewCount($this->getViewCount() < 1 ? 0 : ($this->getViewCount() - 1));
+  }
 
 }
 

@@ -13,3 +13,4 @@ Created by
         echo link_to($tag->getName(), 'tag/show?tag=' . $tag->getName()) . ", ";
     }
 ?>
+ (viewed: <?php echo $report->getViewCount() ?> times)

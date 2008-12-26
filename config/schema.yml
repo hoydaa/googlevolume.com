@@ -25,6 +25,7 @@ propel:
     stripped_title:   { type: varchar, size: 255 }
     description:      { type: varchar, size: 255, required: false }
     public_record:    { type: boolean, required: true, default: true }
+    view_count:       { type: integer, required: true, default: 0 }
     created_at:       ~
     updated_at:       ~
 
