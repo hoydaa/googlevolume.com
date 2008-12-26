@@ -226,3 +226,18 @@ img {
     background-color: #0F0FCF;
     color: #FFFFFF;
 }
+
+#nav {
+    margin: 0 0 0 300px;
+    padding: 0;
+}
+
+#tabs li {
+    display: inline;
+}
+
+#tabs a {
+    text-decoration: none;
+    color: #0F0FCF;
+    padding: 5px;
+}
