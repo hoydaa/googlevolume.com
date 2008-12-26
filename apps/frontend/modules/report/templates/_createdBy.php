@@ -4,6 +4,8 @@ Created by
 <?php else: ?>
 	anonymous
 <?php endif; ?>
+ on 
+<?php echo $report->getCreatedAt() ?>
  with tags: 
 <?php
     foreach($report->getReportTags() as $tag)
