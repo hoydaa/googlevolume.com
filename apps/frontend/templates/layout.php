@@ -25,8 +25,11 @@
             		<li><?php echo link_to('Sign Out', '@sf_guard_signout', array('title' => 'sign out')) ?></li>
             	<?php endif; ?>
             	<li><?php echo link_to('Search', 'report/search', array('title' => 'search')) ?></li>
-            	<li><?php echo link_to('Popular reports', 'site/index') ?></li>
-            	<li><?php echo link_to('Newest reports', 'site/newest') ?></li>
+            </ul>
+            <ul id="tabs">
+            	<li><?php echo link_to('Popular', 'site/index') ?></li>
+            	<li><?php echo link_to('Newest', 'site/newest') ?></li>
+            	<li><?php echo link_to('Most discussed', 'site/discussed') ?></li>
             </ul>
         </div>
         <div id="main-wrapper">
