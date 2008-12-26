@@ -17,13 +17,19 @@ class NewReportForm extends ObjectForm
         ));
 
         $this->widgetSchema->setLabels(array(
-      'title'          => 'Title',
+      'title'          => 'Title *',
       'description'    => 'Description',
-      'query_texts'    => 'Query Texts',
-      'query_titles'   => 'Query Titles',
+      'query_texts'    => 'Query Texts *',
+      'query_titles'   => 'Query Titles *',
       'public'         => 'Public',
       'tags'           => 'Tags',
       'user_id'        => 'User Id'
+      ));
+      
+        $this->widgetSchema->setHelps(array(
+      'query_texts'    => 'Seperate the queries you want to be searched with newlines.',
+      'query_titles'   => 'Seperate the titles of your queries with newlines.',
+      'tags'           => 'You can seperate your tags with comma.'
       ));
 
       $this->setValidators(array(
