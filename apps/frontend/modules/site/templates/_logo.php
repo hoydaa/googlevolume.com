@@ -6,4 +6,6 @@
     $google_percent = 100 - $volume_percent;
 ?>
 
-<img src="http://chart.apis.google.com/chart?cht=p3&chd=t:<?php echo $google_percent ?>,<?php echo $volume_percent ?>&chs=250x100&chl=Google|Volume" />
+<a href="<?php echo url_for('@homepage') ?>">
+	<img src="http://chart.apis.google.com/chart?cht=p3&chd=t:<?php echo $google_percent ?>,<?php echo $volume_percent ?>&chs=250x100&chl=Google|Volume" />
+</a>
