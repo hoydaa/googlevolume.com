@@ -14,6 +14,13 @@ class siteActions extends sfActions
     {
         $this->pager = ReportPeer::findByPopularity($request->getParameter('page', 1), 10);
     }
+    
+    public function executeNewest($request)
+    {
+        $this->pager = ReportPeer::findNewReports($request->getParameter('page', 1), 10);
+        
+        $this->setTemplate('index');
+    }
 
     public function executeMessage()
     {

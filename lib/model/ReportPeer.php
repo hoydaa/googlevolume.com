@@ -90,13 +90,7 @@ class ReportPeer extends BaseReportPeer
 
         return $pager;
     }
-
-    /**
-     * TODO: Will be improved
-     *
-     * @param unknown_type $max
-     * @return unknown
-     */
+    
     public static function findByPopularity($page, $size)
     {
         $c = new Criteria();
@@ -112,6 +106,20 @@ class ReportPeer extends BaseReportPeer
         return $pager;
     }
 
+    public static function findNewReports($page, $size)
+    {
+        $c = new Criteria();
+        $c->add(ReportPeer::PUBLIC_RECORD, true);
+        $c->addDescendingOrderByColumn(ReportPeer::CREATED_AT);
+        
+        $pager = new sfPropelPager('Report', $size);
+        $pager->setCriteria($c);
+        $pager->setPage($page);
+        $pager->init();
+        
+        return $pager;
+    }
+    
     public static function getReportChart($report, $start_date, $end_date, $frequency, $decorator = null)
     {
         $line_chart = new LineChart();
