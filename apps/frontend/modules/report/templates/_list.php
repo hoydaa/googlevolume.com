@@ -4,13 +4,13 @@
     <?php for($i = 0; $i < sizeof($reports) / 2; $i++): ?>
         <tr>
             <td valign="top">
-                <?php include_component('report', 'miniChart', array('report' => $reports[$i * 2])); ?>
+                <?php include_component('report', 'miniChart', array('report' => $reports[$i * 2], 'sf_cache_key' => $reports[$i * 2]->getId())); ?>
             </td>
             <td valign="top">
                 <?php 
                     if($i * 2 + 2 <= sizeof($reports))
                     {
-                        echo include_component('report', 'miniChart', array('report' => $reports[$i * 2 + 1]));
+                        echo include_component('report', 'miniChart', array('report' => $reports[$i * 2 + 1], 'sf_cache_key' => $reports[$i * 2 + 1]->getId()));
                     }
                 ?>
             </td>
