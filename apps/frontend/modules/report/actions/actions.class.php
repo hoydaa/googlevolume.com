@@ -62,6 +62,9 @@ class reportActions extends sfActions
             $this->setTemplate('edit');
         } else
         {
+            $cacheManager = $this->getContext()->getViewCacheManager();
+            $cacheManager->remove('@sf_cache_partial?module=report&action=_miniChart&sf_cache_key='.$report->getId());
+            
             return $this->redirect("report/show?id=" . $report->getFriendlyUrl());
         }
     }
