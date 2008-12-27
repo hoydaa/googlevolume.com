@@ -1,0 +1,4 @@
+_miniChart:
+  enabled:  on
+  lifetime: 86400
+  with_layout: true
