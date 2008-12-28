@@ -29,9 +29,9 @@
             	<li><?php echo link_to('Search', 'report/search', array('title' => 'search')) ?></li>
             </ul>
             <ul id="tabs">
-            	<li><?php echo link_to('Popular', 'site/index') ?></li>
-            	<li><?php echo link_to('Newest', 'site/newest') ?></li>
-            	<li><?php echo link_to('Most discussed', 'site/discussed') ?></li>
+                <li><?php echo link_to('Newest', 'report/showNew') ?></li>
+                <li><?php echo link_to('Popular', 'report/showPopular') ?></li>
+                <li><?php echo link_to('Most discussed', 'site/discussed') ?></li>
             </ul>
         </div>
         <div id="main-wrapper">
