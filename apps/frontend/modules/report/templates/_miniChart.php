@@ -8,7 +8,7 @@
 	    <?php $arr = $report->getReportQuerys(); ?>
 		<li>
 			<div style="background-color: #<?php echo $serie->getColor() ?>"></div>
-			<span><a href="http://www.google.com/search?q=<?php echo urlencode($arr[$counter++]->getQuery()->getQuery()) ?>"><?php echo $serie->getLabel() ?></a></span>
+			<a href="http://www.google.com/search?q=<?php echo urlencode($arr[$counter++]->getQuery()->getQuery()) ?>" title="Search"><?php echo $serie->getLabel() ?></a>
 		</li>
 	<?php endforeach; ?>
 </ul>
