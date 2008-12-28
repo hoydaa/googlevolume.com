@@ -163,6 +163,16 @@ ul.tag_cloud li.rank_10 {
     margin-bottom: 40px;
 }
 
+/* reports */
+
+#reports {
+    width: 100%;
+}
+
+#reports td {
+    vertical-align: top;
+}
+
 /* pager results */
 
 ul.pager-res {
