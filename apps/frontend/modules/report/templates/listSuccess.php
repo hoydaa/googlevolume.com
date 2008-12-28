@@ -1,0 +1,1 @@
+<?php include_partial('report/pager', array('pager' => $pager)) ?>
