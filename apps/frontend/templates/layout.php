@@ -52,5 +52,17 @@
                 <p>Copyright &copy; <?php echo date("Y") ?> <?php echo link_to('Hoydaa Inc.', 'http://www.hoydaa.org', array('target' => '_blank', 'title' => 'deliver few, deliver complete')) ?> All rights reserved.</p>
             </div>
         </div>
+        <?php if ($sf_context->getConfiguration()->getEnvironment() == 'prod'): ?>
+            <script type="text/javascript">
+                var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+                document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+            </script>
+            <script type="text/javascript">
+                try {
+                    var pageTracker = _gat._getTracker("UA-898298-6");
+                    pageTracker._trackPageview();
+                } catch(err) {}
+            </script>
+        <?php endif; ?>
     </body>
 </html>
