@@ -1,7 +1,12 @@
 body {
     margin: 0;
     font-family: Verdana,Arial,Helvetica,sans-serif;
-    font-size: 0.8em;
+    font-size: 0.7em;
+}
+
+input, select {
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-size: 1em;
 }
 
 /* layout */
@@ -24,7 +29,7 @@ body {
 
 #content {
     margin-right: 310px;
-    padding: 10px 0;
+    padding: 10px 10px 10px 0;
     border-right: 1px solid #DDDDDD;
 }
 
@@ -193,6 +198,7 @@ ul.labels li {
 
 ul.labels li div {
 	float: left;
+	margin-right: 5px;
 	width: 15px;
 	height: 15px;
 }
@@ -227,7 +233,7 @@ img {
     color: #FFFFFF;
 }
 
-#nav {
+#tabs {
     margin: 0 0 0 300px;
     padding: 0;
 }
