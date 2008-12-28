@@ -26,7 +26,6 @@
             	<?php else: ?>
             		<li><?php echo link_to('Sign Out', '@sf_guard_signout', array('title' => 'sign out')) ?></li>
             	<?php endif; ?>
-            	<li><?php echo link_to('Search', 'report/search', array('title' => 'search')) ?></li>
             </ul>
             <ul id="tabs">
                 <li><?php echo link_to('Newest', 'report/showNew') ?></li>
