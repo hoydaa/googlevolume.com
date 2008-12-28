@@ -15,6 +15,8 @@
             	<?php include_partial('site/logo') ?>
             	<br/>
                 <?php include_component('site', 'statistics') ?>
+                <br />
+                <?php include_component('report', 'search') ?>
             </div>
             <ul id="nav">
             	<li><?php echo link_to('Create New', 'report/edit', array('title' => 'create new report')) ?></li>
