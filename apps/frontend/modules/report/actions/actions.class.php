@@ -163,4 +163,16 @@ class reportActions extends sfActions
         $this->pager = ReportPeer::findByUserAndPublic($user->getId(), true, $request->getParameter('page', 1), 10);
         $this->setTemplate('listMyReports');
     }
+
+    public function executeShowNew($request)
+    {
+        $this->pager = ReportPeer::findNewReports($request->getParameter('page', 1), 10);
+        $this->setTemplate('list');
+    }
+
+    public function executeShowPopular($request)
+    {
+        $this->pager = ReportPeer::findByPopularity($request->getParameter('page', 1), 10);
+        $this->setTemplate('list');
+    }
 }
