@@ -3,7 +3,7 @@ default:
     content-type: text/html
 
   metas:
-    #title:        symfony project
+    title:        Google Volume
     #description:  symfony project
     #keywords:     symfony, project
     #language:     en
