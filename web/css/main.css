@@ -243,18 +243,18 @@ img {
     display: inline;
 }
 
-.nav span {
+.nav a.sel {
     padding: 4px 6px;
     background-color: #F75E00;
     color: #FFFFFF;
 }
 
-.nav a {
+.nav a.unsel {
     padding: 4px 6px;
     color: #F75E00;
 }
 
-.nav a:hover {
+.nav a.unsel:hover {
     background-color: #F75E00;
     text-decoration: none;
     color: #FFFFFF;
