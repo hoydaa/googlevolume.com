@@ -92,12 +92,17 @@ class ReportPeer extends BaseReportPeer
         return $pager;
     }
     
-    public static function findByPopularity($page, $size)
+    public static function findByPopularity($page, $size, $order = 'desc')
     {
         $c = new Criteria();
         $c->add(ReportPeer::PUBLIC_RECORD, true);
-        $c->addDescendingOrderByColumn(ReportPeer::VIEW_COUNT);
-        $c->addDescendingOrderByColumn(ReportPeer::CREATED_AT);
+        if($order == 'desc')
+        {
+            $c->addDescendingOrderByColumn(ReportPeer::VIEW_COUNT);
+        } else
+        {
+            $c->addAscendingOrderByColumn(ReportPeer::VIEW_COUNT);
+        }
         
         $pager = new sfPropelPager('Report', $size);
         $pager->setCriteria($c);
@@ -107,11 +112,79 @@ class ReportPeer extends BaseReportPeer
         return $pager;
     }
 
-    public static function findNewReports($page, $size)
+    public static function findByStability($page, $size, $order = 'asc')
+    {
+        $sql = "(SELECT AVG(%s) FROM %s INNER JOIN %s On %s=%s WHERE %s=%s GROUP BY %s)";
+        $sql = sprintf($sql, 
+            QueryPeer::STANDARD_DEVIATION, 
+            QueryPeer::TABLE_NAME, 
+            ReportQueryPeer::TABLE_NAME, 
+            QueryPeer::ID,
+            ReportQueryPeer::QUERY_ID,
+            ReportQueryPeer::REPORT_ID,
+            ReportPeer::ID,
+            ReportPeer::ID);
+        $c = new Criteria();
+        $c->addAsColumn('stability', $sql);
+        if($order == 'asc')
+        {
+            $c->addAscendingOrderByColumn('stability');
+        } else
+        {
+            $c->addDescendingOrderByColumn('stability');
+        }
+        
+        $pager = new sfPropelPager('Report', $size);
+        $pager->setCriteria($c);
+        $pager->setPage($page);
+        $pager->init();
+        
+        return $pager;
+    }
+    
+    public static function findByAmount($page, $size, $order = 'desc')
+    {
+        $sql = "(SELECT COUNT(%s) FROM %s INNER JOIN %s On %s=%s INNER JOIN %s ON %s=%s WHERE %s=%s GROUP BY %s)";
+        $sql = sprintf($sql, 
+            QueryPeer::STANDARD_DEVIATION, 
+            QueryPeer::TABLE_NAME, 
+            ReportQueryPeer::TABLE_NAME, 
+            QueryPeer::ID, 
+            ReportQueryPeer::QUERY_ID,
+            QueryResultPeer::TABLE_NAME,
+            ReportQueryPeer::QUERY_ID,
+            QueryResultPeer::QUERY_ID,
+            ReportQueryPeer::REPORT_ID,
+            ReportPeer::ID,
+            ReportPeer::ID);
+        $c = new Criteria();
+        $c->addAsColumn('result_count', $sql);
+        if($order == 'asc')
+        {
+            $c->addAscendingOrderByColumn('result_count');
+        } else
+        {
+            $c->addDescendingOrderByColumn('result_count');
+        }
+        
+        $pager = new sfPropelPager('Report', $size);
+        $pager->setCriteria($c);
+        $pager->setPage($page);
+        $pager->init();
+        
+        return $pager;
+    }
+    
+    public static function findNewReports($page, $size, $order = 'desc')
     {
         $c = new Criteria();
         $c->add(ReportPeer::PUBLIC_RECORD, true);
-        $c->addDescendingOrderByColumn(ReportPeer::CREATED_AT);
+        if($order == 'desc')
+        {
+            $c->addDescendingOrderByColumn(ReportPeer::CREATED_AT);
+        } else {
+            $c->addAscendingOrderByColumn(ReportPeer::CREATED_AT);
+        }
         
         $pager = new sfPropelPager('Report', $size);
         $pager->setCriteria($c);

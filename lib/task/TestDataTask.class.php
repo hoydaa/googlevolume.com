@@ -57,7 +57,7 @@ EOF;
             {
                 if(rand(0, 100) > $value['rand'])
                 {
-                    $query_result = new QueryResult();
+                    $query_result = new QueryResultBulk();
                     $query_result->setQuery($query);
                     $start += rand($value['rand_min'], $value['rand_max']) * $value['rand_diff'];
                     $query_result->setResultSize($start);

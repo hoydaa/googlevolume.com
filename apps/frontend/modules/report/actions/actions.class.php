@@ -164,13 +164,51 @@ class reportActions extends sfActions
         $this->setTemplate('listMyReports');
     }
 
-    public function executeShowNew($request)
+    public function executeShowByDate($request)
     {
-        $this->pager = ReportPeer::findNewReports($request->getParameter('page', 1), 10);
+        $order = $this->getRequestParameter('order');
+        if(!$order)
+        {
+            $order = 'desc';
+        }
+        
+        $this->pager = ReportPeer::findNewReports($request->getParameter('page', 1), 10, $order);
+        $this->setTemplate('list');
     }
 
-    public function executeShowPopular($request)
+    public function executeShowByPopularity($request)
     {
-        $this->pager = ReportPeer::findByPopularity($request->getParameter('page', 1), 10);
+        $order = $this->getRequestParameter('order');
+        if(!$order)
+        {
+            $order = 'desc';
+        }
+        
+        $this->pager = ReportPeer::findByPopularity($request->getParameter('page', 1), 10, $order);
+        $this->setTemplate('list');
+    }
+    
+    public function executeShowByStability($request)
+    {
+        $order = $this->getRequestParameter('order');
+        if(!$order)
+        {
+            $order = 'asc';
+        }
+        
+        $this->pager = ReportPeer::findByStability($request->getParameter('page', 1), 10, $order);
+        $this->setTemplate('list');
+    }
+    
+    public function executeShowByAmount($request)
+    {
+        $order = $this->getRequestParameter('order');
+        if(!$order)
+        {
+            $order = 'desc';
+        }
+        
+        $this->pager = ReportPeer::findByAmount($request->getParameter('page', 1), 10, $order);
+        $this->setTemplate('list');
     }
 }

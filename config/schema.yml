@@ -11,11 +11,12 @@ propel:
     birthday:         { type: date, required: false }
 
   projecty_query:
-    _attributes:      { phpName: Query }
-    id:               ~
-    query:            { type: varchar, size: 255, required: true }
-    managed:          { type: boolean, required: true, default: false }
-    created_at:       ~
+    _attributes:        { phpName: Query }
+    id:                 ~
+    query:              { type: varchar, size: 255, required: true }
+    standard_deviation: { type: double, required: true, default: 0 }
+    managed:            { type: boolean, required: true, default: false }
+    created_at:         ~
 
   projecty_report:
     _attributes:      { phpName: Report }

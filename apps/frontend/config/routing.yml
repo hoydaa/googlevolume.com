@@ -1,7 +1,7 @@
 # default rules
 homepage:
   url:   /
-  param: { module: report, action: showNew }
+  param: { module: report, action: showByDate, order: desc }
 
 default_symfony:
   url:   /symfony/:action/*
