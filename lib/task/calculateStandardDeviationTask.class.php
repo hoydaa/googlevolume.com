@@ -64,6 +64,6 @@ EOF;
         logline(sprintf("Finished processing."));
         $stop_watch->end();
         logline(sprintf('Execution time: %s seconds.', $stop_watch->getTime()));
-        logline(sprintf('!!!!!CAN RUN %s TIMES A DAY!!!!!', (24 * 60 * 60 / $stop_watch->getTime())));
+        logline(sprintf('!!!!!CAN RUN %s TIMES A DAY!!!!!', (24 * 60 * 60 / ($stop_watch->getTime() == 0 ? 1 : $stop_watch->getTime()))));
     }
 }
