@@ -12,14 +12,28 @@ input, select {
 /* layout */
 
 #header-wrapper {
-    background-color: #EFEFEF;
-    border-bottom: 1px solid #DDDDDD;
+    background-image: url("/images/bg-header.gif");
 }
 
 #header {
     margin: 0 auto;
     width: 900px;
     padding: 10px 0;
+}
+
+#search-bar-wrapper {
+    clear: right;
+    background: url("/images/bg-bar.gif") bottom;
+}
+
+#search-bar {
+    margin: 0 auto;
+    width: 900px;
+    padding: 10px 0;
+}
+
+#search-bar input[type=text] {
+    width: 590px;
 }
 
 #main {
@@ -30,7 +44,7 @@ input, select {
 #content {
     margin-right: 310px;
     padding: 10px 10px 10px 0;
-    border-right: 1px solid #DDDDDD;
+    border-right: 1px solid #D9D7CE;
 }
 
 #sidebar {
@@ -41,14 +55,13 @@ input, select {
 
 #footer-wrapper {
     clear: right;
-    background-color: #EFEFEF;
-    border-top: 1px solid #DDDDDD;
+    background-image: url("/images/bg-footer.gif");
 }
 
 #footer {
     margin: 0 auto;
     width: 900px;
-    padding: 10px 0;
+    padding: 1px 0;
 }
 
 /* hr */
@@ -219,41 +232,36 @@ img {
 	border: none;
 }
 
-/* menu */
+/* navigation */
 
-#nav {
-    position: absolute;
-    top: 50px;
-    margin: 0 0 0 300px;
+.nav {
+    margin: 0;
     padding: 0;
 }
 
-#nav li {
+.nav li {
     display: inline;
 }
 
-#nav a {
-    text-decoration: none;
-    color: #0F0FCF;
-    padding: 5px;
-}
-
-#nav a:hover {
-    background-color: #0F0FCF;
+.nav span {
+    padding: 4px;
+    background-color: #F75E00;
     color: #FFFFFF;
 }
 
-#tabs {
-    margin: 0 0 0 300px;
-    padding: 0;
+.nav a {
+    padding: 4px;
+    color: #F75E00;
 }
 
-#tabs li {
-    display: inline;
-}
-
-#tabs a {
+.nav a:hover {
+    background-color: #F75E00;
     text-decoration: none;
-    color: #0F0FCF;
-    padding: 5px;
+    color: #FFFFFF;
+}
+
+/* header navigation */
+
+#header .nav {
+	float: right;
 }
