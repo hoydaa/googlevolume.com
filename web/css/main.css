@@ -64,6 +64,13 @@ input, select {
     padding: 1px 0;
 }
 
+/* beta icon */
+
+#beta-icon {
+    position: absolute;
+    top: 10px;
+}
+
 /* hr */
 
 .hr {
