@@ -16,7 +16,7 @@
     			<?php endif; ?>
     		</li>
         <?php else: ?>
-    		<li><?php echo link_to($menu_title, 'report/'.$menu_action.'?order=desc', array('class' => 'unsel')) ?></li>
+    		<li><?php echo link_to($menu_title, 'report/'.$menu_action.'?order=desc') ?></li>
         <?php endif; ?>
 	<?php endforeach; ?>
 </ul>
