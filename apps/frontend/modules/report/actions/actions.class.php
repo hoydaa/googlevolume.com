@@ -172,7 +172,7 @@ class reportActions extends sfActions
             $order = 'desc';
         }
         
-        $this->pager = ReportPeer::findNewReports($request->getParameter('page', 1), 2, $order);
+        $this->pager = ReportPeer::findNewReports($request->getParameter('page', 1), 10, $order);
         $this->setTemplate('list');
     }
 
