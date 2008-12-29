@@ -13,3 +13,7 @@ default_index:
 
 default:
   url:   /:module/:action/*
+  
+isics_sitemap_xml:
+  url:   /sitemap.xml
+  param: { module: isicsSitemapXML, action: index }

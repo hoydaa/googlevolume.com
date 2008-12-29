@@ -2,3 +2,5 @@
 all:
   web_images:
     charts: /home/umututkan/workspace_pdt/project-y/web/images/charts
+  isicsSitemapXML:
+    modules:  [report]
