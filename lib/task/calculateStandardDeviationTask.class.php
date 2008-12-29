@@ -43,7 +43,7 @@ EOF;
             $resultset->next();
             $mean = $resultset->getString('result_size_mean');
             
-            logLine(sprintf('Average for query %s is %s.', $query->getQuery(), $mean));
+            //logLine(sprintf('Average for query %s is %s.', $query->getQuery(), $mean));
             
             $result_count = sizeof($query->getQueryResults());
             foreach($query->getQueryResults() as $result) 
@@ -54,16 +54,16 @@ EOF;
             $deviation = sqrt($deviation);
             $query->setStandardDeviation($deviation / $mean);
             
-            logline(sprintf('Average stdev for query %s is %s.', $query->getQuery(), ($deviation/$mean)));
+            //logline(sprintf('Average stdev for query %s is %s.', $query->getQuery(), ($deviation/$mean)));
             
             $query->save();
             
-            logLine(sprintf("Standart deviation for %s is %s.", $query->getQuery(), $deviation));
+            //logLine(sprintf("Standart deviation for %s is %s.", $query->getQuery(), $deviation));
         }
         
         logline(sprintf("Finished processing."));
         $stop_watch->end();
         logline(sprintf('Execution time: %s seconds.', $stop_watch->getTime()));
-        //logline(sprintf('!!!!!CAN RUN %s TIMES A DAY!!!!!', (24 * 60 * 60 / $stop_watch->getTime())));
+        logline(sprintf('!!!!!CAN RUN %s TIMES A DAY!!!!!', (24 * 60 * 60 / $stop_watch->getTime())));
     }
 }
