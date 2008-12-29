@@ -8,30 +8,29 @@
         <?php include_metas() ?>
         <?php include_title() ?>
         <link rel="shortcut icon" href="/favicon.ico" />
+        <meta name="verify-v1" content="r+CM+atVa1mrlasGu8hxaI+eWjfC7MYKxt/FymZXODc=" />
     </head>
     <body>
         <div id="header-wrapper">
             <div id="header">
+                <ul class="nav">
+            	    <li><?php echo link_to('Create New', 'report/edit', array('title' => 'create new report')) ?></li>
+            	    <?php if(!$sf_user->isAuthenticated()): ?>
+            		    <li><?php echo link_to('Sign In', '@sf_guard_signin', array('title' => 'sign in')) ?></li>
+            		    <li><?php echo link_to('Sign Up', 'user/signUp', array('title' => 'sign up')) ?></li>
+            	    <?php else: ?>
+            		    <li><?php echo link_to('Sign Out', '@sf_guard_signout', array('title' => 'sign out')) ?></li>
+            	    <?php endif; ?>
+                </ul>
             	<?php include_partial('site/logo') ?>
             	<br/>
                 <?php include_component('site', 'statistics') ?>
-                <br />
+            </div>
+        </div>
+        <div id="search-bar-wrapper">
+            <div id="search-bar">
                 <?php include_component('report', 'search') ?>
             </div>
-            <ul id="nav">
-            	<li><?php echo link_to('Create New', 'report/edit', array('title' => 'create new report')) ?></li>
-            	<?php if(!$sf_user->isAuthenticated()): ?>
-            		<li><?php echo link_to('Sign In', '@sf_guard_signin', array('title' => 'sign in')) ?></li>
-            		<li><?php echo link_to('Sign Up', 'user/signUp', array('title' => 'sign up')) ?></li>
-            	<?php else: ?>
-            		<li><?php echo link_to('Sign Out', '@sf_guard_signout', array('title' => 'sign out')) ?></li>
-            	<?php endif; ?>
-            </ul>
-            <ul id="tabs">
-                <li><?php echo link_to('Newest', 'report/showNew') ?></li>
-                <li><?php echo link_to('Popular', 'report/showPopular') ?></li>
-                <li><?php echo link_to('Most discussed', 'site/discussed') ?></li>
-            </ul>
         </div>
         <div id="main-wrapper">
             <div id="main">
