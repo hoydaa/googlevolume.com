@@ -1,6 +1,8 @@
 after svn co https://hoydaa.org/svnroot/project-y/trunk blahblahblah follow the steps given below.
     symfony generate:project project-name
     symfony plugin:install sfGuardPlugin --release=2.2.0
+    downlad http://plugins.symfony-project.org/get/isicsSitemapXMLPlugin/isicsSitemapXMLPlugin-0.9.1.tgz and execute the following command to install
+    	symfony plugin:install /path/to/plugin/isicsSitemapXMLPlugin-0.9.1.tgz
     create the database and edit the following files accordingly
         edit config/databases.yml
         edit config/propel.ini
