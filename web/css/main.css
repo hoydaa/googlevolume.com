@@ -243,21 +243,21 @@ img {
     display: inline;
 }
 
-.nav span {
+.nav span, .nav a {
     padding: 4px 6px;
+}
+
+.nav span, .nav a.sel, .nav a:hover {
     background-color: #F75E00;
     color: #FFFFFF;
 }
 
 .nav a {
-    padding: 4px 6px;
     color: #F75E00;
 }
 
 .nav a.sel, .nav a:hover {
-    background-color: #F75E00;
     text-decoration: none;
-    color: #FFFFFF;
 }
 
 /* header navigation */
