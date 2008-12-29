@@ -39,6 +39,17 @@
                         <?php include_component('user', 'user') ?>
                     <?php endif; ?>
                     <?php include_component('tag', 'cloud') ?>
+                    <script type="text/javascript"><!--
+                    google_ad_client = "pub-7151161015858503";
+                    /* Google Volume */
+                    google_ad_slot = "3645818458";
+                    google_ad_width = 300;
+                    google_ad_height = 250;
+                    //-->
+                    </script>
+                    <script type="text/javascript"
+                    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+                    </script>
                 </div>
                 <div id="content">
                     <?php echo $sf_content ?>
