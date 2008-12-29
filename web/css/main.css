@@ -186,14 +186,6 @@ ul.tag_cloud li.rank_10 {
     vertical-align: top;
 }
 
-/* pager results */
-
-ul.pager-res {
-	margin: 0;
-	padding: 0;
-	list-style-type: none;
-}
-
 /* pager navigation */
 
 ul.pager-nav {
@@ -244,13 +236,13 @@ img {
 }
 
 .nav span {
-    padding: 4px;
+    padding: 4px 6px;
     background-color: #F75E00;
     color: #FFFFFF;
 }
 
 .nav a {
-    padding: 4px;
+    padding: 4px 6px;
     color: #F75E00;
 }
 
