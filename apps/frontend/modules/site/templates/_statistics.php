@@ -1,3 +1,1 @@
-<?php
-	echo sprintf('<b>%s</b> reports, <b>%s</b> queries and <b>%s</b> query results.', $statistics['reports'], $statistics['queries'], $statistics['query_results']);
-?>
+<p><strong><?php echo $statistics['reports'] ?></strong> reports, <strong><?php echo $statistics['queries'] ?></strong> queries, and <strong><?php echo $statistics['query_results'] ?></strong> query results...</p>
