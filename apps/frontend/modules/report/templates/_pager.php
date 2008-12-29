@@ -6,9 +6,9 @@
 ?>
 
 <?php include_partial('report/list', array('reports' => $pager->getResults())) ?>
-
+<br />
 <?php if ($pager->haveToPaginate()): ?>
-    <ul class="pager-nav">
+    <ul class="nav">
         <?php if ($pager->getPage() != $pager->getPreviousPage()): ?>
             <li><a href="<?php echo $sf_controller->genUrl(array_merge($params, array('page' => $pager->getPreviousPage())))?>"><?php echo __('Prev') ?></a></li>
         <?php endif ?>
