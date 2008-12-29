@@ -243,21 +243,21 @@ img {
     display: inline;
 }
 
-.nav a.sel {
-    padding: 4px 6px;
+.nav span, .nav a {
+    padding: 4px 8px;
+}
+
+.nav span, .nav a.sel, .nav a.unsel:hover {
     background-color: #F75E00;
     color: #FFFFFF;
+}
+
+.nav a.sel, .nav a.unsel:hover {
+    text-decoration: none;
 }
 
 .nav a.unsel {
-    padding: 4px 6px;
     color: #F75E00;
-}
-
-.nav a.unsel:hover {
-    background-color: #F75E00;
-    text-decoration: none;
-    color: #FFFFFF;
 }
 
 /* header navigation */
