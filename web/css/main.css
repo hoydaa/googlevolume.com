@@ -254,7 +254,7 @@ img {
     color: #F75E00;
 }
 
-.nav a:hover {
+.nav a.sel, .nav a:hover {
     background-color: #F75E00;
     text-decoration: none;
     color: #FFFFFF;
