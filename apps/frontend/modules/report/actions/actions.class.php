@@ -167,12 +167,10 @@ class reportActions extends sfActions
     public function executeShowNew($request)
     {
         $this->pager = ReportPeer::findNewReports($request->getParameter('page', 1), 10);
-        $this->setTemplate('list');
     }
 
     public function executeShowPopular($request)
     {
         $this->pager = ReportPeer::findByPopularity($request->getParameter('page', 1), 10);
-        $this->setTemplate('list');
     }
 }
