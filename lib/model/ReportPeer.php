@@ -15,6 +15,7 @@ class ReportPeer extends BaseReportPeer
         $keywords = split(' ', trim($query));
 
         $c = new Criteria();
+        $c->add(ReportPeer::PUBLIC_RECORD, true);
 
         foreach ($keywords as $keyword)
         {
