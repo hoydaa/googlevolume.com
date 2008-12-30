@@ -32,7 +32,7 @@ class ReportTagPeer extends BaseReportTagPeer
     return $tags;
   }
 
-  public static function getPopularTags($max = 10)
+  public static function getPopularTags($max = 30)
   {
     $connection = Propel::getConnection();
 
