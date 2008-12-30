@@ -53,6 +53,16 @@ class NewReportForm extends ObjectForm
     public function checkQueries($validator, $values) {
         $query_texts = explode("\n", str_replace("\r", "", $values['query_texts']));
         $query_titles = explode("\n", str_replace("\r", "", $values['query_titles']));
+        if(sizeof($query_titles) > 10)
+        {
+            $error = new sfValidatorError($validator, 'You can enter up to 10 queries.');
+            throw new sfValidatorErrorSchema($validator, array("query_titles" => $error));
+        }
+        if(sizeof($query_texts) > 10)
+        {
+            $error = new sfValidatorError($validator, 'You can enter up to 10 queries.');
+            throw new sfValidatorErrorSchema($validator, array("query_texts" => $error));
+        }
         if(sizeof($query_texts) != sizeof($query_titles)) {
             $error = new sfValidatorError($validator, 'Query text and query title numbers do not match.');
             throw new sfValidatorErrorSchema($validator, array("query_titles" => $error, "query_texts" => $error));
