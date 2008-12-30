@@ -39,6 +39,7 @@
                         <?php include_component('user', 'user') ?>
                     <?php endif; ?>
                     <?php include_component('tag', 'cloud') ?>
+                    <?php if ($sf_context->getConfiguration()->getEnvironment() == 'prod'): ?>
                     <script type="text/javascript"><!--
                     google_ad_client = "pub-7151161015858503";
                     /* Google Volume */
@@ -50,6 +51,7 @@
                     <script type="text/javascript"
                     src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
                     </script>
+                    <?php endif; ?>
                 </div>
                 <div id="content">
                     <?php echo $sf_content ?>
