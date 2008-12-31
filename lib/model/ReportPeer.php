@@ -126,6 +126,7 @@ class ReportPeer extends BaseReportPeer
             ReportPeer::ID);
         $c = new Criteria();
         $c->addAsColumn('stability', $sql);
+        $c->add(ReportPeer::PUBLIC_RECORD, true);
         if($order == 'asc')
         {
             $c->addAscendingOrderByColumn('stability');
@@ -159,6 +160,7 @@ class ReportPeer extends BaseReportPeer
             ReportPeer::ID);
         $c = new Criteria();
         $c->addAsColumn('result_count', $sql);
+        $c->add(ReportPeer::PUBLIC_RECORD, true);
         if($order == 'asc')
         {
             $c->addAscendingOrderByColumn('result_count');
