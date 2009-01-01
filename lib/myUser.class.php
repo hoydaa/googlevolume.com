@@ -3,7 +3,11 @@
 class myUser extends sfGuardSecurityUser
 {
     public function getId() {
-        return $this->getGuardUser()->getId();
+        if($this->getGuardUser())
+        {
+            return $this->getGuardUser()->getId();
+        }
+        return null;
     }
     
     // in order to override hasCredentialClass
