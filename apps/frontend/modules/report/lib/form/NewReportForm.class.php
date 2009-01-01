@@ -3,7 +3,7 @@
 class NewReportForm extends ObjectForm
 {
     
-    protected static $frequencies = array('N' => 'None', 'D' => 'Daily', 'W' => 'Weekly', 'M' => 'Monthly');
+    protected static $frequencies = array('N' => 'Never', 'D' => 'Daily', 'W' => 'Weekly', 'M' => 'Monthly');
 
     public function configure()
     {
@@ -41,7 +41,8 @@ class NewReportForm extends ObjectForm
         $this->widgetSchema->setHelps(array(
       'query_texts'    => 'Seperate the queries you want to be searched with newlines.',
       'query_titles'   => 'Seperate the titles of your queries with newlines.',
-      'tags'           => 'You can seperate your tags with comma.'
+      'tags'           => 'You can seperate your tags with comma.',
+      'frequency'      => 'If you want you can schedule mail for your report, just select a frequency.'
       ));
 
       $this->setValidators(array(
