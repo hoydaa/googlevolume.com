@@ -209,6 +209,9 @@ abstract class BaseChart
         }
 
         $rtn .= '&' . $representation;
+        
+        $rtn = str_replace(" ", "+", $rtn);
+        
         return self::URL . '?' . $rtn;
     }
 
@@ -235,14 +238,23 @@ abstract class BaseChart
         if($this->cacheable)
         {
             $relative_url = md5($google_url) . '.png';
-            $local_url = sfConfig::get('app_web_images_charts') . '/' . $relative_url;
+            $local_url = sfConfig::get('app_web_images') . '/' . sfConfig::get('app_web_charts_dir') . '/' . $relative_url;
 
             if(!file_exists($local_url))
             {
+
+                //$fp = fopen ($local_url, 'w+');
+                //$ch = curl_init($google_url);
+                //curl_setopt($ch, CURLOPT_TIMEOUT, 50);
+                //curl_setopt($ch, CURLOPT_FILE, $fp);
+                //curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+                //curl_exec($ch);
+                //curl_close($ch);
+                //fclose($fp);
                 file_put_contents($local_url, file_get_contents($google_url));
             }
 
-            return 'http://www.mytrends.com/images/charts/' . $relative_url;
+            return sfConfig::get('app_web_charts_dir') . '/' . $relative_url;
         } else
         {
             return $google_url;
