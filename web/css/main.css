@@ -199,11 +199,38 @@ ul.tag_cloud li.rank_10 {
 ul.pager-nav {
     margin: 0;
     padding: 0;
-    list-style-type: none;
 }
 
 ul.pager-nav li {
     display: inline;
+}
+
+ul.pager-nav li span {
+    padding: 0.2em 0.5em;
+    background-color: #E37400;
+    border: 1px solid #E37400;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+ul.pager-nav li a {
+    padding: 0.2em 0.5em;
+    border: 1px solid #E3A35E;
+    text-decoration: none;
+    color: #C86800;
+}
+
+ul.pager-nav li a:active {
+    color: #C86800;
+}
+
+ul.pager-nav li a:hover {
+    border: 1px solid #E37400;
+    color: #000033;
+}
+
+ul.pager-nav li a.next-prev {
+    font-weight: bold;
 }
 
 /* labels */
@@ -230,6 +257,47 @@ ul.labels li div {
 
 img {
 	border: none;
+}
+
+/* tool bar */
+
+ul.tool-bar {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+ul.tool-bar li {
+    float: left;
+    margin-right: 5px;
+}
+
+ul.tool-bar li a {
+    display: block;
+    padding: 2px 6px;
+    height: 20px;
+    color: #E37400;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+ul.tool-bar li a:hover {
+    text-decoration: underline;
+}
+
+ul.tool-bar li div {
+	height: 20px;
+    background: #E37400 url("/images/menu-current.gif") no-repeat scroll 100% -90px;
+}
+
+ul.tool-bar li div a {
+    background: url("/images/menu-current.gif") 0 -90px no-repeat;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+ul.tool-bar li div a:hover {
+    text-decoration: none;
 }
 
 /* navigation */
