@@ -5,19 +5,21 @@
         'By Data Amount' => 'showByAmount');
 ?>
 
-<ul class="nav">
-	<?php foreach($menu as $menu_title => $menu_action): ?>
-	    <?php if($sf_request->getParameter('action') == $menu_action): ?>
-    		<li>
-    			<?php if($sf_request->getParameter('order') == 'asc'): ?>
-    				<?php echo link_to($menu_title . ' <b> &uarr;</b>', 'report/'.$menu_action.'?order=desc', array('class' => 'sel')) ?>
-    			<?php else: ?>
-    				<?php echo link_to($menu_title . ' <b> &darr;</b>', 'report/'.$menu_action.'?order=asc', array('class' => 'sel')) ?>
-    			<?php endif; ?>
-    		</li>
-        <?php else: ?>
-    		<li><?php echo link_to($menu_title, 'report/'.$menu_action.'?order=desc') ?></li>
-        <?php endif; ?>
+<ul class="tool-bar">
+    <?php foreach($menu as $menu_title => $menu_action): ?>
+        <li>
+            <?php if($sf_request->getParameter('action') == $menu_action): ?>
+                <div>
+                    <?php if($sf_request->getParameter('order') == 'asc'): ?>
+                        <?php echo link_to($menu_title . ' ', 'report/'.$menu_action.'?order=desc') ?>
+                    <?php else: ?>
+                        <?php echo link_to($menu_title . ' ', 'report/'.$menu_action.'?order=asc') ?>
+                    <?php endif; ?>
+                </div>
+            <?php else: ?>
+                <?php echo link_to($menu_title, 'report/'.$menu_action.'?order=desc') ?>
+            <?php endif; ?>
+        </li>
 	<?php endforeach; ?>
 </ul>
 
