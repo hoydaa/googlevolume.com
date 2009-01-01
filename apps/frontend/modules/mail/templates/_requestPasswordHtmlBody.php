@@ -1,4 +1,4 @@
-<p>Dear <?php echo $full_name ?>,</p>
+<?php include_partial('mail/headerHtml', array('full_name' => $full_name)) ?>
 
 <p>For safety reasons, the googlevolume website does not store passwords in clear text.
 When you forget your password, googlevolume creates a new one that can be used in place.</p>
@@ -13,6 +13,4 @@ When you forget your password, googlevolume creates a new one that can be used i
 <p>To get connected, go to the <?php echo link_to('login', '@sf_guard_signin', array('absolute' => 'true')) ?> 
 page and use your username and password.</p>
 
-<p>We hope to see you soon on googlevolume!</p>
-
-<p>GoogleVolume Team</p>
+<?php include_partial('mail/footerHtml') ?>
