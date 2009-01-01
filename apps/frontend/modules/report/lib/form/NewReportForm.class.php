@@ -2,6 +2,8 @@
 
 class NewReportForm extends ObjectForm
 {
+    
+    protected static $frequencies = array('N' => 'None', 'D' => 'Daily', 'W' => 'Weekly', 'M' => 'Monthly');
 
     public function configure()
     {
@@ -20,7 +22,7 @@ class NewReportForm extends ObjectForm
         $arr['tags']         = new sfWidgetFormInput(array(), array('autocomplete' => 'off'));
         if(!$is_hidden) 
         {
-            $arr['frequency']= new sfWidgetFormSelectRadio(array('choices' => array('N' => 'None', 'D' => 'Daily', 'W' => 'Weekly', 'M' => 'Monthly')));
+            $arr['frequency']= new sfWidgetFormSelect(array('choices' => self::$frequencies));
         }
         $arr['user_id']      = new sfWidgetFormInputHidden();
         $this->setWidgets($arr);
@@ -48,7 +50,7 @@ class NewReportForm extends ObjectForm
       'description'    => new sfValidatorString(array('required' => false)),
       'query_texts'    => new sfValidatorString(array('required' => true), array('required' => 'You have to enter at least one query.')),
       'query_titles'   => new sfValidatorString(array('required' => true), array('required' => 'You have to enter at least one query.')),
-      'frequency'      => new sfValidatorString(array('required' => false)),
+      'frequency'      => new sfValidatorString(array('required' => true)),
       'private'        => new sfValidatorString(array('required' => false)),
       'tags'           => new sfValidatorString(array('required' => false)),
       'user_id'        => new sfValidatorString(array('required' => false))
