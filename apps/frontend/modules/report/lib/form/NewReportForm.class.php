@@ -5,23 +5,33 @@ class NewReportForm extends ObjectForm
 
     public function configure()
     {
-        $this->setWidgets(array(
-      'id'             => new sfWidgetFormInputHidden(),
-      'title'          => new sfWidgetFormInput(),
-      'description'    => new sfWidgetFormTextarea(),
-      'query_texts'    => new sfWidgetFormTextarea(),
-      'query_titles'   => new sfWidgetFormTextarea(),
-      'public'         => new sfWidgetFormInputCheckbox(),
-      'tags'           => new sfWidgetFormInput(array(), array('autocomplete' => 'off')),
-      'user_id'        => new sfWidgetFormInputHidden()
-        ));
+        $is_hidden = !(sfContext::getInstance()->getUser()->isAuthenticated());
+        
+        $arr = array();
+      	$arr['id']           = new sfWidgetFormInputHidden();
+      	$arr['title']        = new sfWidgetFormInput();
+      	$arr['description']  = new sfWidgetFormTextarea();
+      	$arr['query_texts']  = new sfWidgetFormTextarea();
+      	$arr['query_titles'] = new sfWidgetFormTextarea();
+        if(!$is_hidden)
+        {
+            $arr['private']   = new sfWidgetFormInputCheckbox();
+        }
+        $arr['tags']         = new sfWidgetFormInput(array(), array('autocomplete' => 'off'));
+        if(!$is_hidden) 
+        {
+            $arr['frequency']= new sfWidgetFormSelectRadio(array('choices' => array('N' => 'None', 'D' => 'Daily', 'W' => 'Weekly', 'M' => 'Monthly')));
+        }
+        $arr['user_id']      = new sfWidgetFormInputHidden();
+        $this->setWidgets($arr);
 
         $this->widgetSchema->setLabels(array(
       'title'          => 'Title *',
       'description'    => 'Description',
       'query_texts'    => 'Query Texts *',
       'query_titles'   => 'Query Titles *',
-      'public'         => 'Public',
+      'private'        => 'Private',
+      'frequency'      => 'Send By Mail',
       'tags'           => 'Tags',
       'user_id'        => 'User Id'
       ));
@@ -38,7 +48,8 @@ class NewReportForm extends ObjectForm
       'description'    => new sfValidatorString(array('required' => false)),
       'query_texts'    => new sfValidatorString(array('required' => true), array('required' => 'You have to enter at least one query.')),
       'query_titles'   => new sfValidatorString(array('required' => true), array('required' => 'You have to enter at least one query.')),
-      'public'         => new sfValidatorString(array('required' => false)),
+      'frequency'      => new sfValidatorString(array('required' => false)),
+      'private'        => new sfValidatorString(array('required' => false)),
       'tags'           => new sfValidatorString(array('required' => false)),
       'user_id'        => new sfValidatorString(array('required' => false))
       ));
@@ -83,7 +94,8 @@ class NewReportForm extends ObjectForm
         $defaults['title']       = $this->object->getTitle();
         $defaults['description'] = $this->object->getDescription();
         $defaults['tags']        = $this->object->getTag();
-        $defaults['public']      = $this->object->getPublicRecord();
+        $defaults['private']     = !$this->object->getPublicRecord();
+        $defaults['frequency']   = $this->object->getMailFrequency() ? $this->object->getMailFrequency() : 'N';
 
         $query_texts = array();
         $query_titles = array();
@@ -116,12 +128,13 @@ class NewReportForm extends ObjectForm
 
         $this->object->setTitle($this->getValue('title'));
         $this->object->setDescription($this->getValue('description'));
-         
-        if($this->getValue('public') == 'on')
+        $this->object->setMailFrequency($this->getValue('frequency')); 
+        
+        if($this->getValue('private') == 'on')
         {
-            $this->object->setPublicRecord(true);
-        } else {
             $this->object->setPublicRecord(false);
+        } else {
+            $this->object->setPublicRecord(true);
         }
 
         $tag_names = explode(',', $this->getValue('tags'));
