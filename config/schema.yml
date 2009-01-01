@@ -27,6 +27,7 @@ propel:
     description:      { type: varchar, size: 255, required: false }
     public_record:    { type: boolean, required: true, default: true }
     view_count:       { type: integer, required: true, default: 0 }
+    mail_frequency:   { type: char, required: true, default: 'N' }
     created_at:       ~
     updated_at:       ~
 
