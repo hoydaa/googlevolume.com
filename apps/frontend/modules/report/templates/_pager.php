@@ -8,9 +8,9 @@
 <?php include_partial('report/list', array('reports' => $pager->getResults())) ?>
 <br />
 <?php if ($pager->haveToPaginate()): ?>
-    <ul class="nav">
+    <ul class="pager-nav">
         <?php if ($pager->getPage() != $pager->getPreviousPage()): ?>
-            <li><a href="<?php echo $sf_controller->genUrl(array_merge($params, array('page' => $pager->getPreviousPage())))?>"><?php echo __('Prev') ?></a></li>
+            <li><a href="<?php echo $sf_controller->genUrl(array_merge($params, array('page' => $pager->getPreviousPage())))?>" class="next-prev"><?php echo __('Prev') ?></a></li>
         <?php endif ?>
         <?php foreach ($pager->getLinks() as $page): ?>
             <?php if ($page == $pager->getPage()): ?>
@@ -20,7 +20,7 @@
             <?php endif; ?>
         <?php endforeach; ?>
         <?php if ($pager->getPage() != $pager->getNextPage()): ?>
-            <li><a href="<?php echo $sf_controller->genUrl(array_merge($params, array('page' => $pager->getNextPage())))?>"><?php echo __('Next') ?></a></li>
+            <li><a href="<?php echo $sf_controller->genUrl(array_merge($params, array('page' => $pager->getNextPage())))?>" class="next-prev"><?php echo __('Next') ?></a></li>
         <?php endif; ?>
     </ul>
 <?php endif; ?>
