@@ -287,11 +287,11 @@ ul.tool-bar li a:hover {
 
 ul.tool-bar li div {
 	height: 20px;
-    background: #E37400 url("/images/menu-current.gif") no-repeat scroll 100% -90px;
+    background: #E37400 url("/images/bg-button.png") no-repeat scroll 100% 0;
 }
 
 ul.tool-bar li div a {
-    background: url("/images/menu-current.gif") 0 -90px no-repeat;
+    background: url("/images/bg-button.png") no-repeat 0 0;
     color: #FFFFFF;
     text-decoration: none;
 }
