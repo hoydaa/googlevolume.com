@@ -9,6 +9,6 @@ all:
   mailer:     smtp
 #  domain:     sis-nav.com
   hostname:   mail.sis-nav.com
-  username:   umut.utkan@sis-nav.com
+  username:   umut.utkan@sistemas.com.tr
   password:   gahve123
   port:       25
