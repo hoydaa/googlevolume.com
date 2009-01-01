@@ -42,7 +42,7 @@ class NewReportForm extends ObjectForm
       'query_texts'    => 'Seperate the queries you want to be searched with newlines.',
       'query_titles'   => 'Seperate the titles of your queries with newlines.',
       'tags'           => 'You can seperate your tags with comma.',
-      'frequency'      => 'If you want you can schedule mail for your report, just select a frequency.'
+      'frequency'      => 'If you want you can schedule a mail for your report, just select a frequency.'
       ));
 
       $this->setValidators(array(
