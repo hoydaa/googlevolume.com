@@ -198,6 +198,16 @@ class ReportPeer extends BaseReportPeer
     
     public static function getReportChart($report, $start_date, $end_date, $frequency, $decorator = null)
     {
+        $rtn = self::_getReportChart($report, $start_date, $end_date, $frequency, $decorator);
+        if($rtn == null)
+        {
+            return null;
+        }
+        return $rtn['chart'];
+    }
+    
+    public static function _getReportChart($report, $start_date, $end_date, $frequency, $decorator = null)
+    {
         $line_chart = new LineChart();
         $line_chart->setTitle($report->getTitle());
 
@@ -246,7 +256,7 @@ class ReportPeer extends BaseReportPeer
             $decorator->decorate($line_chart);
         }
         
-        return $line_chart;
+        return array('values' => $arrays, 'chart' => $line_chart);
     }
 
     private static function getQueryResults($report_id, $start_date, $end_date, $frequency = QueryResultPeer::FREQUENCY_DAY)
