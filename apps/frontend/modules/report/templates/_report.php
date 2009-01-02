@@ -1,7 +1,9 @@
 <?php use_helper('Javascript', 'HoydaaJavascript') ?>
 
 <div id="report-container">
-	<p><strong>Description: </strong><?php echo $report->getDescription() ?></p>
+    <?php if ($report->getDescription()): ?>
+        <p><?php echo $report->getDescription() ?></p>
+    <?php endif; ?>
 	<?php if($form->isValid()): ?>
 	    <?php include_component('report', 'chart', array(
 	  		'report'     => $report, 
