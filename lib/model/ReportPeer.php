@@ -64,6 +64,15 @@ class ReportPeer extends BaseReportPeer
         return ReportPeer::doCount($c);
     }
 
+    public static function countPublicUserReports($userId)
+    {
+        $c = new Criteria();
+        $c->add(ReportPeer::USER_ID, $userId);
+        $c->add(ReportPeer::PUBLIC_RECORD, true);
+
+        return ReportPeer::doCount($c);
+    }
+
     public static function findByUser($userId, $page, $size)
     {
         $c = new Criteria();
@@ -83,6 +92,7 @@ class ReportPeer extends BaseReportPeer
         $c = new Criteria();
         $c->add(ReportPeer::USER_ID, $user_id);
         $c->add(ReportPeer::PUBLIC_RECORD, $public);
+        $c->addDescendingOrderByColumn(ReportPeer::CREATED_AT);
 
         $pager = new sfPropelPager('Report', $size);
         $pager->setCriteria($c);
