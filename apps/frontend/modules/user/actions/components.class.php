@@ -6,6 +6,8 @@ class userComponents extends sfComponents
     {
         $user_id = $this->getUser()->getGuardUser()->getId();
 
-        $this->count = ReportPeer::countUserReports($user_id);
+        $this->all = ReportPeer::countUserReports($user_id);
+        $this->public = ReportPeer::countPublicUserReports($user_id);
+        $this->private = $this->all - $this->public;
     }
 }
