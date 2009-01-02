@@ -1,17 +1,17 @@
 <?php
 
-class AbstractHitFetcher implements HitFetcher
+abstract class AbstractHitFetcher implements HitFetcher
 {
-    protected function getUrl();
+    abstract protected function getUrl();
 
-    protected function getParamName();
+    abstract protected function getParamName();
 
-    protected function extractHit($html);
+    abstract public function extractHit($html);
 
     public function fetch($query)
     {
-        $request = new HttpRequest(self::getUrl(), HttpRequest::METH_GET);
-        $request->addQueryData(array(self::getParamName() => $query));
+        $request = new HttpRequest($this->getUrl(), HttpRequest::METH_GET);
+        $request->addQueryData(array($this->getParamName() => $query));
 
         if (sfConfig::get('sf_logging_enabled'))
         {
@@ -31,7 +31,7 @@ class AbstractHitFetcher implements HitFetcher
         }
 
         $html = $request->getResponseBody();
-        $hit = self::extractHit($html);
+        $hit = $this->extractHit($html);
 
         if (sfConfig::get('sf_logging_enabled'))
         {

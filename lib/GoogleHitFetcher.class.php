@@ -12,13 +12,13 @@ class GoogleHitFetcher extends AbstractHitFetcher
         return 'q';
     }
 
-    protected function extractHit($html)
+    public function extractHit($html)
     {
         $pattern = '/Results <b>1<\/b> - <b>(\d+)<\/b> of (about )?<b>([0-9,]+)<\/b>/';
 
         $matches = null;
 
-        preg_match($pattern, $content, $matches);
+        preg_match($pattern, $html, $matches);
 
         if (sizeof($matches) == 4)
         {
