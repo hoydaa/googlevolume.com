@@ -1,0 +1,1396 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+	<title>Flickr: Search</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="keywords" content="photography, digital photography, cameraphones, camera, hobby photography, photo, digital camera, compactflash, smartmedia, cameras, canon, nikon, olympus, fujifilm, video">	
+	<meta name="description" content="Flickr is almost certainly the best online photo management and sharing application in the world. Show off your favorite photos and videos to the world, securely and privately show content to your friends and family, or blog the photos and videos you take with a cameraphone.">
+	<meta http-equiv="imagetoolbar" content="no">
+	<meta name="viewport" content="width=820" />
+
+
+
+
+<link type="text/css" rel="stylesheet" href="http://l.yimg.com/g/css/c_fold_main.css.v65507.64777.64777.14">
+
+
+	<link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+<link href="http://l.yimg.com/g/css/c_info.css.v64777.14" rel="stylesheet" type="text/css" />
+<link href="http://l.yimg.com/g/css/c_search.css.v65756.14" rel="stylesheet" type="text/css" />
+
+<!--[if LT IE 7]>
+<style type="text/css">
+.trans_png {
+	behavior: url('/javascript/pngbehavior2.htc');
+	border:0;
+}
+</style>
+<![endif]-->
+
+		<link href="http://l.yimg.com/g/css/intl/c_en-us.css.v64777.14" rel="stylesheet" type="text/css">
+
+<script type="text/javascript">
+var global_magisterLudi = '947217420fe164f266053ce17535ed90',
+global_auth_hash = 'f4eae56207e29e39b5b49ff1b71a8da7',
+global_auth_token = '',
+global_flickr_secret = '255810fd35b871df',
+global_slideShowVersion = '6708',
+global_slideShowCodeVersion = '34351',
+global_slideShowVersionV2 = '33427',
+global_slideShowCodeVersionV2 = '49745',
+global_slideShowTextVersion = '63822',
+global_slideShowVersionV3 = '63961',
+global_slideShowVersionV4 = '62768',
+global_disable_slideshow4 = 1,
+global_nsid = '',
+global_ispro = 0,
+global_dbid = '',
+global_name ='',
+global_expire ='',
+global_icon_url ='http://l.yimg.com/g/images/buddyicon.jpg#',
+global_tag_limit = '75',
+global_collection_depth_limit = 5,
+global_stewartVersion = '63881',
+global_contact_limit = '3000',
+global_eighteen = 1,
+global_group_limit = 10,
+global_photos_ids_limit = 20,
+disable_stewart = 0;
+disable_geo = 0;
+var global_rper = 0;
+
+var global_widget_carets = 0;
+var global_explore_search = 0;
+
+var global_intl_lang = 'en-us';
+
+var _photo_root = 'http://farm.static.flickr.com/';
+var _site_root = 'http://www.flickr.com';
+var _images_root = 'http://l.yimg.com/g/images';
+var _intl_images_root = 'http://l.yimg.com/g/images/en-us';
+
+
+var do_bbml = 1;
+
+
+</script>
+
+
+<script type="text/javascript" src="http://l.yimg.com/g/javascript/global.js.v65579.14"></script>
+
+<script type="text/javascript">
+
+</script>
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="http://l.yimg.com/g/javascript/fold_main.js.v48851.48851.48851.48851.48851.38771.48851.48851.65612.38771.38771.65435.62864.38771.38771.39083.64811.64799.38771.63688.38771.63519.64287.55944.64250.14"></script>
+
+
+<script type="text/javascript" src="http://l.yimg.com/g/javascript/s_output_en-us.js.6ae6fea08cd43f82339a18cb09c766ed"></script>
+
+<script type="text/javascript">
+
+YAHOO.util.Event.addListener(window, 'load', F._window_onload);
+YAHOO.util.Event.addListener(window, 'resize', F._window_onresize);
+YAHOO.util.Event.addListener(window, 'blur', F._window_onblur);
+YAHOO.util.Event.addListener(window, 'focus', F._window_onfocus);
+YAHOO.util.Event.addListener(window, 'unload', F._window_onunload);
+
+</script>
+
+
+
+<script type="text/javascript">
+var global_joinDate = F.convert_unix_time_stamp('');
+var global_time_stamp = '090102131246';
+
+
+fixMaxWidth_getWidth = (navigator.userAgent.match(/MSIE 6/i)?function(el) {
+  return el.currentStyle['max-width'];
+}:function(el){
+  return el.currentStyle['maxWidth'];
+});
+
+fixMaxWidth = function(el) {
+  try {
+    el.runtimeStyle.behavior = 'none';
+    var mw = fixMaxWidth_getWidth(el);
+    var nmw = parseInt(mw,10) || 10000;
+    var cW = parseInt(el.offsetWidth);
+    var cH = parseInt(el.offsetHeight);
+    var ratio = (cH/cW);
+    if (el.offsetWidth>nmw) {
+      el.style.width = (nmw+'px');
+      if (!isNaN(cH) && cH) {
+        el.style.height = (Math.ceil(nmw*ratio)+'px');
+      }
+    }
+  } catch(e) {
+    // oh well
+  }
+}
+
+
+
+// Dean Edwards/Matthias Miller/John Resig
+
+/* for Mozilla/Opera9 */
+if (document.addEventListener) {
+    document.addEventListener("DOMContentLoaded", F._window_onload_dom, false);
+}
+
+/* for Internet Explorer */
+/*@cc_on @*/
+/*@if (@_win32)
+    document.write("<script id=__ie_onload defer src=javascript:void(0)><\/script>");
+    var script = document.getElementById("__ie_onload");
+    script.onreadystatechange = function() {
+        if (this.readyState == "complete") {
+            F._window_onload_dom(); // call the onload handler
+        }
+    };
+/*@end @*/
+
+/* for Safari */
+if (/WebKit/i.test(navigator.userAgent)) { // sniff
+    F.onload_dom_timer = setInterval(function() {
+        if (/loaded|complete/.test(document.readyState)) {
+            F._window_onload_dom(); // call the onload handler
+        }
+    }, 10);
+}
+
+
+
+</script>
+
+<!--[if IE]>
+<style type="text/css">
+
+img.notsowide {
+ behavior:expression(fixMaxWidth(this));
+}
+
+</style>
+<![endif]-->
+
+<script type="text/javascript" src="http://l.yimg.com/g/javascript/search.js.v64358.14"></script>
+
+
+
+</head>
+
+<body>
+
+<div id="beacon"><img src="http://geo.yahoo.com/f?s=792600186&t=d21673e6a5ceb94d5a2e9d3481e74c4a&r=http%3A%2F%2Fwww.flickr.com%2Fsearch%2F%3Fq%3Dgoogle%26m%3Dtext&fl_ev=0&lang=en&intl=us" width="0" height="0" alt="" /></div>
+
+<a name="top"></a>
+
+
+
+
+
+
+
+<div class="TopBar" id="TopBar">
+	<table cellspacing="0" class="Header" border="0">
+		<tr>
+			<td class="FlickrLogo">
+					<a href="/"><img src="http://l.yimg.com/g/images/flickr_logo_gamma.gif.v59899.14" id="FlickrLogo" width="98" height="26" alt="Flickr logo. If you click it, you'll go home" />
+					</a>
+					</td>
+			<td class="Status">
+			        
+                                
+		                        
+				You aren't signed in
+				&nbsp;&nbsp;&nbsp;
+
+				<a href="/signin/">Sign In</a>
+				&nbsp;&nbsp;
+				<a href="/help/">Help</a> 							
+				</td>
+		</tr>
+	</table>
+	<table cellspacing="0" class="NavBar" border="0">
+		<tr>
+
+			<td class="Primary">
+		
+<div id="candy_nav_button_bar" class="candy_button_bar">
+	<ul class="site_nav_menu_buttons">
+
+		<li class="no_menu_li"><span><a href="/">Home</a></span></li>
+				
+		
+		<li class="no_menu_li"><span><a href="/tour/" alt="Take the Flickr tour">The Tour</a></span></li>
+		
+		<li class="no_menu_li"><span><a href="/signup/" alt="Sign Up for a Free Account">Sign Up</a></span></li>
+
+
+		<li class="menu_li" id="candy_nav_button_explore"><span><a href="/explore/" alt="Explore Flickr">Explore</a> <img src="http://l.yimg.com/g/images/site_nav_caret_split_default.png" class="nav_button_caret" width="18" height="15" alt="More options"></span>
+		<div class="candy_menu" id="candy_nav_menu_explore">
+			<a href="/explore/">Explore Page</a>
+			<a href="/explore/interesting/7days/">Last 7 Days Interesting</a>
+			<a href="/photos/tags/">Popular Tags</a>
+
+			<a href="/explore/interesting/2009/01/">Calendar</a>
+			<a href="/photos/">Most Recent Uploads</a>
+			<a href="/explore/video/">Video on Flickr</a>
+			<a href="/analog/">Explore Analog</a>
+			<!--<a href="/explore/interesting/2008/01/">A Year Ago Today</a>-->
+			
+			<a title="Photos and videos on a map" href="/map/" class="menu_item_line_above">World Map</a>			<a href="/places/">Places</a>			
+			<a href="/commons/" class="menu_item_line_above">The Commons</a>
+
+			<a href="/creativecommons/">Creative Commons</a>
+			
+			<a href="http://blog.flickr.com/" class="menu_item_line_above">FlickrBlog</a>
+			<a href="http://code.flickr.com/">code.flickr</a>
+			<a href="/services/">Flickr Services</a>
+			
+			<a href="/do/more/" class="menu_item_line_above">Do More, Order Prints</a>
+			<a href="/cameras/">Camera Finder</a>		</div>
+
+		</li>
+
+	</ul>
+</div>
+<script type="text/javascript">F.decorate(_ge('candy_nav_button_bar'), F._nav_button_bar).bar_go_go_go();</script>	
+
+
+	
+			</td>
+
+
+
+
+
+<td id="search_header_form_td">
+	<form action="/search/" method="get" onsubmit="_do_header_search('all', '', '/search/', '', '');return false;" id="headersearchform">
+
+		<input name="q" id="header_search_q" type="text" class="Box" value="">
+		<input name="w" type="hidden" value="all">
+		<input name="m" type="hidden" value="">
+		<input name="s" type="hidden" value="">
+		<input name="mt" type="hidden" value="">
+		<input name="referer_searched" type="hidden" value="">
+
+		<span id="headersearchbutton1"><input value="Search" type="image" src="http://l.yimg.com/g/images/header_search_button.png" /></span>
+	</form>
+
+</td>
+<td id="search_header_button_td" width="82">
+
+	<div id="candy_search_button_bar" class="candy_button_bar" style="">
+		<ul class="site_nav_menu_buttons">
+		<li class="menu_li" id="candy_nav_button_search"><span><a href="/search/" onclick="_do_header_search('all', '', '/search/', '', '');return false;">Search</a> <img src="http://l.yimg.com/g/images/site_nav_caret_split_default.png" class="nav_button_caret" width="18" height="15" alt="More options"></span>
+		<div class="candy_menu" id="candy_nav_menu_search">
+			<a title="Everyone's Uploads" href="/search/" onclick="_do_header_search('all', null, null, '', ''); return false;"><b>&#183;</b> Everyone's Uploads</a>
+
+			<a title="Groups" href="/search/groups/" onclick="_do_header_search('', '', '/search/groups/'); return false;">Groups</a>
+			<a title="Flickr Members" href="/search/people/" onclick="_do_header_search('', 'names', '/search/people/'); return false;">Flickr Members</a>
+			<a title="For a Location" href="/map/" onclick="_do_header_search('location', '', '/map/'); return false;">For a Location</a>			
+		</div>
+		</li>
+		</ul>
+	</div>
+	
+	<script type="text/javascript">F.decorate(_ge('candy_nav_button_search'), F._nav_button).button_go_go_go();</script>
+
+	
+	<script type="text/javascript">
+	var b1 = _ge('headersearchbutton1');
+	b1.parentNode.removeChild(b1);
+	
+	_ge('search_header_form_td').style.paddingBottom = '2px';
+	
+	_ge('candy_search_button_bar').style.display = 'block';
+	
+	
+	var f = _ge('headersearchform');
+	
+	if (f.q.value == '') f.q.style.color = '#999';
+	
+	f.q.onfocus = function() {
+		if (this.value == '') this.value = '';
+		this.style.color = '#222';
+		if (window.ymap) ymap._disableKeys = true;
+	}
+	
+	f.q.onblur = function() {
+		if (this.value != '') return;
+		this.style.color = '#999';
+		this.value = '';
+		if (window.ymap) ymap._disableKeys = false;
+	}
+	
+	var _do_header_search = function(w, m, action, s, mt) {
+		var f = _ge('headersearchform');
+		if (f.q.value == '') f.q.value = '';
+		f.q.value = f.q.value.trim();
+		
+		
+		// do location search if the location search window is open, or if w == 'location'
+		if (w == 'location' || (_ge('loc_search_div') && _ge('loc_search_div').style.display != 'none')) {
+			if (!_ge('loc_search_div')) {
+				// create the location search crap!
+				var div 	= document.createElement('div');
+				div.id = 'loc_search_div';
+				document.body.appendChild(div);
+				
+				var page_type = 'site';
+				F.decorate(div, F._loc_search_div).div_go_go_go(page_type);
+			}
+			try {_ge('loc_search_div').div_do_loc_search()} catch(err) {writeDebug(err)};return false;
+			return;
+		}
+		
+		
+		
+		
+		f.w.value = w;
+		f.m.value = (m) ? m : '';
+		f.s.value = (s) ? s : '';
+		f.mt.value = (mt) ? mt : '';
+		f.action = (action) ? action : '/search/';
+				
+		if (f.m.value == 'tags' && f.q.value && f.q.value.indexOf(' ') == -1) {
+			var alias = '';
+			alias = (alias) ? alias : f.w.value;
+			var turl = '/photos/';
+			if (f.w.value == 'all') {
+				turl+= 'tags/'+encodeURIComponent(f.q.value); 
+			} else {
+				turl+= alias+'/tags/'+encodeURIComponent(f.q.value); 
+			}
+			document.location = turl;
+			return;
+		}
+		
+		var qsA = ['q='+encodeURIComponent(f.q.value)];
+		if (f.w.value) qsA.push('w='+encodeURIComponent(f.w.value));
+		if (f.m.value) qsA.push('m='+encodeURIComponent(f.m.value));
+		if (f.s.value) qsA.push('s='+encodeURIComponent(f.s.value));
+		if (f.mt.value) qsA.push('mt='+encodeURIComponent(f.mt.value));
+		if (f.referer_searched.value) qsA.push('referer_searched='+encodeURIComponent(f.referer_searched.value));
+
+		var surl = f.action+'?'+qsA.join('&');
+		document.location = surl;
+	}
+	
+
+	</script>	
+
+</td>	
+		</tr>		
+	</table>
+</div>
+
+<div id="Main" class="">
+
+
+	<div class="Areas">
+		<h1>Search</h1>
+		<div class="In">Photos</div>
+
+		<div class="Out"><a href="/search/groups/" onclick="return F.search.GoQ(this);">Groups</a></div>
+		<div class="Out"><a href="/search/people/" onclick="return F.search.GoQ(this);">People</a></div>
+			</div>
+
+	<form action="/search/" method="get">
+	
+		<div class="For">
+			<div class="Filter">
+				<p>
+
+	
+					
+				&nbsp;
+					</p>
+			</div>
+			<div class="This">
+				<p>             
+					<input type="text" name="q" id="standard_q" tabindex="1" value="armut">
+					<input type="submit" value="SEARCH" class="Butt" />
+					&nbsp;&nbsp;
+					<small><a href="/search/advanced/" onclick="return F.search.GoQ(this);">Advanced Search</a><br><a href="/cameras/">Search by Camera</a></small>
+
+				</p>
+				<p class="Toggle">
+					<small>
+						<input name="m" type="radio" value="text" id="mtext" checked /> <label for="mtext">Full text</label>
+						&nbsp;&nbsp;
+						<input name="m" type="radio" value="tags" id="mtags" /> <label for="mtags">Tags only</label>
+					</small>
+
+				</p>
+			</div>
+		</div>
+	</form>
+
+						
+<div class="ResultSet clearfix" style="">
+	
+	<div class="Switch">		
+							
+
+
+
+
+
+
+
+
+
+<div class="SlideShowShareButtons">
+	<div id="SSButtonHugger">
+
+		<span><a href="/search/show/?q=armut" id="SlideShowButton">Slideshow</a></span>		
+	</div> 
+
+
+
+</div>
+
+<div id="GPTooltip">
+	<span style="display: none;" id="tooltip_1230930766_0">Guest Passes let you share your photos that aren't public.<br />
+<br />
+Anyone can see your public photos anytime, whether they're a Flickr member or not. But! If you want to share photos marked as friends, family or private, use a Guest Pass.<br />
+<br />
+If you're sharing photos from a set, you can create a Guest Pass that includes any of your photos marked as friends, family, or private. If you're sharing your entire photostream, you can create a Guest Pass that includes photos marked as friends or family (but not your private photos).<br />
+
+<br />
+<a href="/help/sharing/#2184" target="_blank">Learn more about Guest Passes!</a></span><span class="Tip">[<a href="#" onclick="this.blur(); show_tooltip(this, 'tooltip_1230930766_0', 602); return false;">?</a>]</span>
+</div>		</div>
+	
+	<div class="Found">
+
+
+	
+	
+
+
+
+
+
+
+
+We found <strong>3,291 results</strong>&nbsp;matching <span class="queryterm">armut</span>.
+
+
+
+
+
+
+
+
+		<div class="SortOptions" style="float:none;">
+
+			View:
+			<b>Most relevant</b>			&bull;
+			<a href="/search/?q=armut&s=rec">Most recent</a>			&bull;
+			<a href="/search/?q=armut&s=int">Most interesting</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			Show:
+							<b>Details</b> &bull; <a href="/search/?q=armut&z=t">Thumbnails</a>
+
+					</div>
+	</div>
+</div>
+
+<div style="clear:both;height:0;"></div>
+
+
+	
+
+			
+
+								
+
+
+
+<table cellspacing="0" class="DetailResults">
+	<tr valign="top">
+		<td class="DetailPic">
+			<div>			<span class="photo_container pc_m"><a href="/photos/29486945@N07/2945909475/" title="çay bahçesi ve armut ağacı by eminkanbur"><img src="http://farm4.static.flickr.com/3287/2945909475_c95926d76f_m.jpg" width="240" height="180" alt="çay bahçesi ve armut ağacı by eminkanbur"  class="pc_img" /></a></span>
+
+			</div>
+		</td>
+		<td class="PicDesc">
+			<h3 class="PicTitle">
+				çay bahçesi ve armut ağacı <nobr><small>by <b><a href="/photos/29486945@N07/">eminkanbur</a></b></small></nobr>
+			</h3>
+			<p class="ListIconThings">
+
+			<a href="/photos/29486945@N07/2945909475/#DiscussPhoto" class="link666"><img src="http://l.yimg.com/g/images/icon_comment.gif"> 7 comments</a>&nbsp;&nbsp;			<a href="/photos/29486945@N07/2945909475/favorites" class="link666"><img src="http://l.yimg.com/g/images/icon_fave.gif"> 1 fave</a>&nbsp;&nbsp;						</p>
+			<p class="ListThings">Tagged with 
+<a href="/photos/tags/zara/clusters/">zara</a>,<a href="/photos/tags/hep/clusters/">hep</a>,<a href="/photos/tags/gelir/clusters/">gelir</a>,<a href="/photos/tags/armut/clusters/">armut</a>...			</p>
+
+			<p class="ListThings">
+														
+									Taken on <a href="/photos/29486945@N07/archives/date-taken/2006/04/16/">April 16, 2006</a>, uploaded <a href="/photos/29486945@N07/archives/date-posted/2008/10/16/">October 16, 2008</a>
+															
+						</p>
+
+			<p class="ListBuddyIconThings">
+				<a href="/photos/29486945@N07/"><img src="http://farm4.static.flickr.com/3227/buddyicons/29486945@N07.jpg?1218538190#29486945@N07" width="24" height="24" alt="Click eminkanbur's buddy icon to get to their photostream" /></a>
+								See <a href="/photos/29486945@N07/">eminkanbur's photos</a> or <a href="/people/29486945@N07/">profile</a>.
+							</p>
+
+		</td>
+	
+	</tr>
+	<tr valign="top">
+		<td class="DetailPic">
+			<div>			<span class="photo_container pc_m"><a href="/photos/f650biker/1344078491/" title="Armut / Poverty by f650biker"><img src="http://farm2.static.flickr.com/1343/1344078491_05ec2eef74_m.jpg" width="240" height="180" alt="Armut / Poverty by f650biker"  class="pc_img" /></a></span>
+			</div>
+		</td>
+		<td class="PicDesc">
+
+			<h3 class="PicTitle">
+				Armut / Poverty <nobr><small>by <b><a href="/photos/f650biker/">f650biker</a></b></small></nobr>
+			</h3>
+			<p class="ListIconThings">
+			<a href="/photos/f650biker/1344078491/#DiscussPhoto" class="link666"><img src="http://l.yimg.com/g/images/icon_comment.gif"> 5 comments</a>&nbsp;&nbsp;			<a href="/photos/f650biker/1344078491/favorites" class="link666"><img src="http://l.yimg.com/g/images/icon_fave.gif"> 1 fave</a>&nbsp;&nbsp;						</p>
+
+			<p class="ListThings">Tagged with 
+<a href="/photos/tags/poverty/clusters/">poverty</a>,<a href="/photos/tags/germany/clusters/">germany</a>,<a href="/photos/tags/deutschland/clusters/">deutschland</a>,<a href="/photos/tags/no/clusters/">no</a>...			</p>
+
+			<p class="ListThings">
+										Uploaded <a href="/photos/f650biker/archives/date-posted/2007/09/07/">September 7, 2007</a>
+
+						</p>
+
+			<p class="ListBuddyIconThings">
+				<a href="/photos/f650biker/"><img src="http://farm1.static.flickr.com/140/buddyicons/38795245@N00.jpg?1168347534#38795245@N00" width="24" height="24" alt="Click f650biker's buddy icon to get to their photostream" /></a>
+								See <a href="/photos/f650biker/">more of f650biker's photos</a>, or visit his <a href="/people/f650biker/">profile</a>.
+							</p>
+
+		</td>
+
+	
+	</tr>
+	<tr valign="top">
+		<td class="DetailPic">
+			<div>			<span class="photo_container pc_m"><a href="/photos/28304643@N03/3054953219/" title="DIE LINKE: Armut für alle! by opponent"><img src="http://farm4.static.flickr.com/3136/3054953219_4f9d8192d8_m.jpg" width="240" height="104" alt="DIE LINKE: Armut für alle! by opponent"  class="pc_img" /></a></span>
+			</div>
+		</td>
+		<td class="PicDesc">
+			<h3 class="PicTitle">
+
+				DIE LINKE: Armut für alle! <nobr><small>by <b><a href="/photos/28304643@N03/">opponent</a></b></small></nobr>
+			</h3>
+			<p class="ListThings">Tagged with 
+<a href="/photos/tags/die/clusters/">die</a>,<a href="/photos/tags/propaganda/clusters/">propaganda</a>,<a href="/photos/tags/sed/clusters/">sed</a>,<a href="/photos/tags/spass/clusters/">spass</a>...			</p>
+
+			<p class="ListThings">
+										Uploaded <a href="/photos/28304643@N03/archives/date-posted/2008/11/24/">November 24, 2008</a>
+						</p>
+
+			<p class="ListBuddyIconThings">
+				<a href="/photos/28304643@N03/"><img src="http://farm4.static.flickr.com/3080/buddyicons/28304643@N03.jpg?1215303146#28304643@N03" width="24" height="24" alt="Click opponent's buddy icon to get to their photostream" /></a>
+								See <a href="/photos/28304643@N03/">opponent's photos</a> or <a href="/people/28304643@N03/">profile</a>.
+							</p>
+
+		</td>
+	
+	</tr>
+	<tr valign="top">
+		<td class="DetailPic">
+			<div>			<span class="photo_container pc_m"><a href="/photos/alidabehindthecamera/2360099294/" title="Campino und Bob Geldof at Deine Stimme gegen Armut  by alida behind the camera"><img src="http://farm4.static.flickr.com/3154/2360099294_3106f91425_m.jpg" width="240" height="160" alt="Campino und Bob Geldof at Deine Stimme gegen Armut  by alida behind the camera"  class="pc_img" /></a></span>
+			</div>
+		</td>
+		<td class="PicDesc">
+
+			<h3 class="PicTitle">
+				Campino und Bob Geldof at Deine Stimme gegen Armut  <nobr><small>by <b><a href="/photos/alidabehindthecamera/">alida behind the camera</a></b></small></nobr>
+			</h3>
+			<p class="ListIconThings">
+			<a href="/photos/alidabehindthecamera/2360099294/#DiscussPhoto" class="link666"><img src="http://l.yimg.com/g/images/icon_comment.gif"> 2 comments</a>&nbsp;&nbsp;									</p>
+			<p class="ListThings">Tagged with 
+
+<a href="/photos/tags/rostock/clusters/">rostock</a>,<a href="/photos/tags/bobgeldof/clusters/">bobgeldof</a>,<a href="/photos/tags/g8/clusters/">g8</a>,<a href="/photos/tags/campino/clusters/">campino</a>...			</p>
+
+			<p class="ListThings">
+										Uploaded <a href="/photos/alidabehindthecamera/archives/date-posted/2008/03/24/">March 24, 2008</a>
+						</p>
+
+			<p class="ListBuddyIconThings">
+				<a href="/photos/alidabehindthecamera/"><img src="http://farm1.static.flickr.com/35/buddyicons/75952631@N00.jpg?1144341422#75952631@N00" width="24" height="24" alt="Click alida behind the camera's buddy icon to get to their photostream" /></a>
+								See <a href="/photos/alidabehindthecamera/">more of alida behind the camera's photos</a>, or visit her <a href="/people/alidabehindthecamera/">profile</a>.
+							</p>
+
+		</td>
+	
+	</tr>
+
+	<tr valign="top">
+		<td class="DetailPic">
+			<div>			<span class="photo_container pc_m"><a href="/photos/alidabehindthecamera/2359262185/" title="Campino at Deine Stimme gegen Armut  by alida behind the camera"><img src="http://farm3.static.flickr.com/2376/2359262185_43eb9814fa_m.jpg" width="240" height="160" alt="Campino at Deine Stimme gegen Armut  by alida behind the camera"  class="pc_img" /></a></span>
+			</div>
+		</td>
+		<td class="PicDesc">
+			<h3 class="PicTitle">
+				Campino at Deine Stimme gegen Armut  <nobr><small>by <b><a href="/photos/alidabehindthecamera/">alida behind the camera</a></b></small></nobr>
+
+			</h3>
+			<p class="ListThings">Tagged with 
+<a href="/photos/tags/rostock/clusters/">rostock</a>,<a href="/photos/tags/g8/clusters/">g8</a>,<a href="/photos/tags/campino/clusters/">campino</a>,<a href="/photos/tags/p8/clusters/">p8</a>...			</p>
+
+			<p class="ListThings">
+										Uploaded <a href="/photos/alidabehindthecamera/archives/date-posted/2008/03/24/">March 24, 2008</a>
+
+						</p>
+
+			<p class="ListBuddyIconThings">
+				<a href="/photos/alidabehindthecamera/"><img src="http://farm1.static.flickr.com/35/buddyicons/75952631@N00.jpg?1144341422#75952631@N00" width="24" height="24" alt="Click alida behind the camera's buddy icon to get to their photostream" /></a>
+								See <a href="/photos/alidabehindthecamera/">more of alida behind the camera's photos</a>, or visit her <a href="/people/alidabehindthecamera/">profile</a>.
+							</p>
+
+		</td>
+
+	
+	</tr>
+	<tr valign="top">
+		<td class="DetailPic">
+			<div>			<span class="photo_container pc_m"><a href="/photos/alidabehindthecamera/2359262763/" title="Herbert Grönemeyer at Deine Stimme gegen Armut  by alida behind the camera"><img src="http://farm3.static.flickr.com/2139/2359262763_109cd5b48a_m.jpg" width="240" height="160" alt="Herbert Grönemeyer at Deine Stimme gegen Armut  by alida behind the camera"  class="pc_img" /></a></span>
+			</div>
+		</td>
+		<td class="PicDesc">
+			<h3 class="PicTitle">
+
+				Herbert Grönemeyer at Deine Stimme gegen Armut  <nobr><small>by <b><a href="/photos/alidabehindthecamera/">alida behind the camera</a></b></small></nobr>
+			</h3>
+			<p class="ListThings">Tagged with 
+<a href="/photos/tags/rostock/clusters/">rostock</a>,<a href="/photos/tags/g8/clusters/">g8</a>,<a href="/photos/tags/groenemeyer/clusters/">groenemeyer</a>,<a href="/photos/tags/p8/clusters/">p8</a>...			</p>
+
+			<p class="ListThings">
+										Uploaded <a href="/photos/alidabehindthecamera/archives/date-posted/2008/03/24/">March 24, 2008</a>
+						</p>
+
+			<p class="ListBuddyIconThings">
+				<a href="/photos/alidabehindthecamera/"><img src="http://farm1.static.flickr.com/35/buddyicons/75952631@N00.jpg?1144341422#75952631@N00" width="24" height="24" alt="Click alida behind the camera's buddy icon to get to their photostream" /></a>
+								See <a href="/photos/alidabehindthecamera/">more of alida behind the camera's photos</a>, or visit her <a href="/people/alidabehindthecamera/">profile</a>.
+							</p>
+
+		</td>
+	
+	</tr>
+	<tr valign="top">
+		<td class="DetailPic">
+			<div>			<span class="photo_container pc_m"><a href="/photos/64479867@N00/1130224630/" title="Frau -  Armut - Barcelona -  Spanien - Spain by Ela2007"><img src="http://farm2.static.flickr.com/1100/1130224630_d0b9b5a551_m.jpg" width="240" height="180" alt="Frau -  Armut - Barcelona -  Spanien - Spain by Ela2007"  class="pc_img" /></a></span>
+			</div>
+		</td>
+		<td class="PicDesc">
+
+			<h3 class="PicTitle">
+				Frau -  Armut - Barcelona -  Spanien - Spain <nobr><small>by <b><a href="/photos/64479867@N00/">Ela2007</a></b></small></nobr>
+			</h3>
+			<p class="ListIconThings">
+			<a href="/photos/64479867@N00/1130224630/#DiscussPhoto" class="link666"><img src="http://l.yimg.com/g/images/icon_comment.gif"> 16 comments</a>&nbsp;&nbsp;			<a href="/photos/64479867@N00/1130224630/favorites" class="link666"><img src="http://l.yimg.com/g/images/icon_fave.gif"> 3 faves</a>&nbsp;&nbsp;						</p>
+
+			<p class="ListThings">Tagged with 
+<a href="/photos/tags/barcelona/clusters/">barcelona</a>,<a href="/photos/tags/spain/clusters/">spain</a>,<a href="/photos/tags/frau/clusters/">frau</a>,<a href="/photos/tags/spanien/clusters/">spanien</a>...			</p>
+
+			<p class="ListThings">
+														
+									Taken on <a href="/photos/64479867@N00/archives/date-taken/2007/05/11/">May 11, 2007</a>, uploaded <a href="/photos/64479867@N00/archives/date-posted/2007/08/15/">August 15, 2007</a>
+
+															
+						</p>
+
+			<p class="ListBuddyIconThings">
+				<a href="/photos/64479867@N00/"><img src="http://farm2.static.flickr.com/1211/buddyicons/64479867@N00.jpg?1188841617#64479867@N00" width="24" height="24" alt="Click Ela2007's buddy icon to get to their photostream" /></a>
+								See <a href="/photos/64479867@N00/">more of Ela2007's photos</a>, or visit her <a href="/people/64479867@N00/">profile</a>.
+							</p>
+
+		</td>
+
+	
+	</tr>
+	<tr valign="top">
+		<td class="DetailPic">
+			<div>			<span class="photo_container pc_m"><a href="/photos/alidabehindthecamera/2359263691/" title="Deine Stimme gegen Armut - the way there by alida behind the camera"><img src="http://farm4.static.flickr.com/3268/2359263691_259ff67ab4_m.jpg" width="240" height="160" alt="Deine Stimme gegen Armut - the way there by alida behind the camera"  class="pc_img" /></a></span>
+			</div>
+		</td>
+		<td class="PicDesc">
+			<h3 class="PicTitle">
+
+				Deine Stimme gegen Armut - the way there <nobr><small>by <b><a href="/photos/alidabehindthecamera/">alida behind the camera</a></b></small></nobr>
+			</h3>
+			<p class="ListIconThings">
+			<a href="/photos/alidabehindthecamera/2359263691/#DiscussPhoto" class="link666"><img src="http://l.yimg.com/g/images/icon_comment.gif"> 5 comments</a>&nbsp;&nbsp;									</p>
+			<p class="ListThings">Tagged with 
+<a href="/photos/tags/rostock/clusters/">rostock</a>,<a href="/photos/tags/g8/clusters/">g8</a>,<a href="/photos/tags/p8/clusters/">p8</a>,<a href="/photos/tags/deinestimme/clusters/">deinestimme</a>...			</p>
+
+			<p class="ListThings">
+										Uploaded <a href="/photos/alidabehindthecamera/archives/date-posted/2008/03/24/">March 24, 2008</a>
+						</p>
+
+			<p class="ListBuddyIconThings">
+				<a href="/photos/alidabehindthecamera/"><img src="http://farm1.static.flickr.com/35/buddyicons/75952631@N00.jpg?1144341422#75952631@N00" width="24" height="24" alt="Click alida behind the camera's buddy icon to get to their photostream" /></a>
+								See <a href="/photos/alidabehindthecamera/">more of alida behind the camera's photos</a>, or visit her <a href="/people/alidabehindthecamera/">profile</a>.
+							</p>
+
+		</td>
+	
+	</tr>
+	<tr valign="top">
+		<td class="DetailPic">
+			<div>			<span class="photo_container pc_m"><a href="/photos/foto4berlin/565798924/" title="Deine Stimme gegen Armut 07302 by foto4berlin.de"><img src="http://farm2.static.flickr.com/1154/565798924_e5043361b4_m.jpg" width="240" height="160" alt="Deine Stimme gegen Armut 07302 by foto4berlin.de"  class="pc_img" /></a></span>
+			</div>
+		</td>
+		<td class="PicDesc">
+
+			<h3 class="PicTitle">
+				Deine Stimme gegen Armut 07302 <nobr><small>by <b><a href="/photos/foto4berlin/">foto4berlin.de</a></b></small></nobr>
+			</h3>
+			<p class="ListIconThings">
+						<a href="/photos/foto4berlin/565798924/favorites" class="link666"><img src="http://l.yimg.com/g/images/icon_fave.gif"> 1 fave</a>&nbsp;&nbsp;						</p>
+			<p class="ListThings">Tagged with 
+
+<a href="/photos/tags/germany/clusters/">germany</a>,<a href="/photos/tags/backstage/clusters/">backstage</a>,<a href="/photos/tags/konzert/clusters/">konzert</a>,<a href="/photos/tags/rostock/clusters/">rostock</a>...			</p>
+
+			<p class="ListThings">
+														
+									Taken on <a href="/photos/foto4berlin/archives/date-taken/2007/06/06/">June 6, 2007</a>, uploaded <a href="/photos/foto4berlin/archives/date-posted/2007/06/18/">June 18, 2007</a>
+
+															
+						</p>
+
+			<p class="ListBuddyIconThings">
+				<a href="/photos/foto4berlin/"><img src="http://farm1.static.flickr.com/26/buddyicons/22107143@N00.jpg?1205065400#22107143@N00" width="24" height="24" alt="Click foto4berlin.de's buddy icon to get to their photostream" /></a>
+								See <a href="/photos/foto4berlin/">more of foto4berlin.de's photos</a>, or visit his <a href="/people/foto4berlin/">profile</a>.
+							</p>
+
+		</td>
+
+	
+	</tr>
+	<tr valign="top">
+		<td class="DetailPic">
+			<div>			<span class="photo_container pc_m"><a href="/photos/alidabehindthecamera/2359262629/" title="Grönemeyer mit Bono at Deine Stimme gegen Armut  by alida behind the camera"><img src="http://farm3.static.flickr.com/2413/2359262629_56658f334d_m.jpg" width="240" height="160" alt="Grönemeyer mit Bono at Deine Stimme gegen Armut  by alida behind the camera"  class="pc_img" /></a></span>
+			</div>
+		</td>
+		<td class="PicDesc">
+			<h3 class="PicTitle">
+
+				Grönemeyer mit Bono at Deine Stimme gegen Armut  <nobr><small>by <b><a href="/photos/alidabehindthecamera/">alida behind the camera</a></b></small></nobr>
+			</h3>
+			<p class="ListThings">Tagged with 
+<a href="/photos/tags/bono/clusters/">bono</a>,<a href="/photos/tags/rostock/clusters/">rostock</a>,<a href="/photos/tags/g8/clusters/">g8</a>,<a href="/photos/tags/groenemeyer/clusters/">groenemeyer</a>...			</p>
+
+			<p class="ListThings">
+										Uploaded <a href="/photos/alidabehindthecamera/archives/date-posted/2008/03/24/">March 24, 2008</a>
+						</p>
+
+			<p class="ListBuddyIconThings">
+				<a href="/photos/alidabehindthecamera/"><img src="http://farm1.static.flickr.com/35/buddyicons/75952631@N00.jpg?1144341422#75952631@N00" width="24" height="24" alt="Click alida behind the camera's buddy icon to get to their photostream" /></a>
+								See <a href="/photos/alidabehindthecamera/">more of alida behind the camera's photos</a>, or visit her <a href="/people/alidabehindthecamera/">profile</a>.
+							</p>
+
+		</td>
+	
+	</tr>
+	<tr valign="top">
+		<td class="DetailPic">
+			<div>			<span class="photo_container pc_m"><a href="/photos/rombaer/648601720/" title="Armut by rombaer"><img src="http://farm2.static.flickr.com/1399/648601720_190e4c542a_m.jpg" width="160" height="240" alt="Armut by rombaer"  class="pc_img" /></a></span>
+			</div>
+		</td>
+		<td class="PicDesc">
+
+			<h3 class="PicTitle">
+				Armut <nobr><small>by <b><a href="/photos/rombaer/">rombaer</a></b></small></nobr>
+			</h3>
+			<p class="ListThings">Tagged with 
+<a href="/photos/tags/familie/clusters/">familie</a>,<a href="/photos/tags/poor/clusters/">poor</a>,<a href="/photos/tags/kinder/clusters/">kinder</a>,<a href="/photos/tags/mm/clusters/">mm</a>...			</p>
+
+			<p class="ListThings">
+										Uploaded <a href="/photos/rombaer/archives/date-posted/2007/06/28/">June 28, 2007</a>
+						</p>
+
+ 			<p class="ListThings">
+
+
+	Taken in 					<b>Popeşti Noi</b>, <a class="Plain" href="/places/Romania/Bucuresti/Bucharest/"><span class="locality">Bucharest</span></a>, <a class="Plain" href="/places/Romania/Bucuresti/"><span class="region">Bucuresti</span></a>, <a class="Plain" href="/places/Romania/"><span class="country-name">Romania</span></a>
+
+			
+ (<a id="a_link_to_map" href="/photos/rombaer/648601720/map/">map</a>)</p>
+			<p class="ListBuddyIconThings">
+				<a href="/photos/rombaer/"><img src="http://farm2.static.flickr.com/1009/buddyicons/8984824@N04.jpg?1182720400#8984824@N04" width="24" height="24" alt="Click rombaer's buddy icon to get to their photostream" /></a>
+								See <a href="/photos/rombaer/">more of rombaer's photos</a>, or visit his <a href="/people/rombaer/">profile</a>.
+							</p>
+
+		</td>
+	
+	</tr>
+	<tr valign="top">
+		<td class="DetailPic">
+			<div>			<span class="photo_container pc_m"><a href="/photos/alidabehindthecamera/2359262045/" title="Sarah Kuttner, Wim Wenders und Roger Willemsen at Deine Stimme gegen Armut  by alida behind the camera"><img src="http://farm3.static.flickr.com/2311/2359262045_0525e1e3d2_m.jpg" width="240" height="160" alt="Sarah Kuttner, Wim Wenders und Roger Willemsen at Deine Stimme gegen Armut  by alida behind the camera"  class="pc_img" /></a></span>
+			</div>
+		</td>
+		<td class="PicDesc">
+
+			<h3 class="PicTitle">
+				Sarah Kuttner, Wim Wenders und Roger Willemsen at Deine Stimme gegen Armut  <nobr><small>by <b><a href="/photos/alidabehindthecamera/">alida behind the camera</a></b></small></nobr>
+			</h3>
+			<p class="ListThings">Tagged with 
+<a href="/photos/tags/rostock/clusters/">rostock</a>,<a href="/photos/tags/wimwenders/clusters/">wimwenders</a>,<a href="/photos/tags/g8/clusters/">g8</a>,<a href="/photos/tags/p8/clusters/">p8</a>...			</p>
+
+			<p class="ListThings">
+										Uploaded <a href="/photos/alidabehindthecamera/archives/date-posted/2008/03/24/">March 24, 2008</a>
+						</p>
+
+			<p class="ListBuddyIconThings">
+				<a href="/photos/alidabehindthecamera/"><img src="http://farm1.static.flickr.com/35/buddyicons/75952631@N00.jpg?1144341422#75952631@N00" width="24" height="24" alt="Click alida behind the camera's buddy icon to get to their photostream" /></a>
+								See <a href="/photos/alidabehindthecamera/">more of alida behind the camera's photos</a>, or visit her <a href="/people/alidabehindthecamera/">profile</a>.
+							</p>
+
+		</td>
+	
+	</tr>
+	<tr valign="top">
+		<td class="DetailPic">
+			<div>			<span class="photo_container pc_m"><a href="/photos/rombaer/647753531/" title="Armut by rombaer"><img src="http://farm2.static.flickr.com/1266/647753531_ee88d0a15c_m.jpg" width="240" height="160" alt="Armut by rombaer"  class="pc_img" /></a></span>
+			</div>
+		</td>
+		<td class="PicDesc">
+
+			<h3 class="PicTitle">
+				Armut <nobr><small>by <b><a href="/photos/rombaer/">rombaer</a></b></small></nobr>
+			</h3>
+			<p class="ListIconThings">
+			<a href="/photos/rombaer/647753531/#DiscussPhoto" class="link666"><img src="http://l.yimg.com/g/images/icon_comment.gif"> 2 comments</a>&nbsp;&nbsp;									</p>
+			<p class="ListThings">Tagged with 
+
+<a href="/photos/tags/familie/clusters/">familie</a>,<a href="/photos/tags/poor/clusters/">poor</a>,<a href="/photos/tags/kinder/clusters/">kinder</a>,<a href="/photos/tags/mm/clusters/">mm</a>...			</p>
+
+			<p class="ListThings">
+										Uploaded <a href="/photos/rombaer/archives/date-posted/2007/06/28/">June 28, 2007</a>
+						</p>
+
+ 			<p class="ListThings">
+
+
+	Taken in 					<b>Popeşti Noi</b>, <a class="Plain" href="/places/Romania/Bucuresti/Bucharest/"><span class="locality">Bucharest</span></a>, <a class="Plain" href="/places/Romania/Bucuresti/"><span class="region">Bucuresti</span></a>, <a class="Plain" href="/places/Romania/"><span class="country-name">Romania</span></a>
+			
+ (<a id="a_link_to_map" href="/photos/rombaer/647753531/map/">map</a>)</p>
+
+			<p class="ListBuddyIconThings">
+				<a href="/photos/rombaer/"><img src="http://farm2.static.flickr.com/1009/buddyicons/8984824@N04.jpg?1182720400#8984824@N04" width="24" height="24" alt="Click rombaer's buddy icon to get to their photostream" /></a>
+								See <a href="/photos/rombaer/">more of rombaer's photos</a>, or visit his <a href="/people/rombaer/">profile</a>.
+							</p>
+
+		</td>
+	
+	</tr>
+	<tr valign="top">
+
+		<td class="DetailPic">
+			<div>			<span class="photo_container pc_m"><a href="/photos/rombaer/648639022/" title="Armut by rombaer"><img src="http://farm2.static.flickr.com/1192/648639022_9322312c47_m.jpg" width="240" height="161" alt="Armut by rombaer"  class="pc_img" /></a></span>
+			</div>
+		</td>
+		<td class="PicDesc">
+			<h3 class="PicTitle">
+				Armut <nobr><small>by <b><a href="/photos/rombaer/">rombaer</a></b></small></nobr>
+
+			</h3>
+			<p class="ListIconThings">
+			<a href="/photos/rombaer/648639022/#DiscussPhoto" class="link666"><img src="http://l.yimg.com/g/images/icon_comment.gif"> 1 comment</a>&nbsp;&nbsp;									</p>
+			<p class="ListThings">Tagged with 
+<a href="/photos/tags/familie/clusters/">familie</a>,<a href="/photos/tags/poor/clusters/">poor</a>,<a href="/photos/tags/kinder/clusters/">kinder</a>,<a href="/photos/tags/mm/clusters/">mm</a>...			</p>
+
+			<p class="ListThings">
+														
+									Taken on <a href="/photos/rombaer/archives/date-taken/2008/01/05/">January 5, 2008</a>, uploaded <a href="/photos/rombaer/archives/date-posted/2007/06/28/">June 28, 2007</a>
+															
+						</p>
+
+ 			<p class="ListThings">
+
+
+	Taken in 					<b>Popeşti Noi</b>, <a class="Plain" href="/places/Romania/Bucuresti/Bucharest/"><span class="locality">Bucharest</span></a>, <a class="Plain" href="/places/Romania/Bucuresti/"><span class="region">Bucuresti</span></a>, <a class="Plain" href="/places/Romania/"><span class="country-name">Romania</span></a>
+
+			
+ (<a id="a_link_to_map" href="/photos/rombaer/648639022/map/">map</a>)</p>
+			<p class="ListBuddyIconThings">
+				<a href="/photos/rombaer/"><img src="http://farm2.static.flickr.com/1009/buddyicons/8984824@N04.jpg?1182720400#8984824@N04" width="24" height="24" alt="Click rombaer's buddy icon to get to their photostream" /></a>
+								See <a href="/photos/rombaer/">more of rombaer's photos</a>, or visit his <a href="/people/rombaer/">profile</a>.
+							</p>
+
+		</td>
+	
+	</tr>
+	<tr valign="top">
+		<td class="DetailPic">
+			<div>			<span class="photo_container pc_m"><a href="/photos/rombaer/812428790/" title="Armut by rombaer"><img src="http://farm2.static.flickr.com/1365/812428790_e4b3992285_m.jpg" width="172" height="240" alt="Armut by rombaer"  class="pc_img" /></a></span>
+			</div>
+		</td>
+		<td class="PicDesc">
+
+			<h3 class="PicTitle">
+				Armut <nobr><small>by <b><a href="/photos/rombaer/">rombaer</a></b></small></nobr>
+			</h3>
+			<p class="ListThings">Tagged with 
+<a href="/photos/tags/poor/clusters/">poor</a>,<a href="/photos/tags/hunger/clusters/">hunger</a>,<a href="/photos/tags/romania/clusters/">romania</a>,<a href="/photos/tags/mm/clusters/">mm</a>...			</p>
+
+			<p class="ListThings">
+										Uploaded <a href="/photos/rombaer/archives/date-posted/2007/07/14/">July 14, 2007</a>
+						</p>
+
+			<p class="ListBuddyIconThings">
+				<a href="/photos/rombaer/"><img src="http://farm2.static.flickr.com/1009/buddyicons/8984824@N04.jpg?1182720400#8984824@N04" width="24" height="24" alt="Click rombaer's buddy icon to get to their photostream" /></a>
+								See <a href="/photos/rombaer/">more of rombaer's photos</a>, or visit his <a href="/people/rombaer/">profile</a>.
+							</p>
+
+		</td>
+	
+	</tr>
+	<tr valign="top">
+		<td class="DetailPic">
+			<div>			<span class="photo_container pc_m"><a href="/photos/rombaer/812431514/" title="Armut by rombaer"><img src="http://farm2.static.flickr.com/1214/812431514_03cb2cb8f0_m.jpg" width="240" height="180" alt="Armut by rombaer"  class="pc_img" /></a></span>
+			</div>
+		</td>
+		<td class="PicDesc">
+
+			<h3 class="PicTitle">
+				Armut <nobr><small>by <b><a href="/photos/rombaer/">rombaer</a></b></small></nobr>
+			</h3>
+			<p class="ListThings">Tagged with 
+<a href="/photos/tags/poor/clusters/">poor</a>,<a href="/photos/tags/hunger/clusters/">hunger</a>,<a href="/photos/tags/romania/clusters/">romania</a>,<a href="/photos/tags/mm/clusters/">mm</a>...			</p>
+
+			<p class="ListThings">
+										Uploaded <a href="/photos/rombaer/archives/date-posted/2007/07/14/">July 14, 2007</a>
+						</p>
+
+			<p class="ListBuddyIconThings">
+				<a href="/photos/rombaer/"><img src="http://farm2.static.flickr.com/1009/buddyicons/8984824@N04.jpg?1182720400#8984824@N04" width="24" height="24" alt="Click rombaer's buddy icon to get to their photostream" /></a>
+								See <a href="/photos/rombaer/">more of rombaer's photos</a>, or visit his <a href="/people/rombaer/">profile</a>.
+							</p>
+
+		</td>
+	
+	</tr>
+	<tr valign="top">
+		<td class="DetailPic">
+			<div>			<span class="photo_container pc_m"><a href="/photos/rombaer/648526600/" title="Armut by rombaer"><img src="http://farm2.static.flickr.com/1349/648526600_f1f22c4fc6_m.jpg" width="160" height="240" alt="Armut by rombaer"  class="pc_img" /></a></span>
+			</div>
+		</td>
+		<td class="PicDesc">
+
+			<h3 class="PicTitle">
+				Armut <nobr><small>by <b><a href="/photos/rombaer/">rombaer</a></b></small></nobr>
+			</h3>
+			<p class="ListThings">Tagged with 
+<a href="/photos/tags/familie/clusters/">familie</a>,<a href="/photos/tags/poor/clusters/">poor</a>,<a href="/photos/tags/kinder/clusters/">kinder</a>,<a href="/photos/tags/mm/clusters/">mm</a>...			</p>
+
+			<p class="ListThings">
+										Uploaded <a href="/photos/rombaer/archives/date-posted/2007/06/28/">June 28, 2007</a>
+						</p>
+
+ 			<p class="ListThings">
+
+
+	Taken in 					<b>Popeşti Noi</b>, <a class="Plain" href="/places/Romania/Bucuresti/Bucharest/"><span class="locality">Bucharest</span></a>, <a class="Plain" href="/places/Romania/Bucuresti/"><span class="region">Bucuresti</span></a>, <a class="Plain" href="/places/Romania/"><span class="country-name">Romania</span></a>
+
+			
+ (<a id="a_link_to_map" href="/photos/rombaer/648526600/map/">map</a>)</p>
+			<p class="ListBuddyIconThings">
+				<a href="/photos/rombaer/"><img src="http://farm2.static.flickr.com/1009/buddyicons/8984824@N04.jpg?1182720400#8984824@N04" width="24" height="24" alt="Click rombaer's buddy icon to get to their photostream" /></a>
+								See <a href="/photos/rombaer/">more of rombaer's photos</a>, or visit his <a href="/people/rombaer/">profile</a>.
+							</p>
+
+		</td>
+	
+	</tr>
+	<tr valign="top">
+		<td class="DetailPic">
+			<div>			<span class="photo_container pc_m"><a href="/photos/quox/63893507/" title="Armut by quox | xonb"><img src="http://farm1.static.flickr.com/26/63893507_7a6a8c21c2_m.jpg" width="240" height="180" alt="Armut by quox | xonb"  class="pc_img" /></a></span>
+			</div>
+		</td>
+		<td class="PicDesc">
+
+			<h3 class="PicTitle">
+				Armut <nobr><small>by <b><a href="/photos/quox/">quox | xonb</a></b></small></nobr>
+			</h3>
+			<p class="ListIconThings">
+						<a href="/photos/quox/63893507/favorites" class="link666"><img src="http://l.yimg.com/g/images/icon_fave.gif"> 1 fave</a>&nbsp;&nbsp;						</p>
+			<p class="ListThings">Tagged with 
+
+<a href="/photos/tags/berlin/clusters/">berlin</a>,<a href="/photos/tags/germany/clusters/">germany</a>,<a href="/photos/tags/u2/clusters/">u2</a>,<a href="/photos/tags/europe/clusters/">europe</a>...			</p>
+
+			<p class="ListThings">
+														
+									Taken on <a href="/photos/quox/archives/date-taken/2005/09/28/">September 28, 2005</a>, uploaded <a href="/photos/quox/archives/date-posted/2005/11/16/">November 16, 2005</a>
+
+															
+						</p>
+
+			<p class="ListBuddyIconThings">
+				<a href="/photos/quox/"><img src="http://farm1.static.flickr.com/1/buddyicons/41894187404@N01.jpg?1174376038#41894187404@N01" width="24" height="24" alt="Click quox | xonb's buddy icon to get to their photostream" /></a>
+								See <a href="/photos/quox/">more of quox | xonb's photos</a>, or visit his <a href="/people/quox/">profile</a>.
+							</p>
+
+		</td>
+
+	
+	</tr>
+	<tr valign="top">
+		<td class="DetailPic">
+			<div>			<span class="photo_container pc_m"><a href="/photos/rombaer/1438884574/" title="Armut im Jahre 2007 by rombaer"><img src="http://farm2.static.flickr.com/1070/1438884574_366aab65c0_m.jpg" width="160" height="240" alt="Armut im Jahre 2007 by rombaer"  class="pc_img" /></a></span>
+			</div>
+		</td>
+		<td class="PicDesc">
+			<h3 class="PicTitle">
+
+				Armut im Jahre 2007 <nobr><small>by <b><a href="/photos/rombaer/">rombaer</a></b></small></nobr>
+			</h3>
+			<p class="ListIconThings">
+			<a href="/photos/rombaer/1438884574/#DiscussPhoto" class="link666"><img src="http://l.yimg.com/g/images/icon_comment.gif"> 2 comments</a>&nbsp;&nbsp;									</p>
+			<p class="ListThings">Tagged with 
+<a href="/photos/tags/poor/clusters/">poor</a>,<a href="/photos/tags/mm/clusters/">mm</a>,<a href="/photos/tags/junge/clusters/">junge</a>,<a href="/photos/tags/armut/clusters/">armut</a>...			</p>
+
+			<p class="ListThings">
+										Uploaded <a href="/photos/rombaer/archives/date-posted/2007/09/25/">September 25, 2007</a>
+						</p>
+
+			<p class="ListBuddyIconThings">
+				<a href="/photos/rombaer/"><img src="http://farm2.static.flickr.com/1009/buddyicons/8984824@N04.jpg?1182720400#8984824@N04" width="24" height="24" alt="Click rombaer's buddy icon to get to their photostream" /></a>
+								See <a href="/photos/rombaer/">more of rombaer's photos</a>, or visit his <a href="/people/rombaer/">profile</a>.
+							</p>
+
+		</td>
+	
+	</tr>
+	<tr valign="top">
+		<td class="DetailPic">
+			<div>			<span class="photo_container pc_m"><a href="/photos/luebeck/202326463/" title="Armut by jphintze"><img src="http://farm1.static.flickr.com/67/202326463_6c3b9790d5_m.jpg" width="234" height="240" alt="Armut by jphintze"  class="pc_img" /></a></span>
+			</div>
+		</td>
+		<td class="PicDesc">
+
+			<h3 class="PicTitle">
+				Armut <nobr><small>by <b><a href="/photos/luebeck/">jphintze</a></b></small></nobr>
+			</h3>
+			<p class="ListThings">Tagged with 
+<a href="/photos/tags/germany/clusters/">germany</a>,<a href="/photos/tags/luebeck/clusters/">luebeck</a>,<a href="/photos/tags/l%C3%BCbeck/clusters/">lübeck</a>,<a href="/photos/tags/schleswigholstein/clusters/">schleswigholstein</a>...			</p>
+
+			<p class="ListThings">
+														
+									Taken on <a href="/photos/luebeck/archives/date-taken/2006/07/17/">July 17, 2006</a>, uploaded <a href="/photos/luebeck/archives/date-posted/2006/07/30/">July 30, 2006</a>
+															
+						</p>
+
+ 			<p class="ListThings">
+
+
+	Taken in 					<b>Innenstadt</b>, <a class="Plain" href="/places/Germany/Schleswig-Holstein/Lubeque/"><span class="locality">Lubeque</span></a>, <a class="Plain" href="/places/Germany/Schleswig-Holstein/"><span class="region">SH</span></a>, <a class="Plain" href="/places/Germany/"><span class="country-name">Germany</span></a>
+
+			
+ (<a id="a_link_to_map" href="/photos/luebeck/202326463/map/">map</a>)</p>
+			<p class="ListBuddyIconThings">
+				<a href="/photos/luebeck/"><img src="http://farm1.static.flickr.com/30/buddyicons/23788863@N00.jpg?1213526306#23788863@N00" width="24" height="24" alt="Click jphintze's buddy icon to get to their photostream" /></a>
+								See <a href="/photos/luebeck/">more of jphintze's photos</a>, or visit his <a href="/people/luebeck/">profile</a>.
+							</p>
+
+		</td>
+	
+	</tr>
+	<tr valign="top">
+		<td class="DetailPic">
+			<div>			<span class="photo_container pc_m"><a href="/photos/schiele/1963793805/" title="armut, weg mit hartz IV by michael schiele"><img src="http://farm3.static.flickr.com/2353/1963793805_3911178e95_m.jpg" width="240" height="145" alt="armut, weg mit hartz IV by michael schiele"  class="pc_img" /></a></span>
+			</div>
+		</td>
+		<td class="PicDesc">
+
+			<h3 class="PicTitle">
+				armut, weg mit hartz IV <nobr><small>by <b><a href="/photos/schiele/">michael schiele</a></b></small></nobr>
+			</h3>
+			<p class="ListIconThings">
+			<a href="/photos/schiele/1963793805/#DiscussPhoto" class="link666"><img src="http://l.yimg.com/g/images/icon_comment.gif"> 1 comment</a>&nbsp;&nbsp;			<a href="/photos/schiele/1963793805/favorites" class="link666"><img src="http://l.yimg.com/g/images/icon_fave.gif"> 1 fave</a>&nbsp;&nbsp;						</p>
+
+			<p class="ListThings">Tagged with 
+<a href="/photos/tags/street/clusters/">street</a>,<a href="/photos/tags/demo/clusters/">demo</a>,<a href="/photos/tags/hamburg/clusters/">hamburg</a>,<a href="/photos/tags/poor/clusters/">poor</a>...			</p>
+
+			<p class="ListThings">
+										Uploaded <a href="/photos/schiele/archives/date-posted/2007/11/11/">November 11, 2007</a>
+
+						</p>
+
+			<p class="ListBuddyIconThings">
+				<a href="/photos/schiele/"><img src="http://farm2.static.flickr.com/1018/buddyicons/10140995@N04.jpg?1184663396#10140995@N04" width="24" height="24" alt="Click michael schiele's buddy icon to get to their photostream" /></a>
+								See <a href="/photos/schiele/">more of michael schiele's photos</a>, or visit his <a href="/people/schiele/">profile</a>.
+							</p>
+
+		</td>
+
+	
+	</tr>
+	<tr valign="top">
+		<td class="DetailPic">
+			<div>			<span class="photo_container pc_m"><a href="/photos/ademakdogan/2552499466/" title="Taze Armut by Adem Akdoğan"><img src="http://farm4.static.flickr.com/3267/2552499466_70bf69e220_m.jpg" width="240" height="180" alt="Taze Armut by Adem Akdoğan"  class="pc_img" /></a></span>
+			</div>
+		</td>
+		<td class="PicDesc">
+			<h3 class="PicTitle">
+
+				Taze Armut <nobr><small>by <b><a href="/photos/ademakdogan/">Adem Akdoğan</a></b></small></nobr>
+			</h3>
+			<p class="ListIconThings">
+			<a href="/photos/ademakdogan/2552499466/#DiscussPhoto" class="link666"><img src="http://l.yimg.com/g/images/icon_comment.gif"> 7 comments</a>&nbsp;&nbsp;			<a href="/photos/ademakdogan/2552499466/favorites" class="link666"><img src="http://l.yimg.com/g/images/icon_fave.gif"> 2 faves</a>&nbsp;&nbsp;						</p>
+
+			<p class="ListThings">Tagged with 
+<a href="/photos/tags/fotoroman/clusters/">fotoroman</a>,<a href="/photos/tags/armut/clusters/">armut</a>,<a href="/photos/tags/karpostal/clusters/">karpostal</a>,<a href="/photos/tags/flickrbest/clusters/">flickrbest</a>...			</p>
+
+			<p class="ListThings">
+										Uploaded <a href="/photos/ademakdogan/archives/date-posted/2008/06/04/">June 4, 2008</a>
+
+						</p>
+
+			<p class="ListBuddyIconThings">
+				<a href="/photos/ademakdogan/"><img src="http://farm3.static.flickr.com/2115/buddyicons/22810805@N04.jpg?1200340262#22810805@N04" width="24" height="24" alt="Click Adem Akdoğan's buddy icon to get to their photostream" /></a>
+								See <a href="/photos/ademakdogan/">Adem Akdoğan's photos</a> or <a href="/people/ademakdogan/">profile</a>.
+							</p>
+
+		</td>
+
+	
+	</tr>
+	<tr valign="top">
+		<td class="DetailPic">
+			<div>			<span class="photo_container pc_m"><a href="/photos/rombaer/812423692/" title="Armut by rombaer"><img src="http://farm2.static.flickr.com/1314/812423692_334ada9d47_m.jpg" width="240" height="168" alt="Armut by rombaer"  class="pc_img" /></a></span>
+			</div>
+		</td>
+		<td class="PicDesc">
+			<h3 class="PicTitle">
+
+				Armut <nobr><small>by <b><a href="/photos/rombaer/">rombaer</a></b></small></nobr>
+			</h3>
+			<p class="ListIconThings">
+						<a href="/photos/rombaer/812423692/favorites" class="link666"><img src="http://l.yimg.com/g/images/icon_fave.gif"> 1 fave</a>&nbsp;&nbsp;						</p>
+			<p class="ListThings">Tagged with 
+<a href="/photos/tags/poor/clusters/">poor</a>,<a href="/photos/tags/hunger/clusters/">hunger</a>,<a href="/photos/tags/romania/clusters/">romania</a>,<a href="/photos/tags/mm/clusters/">mm</a>...			</p>
+
+			<p class="ListThings">
+										Uploaded <a href="/photos/rombaer/archives/date-posted/2007/07/14/">July 14, 2007</a>
+						</p>
+
+			<p class="ListBuddyIconThings">
+				<a href="/photos/rombaer/"><img src="http://farm2.static.flickr.com/1009/buddyicons/8984824@N04.jpg?1182720400#8984824@N04" width="24" height="24" alt="Click rombaer's buddy icon to get to their photostream" /></a>
+								See <a href="/photos/rombaer/">more of rombaer's photos</a>, or visit his <a href="/people/rombaer/">profile</a>.
+							</p>
+
+		</td>
+	
+	</tr>
+	<tr valign="top">
+		<td class="DetailPic">
+			<div>			<span class="photo_container pc_m"><a href="/photos/rombaer/812428570/" title="Armut by rombaer"><img src="http://farm2.static.flickr.com/1322/812428570_76ebd67eee_m.jpg" width="240" height="190" alt="Armut by rombaer"  class="pc_img" /></a></span>
+			</div>
+		</td>
+		<td class="PicDesc">
+
+			<h3 class="PicTitle">
+				Armut <nobr><small>by <b><a href="/photos/rombaer/">rombaer</a></b></small></nobr>
+			</h3>
+			<p class="ListIconThings">
+						<a href="/photos/rombaer/812428570/favorites" class="link666"><img src="http://l.yimg.com/g/images/icon_fave.gif"> 1 fave</a>&nbsp;&nbsp;						</p>
+			<p class="ListThings">Tagged with 
+
+<a href="/photos/tags/poor/clusters/">poor</a>,<a href="/photos/tags/hunger/clusters/">hunger</a>,<a href="/photos/tags/romania/clusters/">romania</a>,<a href="/photos/tags/mm/clusters/">mm</a>...			</p>
+
+			<p class="ListThings">
+										Uploaded <a href="/photos/rombaer/archives/date-posted/2007/07/14/">July 14, 2007</a>
+						</p>
+
+			<p class="ListBuddyIconThings">
+				<a href="/photos/rombaer/"><img src="http://farm2.static.flickr.com/1009/buddyicons/8984824@N04.jpg?1182720400#8984824@N04" width="24" height="24" alt="Click rombaer's buddy icon to get to their photostream" /></a>
+								See <a href="/photos/rombaer/">more of rombaer's photos</a>, or visit his <a href="/people/rombaer/">profile</a>.
+							</p>
+
+		</td>
+	
+	</tr>
+
+</table>
+
+<br clear="all" />
+<div class="Pages">
+	<div class="Paginator">
+		<span class="AtStart">&lt; Prev</span>
+			<span class="this-page">1</span>
+			<a href="/search/?q=armut&page=2">2</a>
+			<a href="/search/?q=armut&page=3">3</a>
+
+			<a href="/search/?q=armut&page=4">4</a>
+			<a href="/search/?q=armut&page=5">5</a>
+			<a href="/search/?q=armut&page=6">6</a>
+			<a href="/search/?q=armut&page=7">7</a>
+			<span class="break">...</span>
+		<a href="/search/?q=armut&page=2" class="Next">Next &gt;</a>
+
+	</div>
+		<div class="Results">(3,291 results)</div>
+	</div>			
+	
+</div><!--end Main-->
+
+<br id="MainFooterClear" clear="all" />
+
+<div id="FooterWrapper">
+<div class="Footer">
+		
+<table class="Jump" cellspacing="0">
+	        
+                <tr>
+
+                <th class="To">
+                        You
+                </th>
+                <td>
+			<a href="/signin/">Sign in</a> |  
+			<a href="/signup/">Create Your Free Account</a>	
+                </td>
+        </tr>
+                <tr>
+
+                <th class="To">
+                        <a href="/explore/" class="Plain">Explore</a>
+                </th>
+                <td>
+			<a href="/places/">Places</a> | 
+			<a href="/explore/interesting/7days/">Last 7 Days</a> | 
+			<a href="/explore/interesting/2009/01/">This Month</a> | 
+			<a href="/photos/tags/">Popular Tags</a> | 
+			<a href="/commons/">The Commons</a> | 
+			<a href="/creativecommons/">Creative Commons</a> | 
+			<a href="/search/">Search</a>
+
+                </td>
+        </tr>
+        <tr>
+                <th class="To">
+                        <a href="/help/" class="Plain">Help</a>
+                </th>
+                <td>
+                        <a href="/guidelines.gne">Community Guidelines</a> | 
+                        <a href="/help/forum/">The Help Forum</a> |
+
+                        <a href="/help/faq/">FAQ</a> | 
+                                                <a href="/sitemap.gne">Sitemap</a> | 
+                        <a href="/help/contact/">Help by Email</a>		
+                </td>
+
+        </tr>
+</table>
+<div class="Delicious">
+<a href="http://delicious.com/save" 
+onclick="window.open('http://delicious.com/save?partner=flickr&amp;v=5&amp;noui&amp;jump=close&amp;url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title), 'delicious','toolbar=no,width=550,height=550'); return false;"><img src="http://l.yimg.com/g/images/add_to_delicious.gif.v2" width="10" height="10" /> &nbsp;Bookmark on Delicious</a>
+</div>			        
+	
+	<p class="About">
+	        
+                                                        <span class="yahoo_logo">
+                                <a href="http://www.yahoo.com"><img src="http://l.yimg.com/g/images/logo_yahoo_company.gif.v11691.14" width="99" height="11" alt="Flickr, a Yahoo! Company" /></a>
+                                </span>
+                        		
+		<a href="http://blog.flickr.net/">Flickr Blog</a> | 
+		<a href="/about/">About Flickr</a> | 
+		<a href="/terms.gne" onClick="window.open('/terms.gne','TOC','status=yes,scrollbars=yes,resizable=yes,width=600,height=480'); return false">Terms of Use</a> | 
+		<a href="/privacy_policy.gne">Your Privacy</a> | 
+		<a href="http://docs.yahoo.com/info/copyright/copyright.html" target="_blank">Copyright/IP Policy</a> |		<a id="ft-report-abuse" href="/report_abuse.gne">Report Abuse</a>
+
+		
+		<p class="LanguageSelector" id="LanguageSelector">
+        
+                                        
+	<span>
+		<a href="/change_language.gne?lang=zh-hk&magic_cookie=f4eae56207e29e39b5b49ff1b71a8da7" class="image_link" id="lang_zh-hk"><img src="http://l.yimg.com/g/images/lang_zh-tw_11px_default.png" width="45" height="13" id="langselect_zh-hk" alt="繁體中文"></a>		<b>|</b>
+		<a href="/change_language.gne?lang=de-de&magic_cookie=f4eae56207e29e39b5b49ff1b71a8da7" >Deutsch</a>
+		<b>|</b>
+		<a href="/change_language.gne?lang=en-us&magic_cookie=f4eae56207e29e39b5b49ff1b71a8da7" class="selected">English</a>
+
+		<b>|</b>
+		<a href="/change_language.gne?lang=es-us&magic_cookie=f4eae56207e29e39b5b49ff1b71a8da7" >Espa&#241;ol</a>
+		<b>|</b>
+		<a href="/change_language.gne?lang=fr-fr&magic_cookie=f4eae56207e29e39b5b49ff1b71a8da7" >Fran&#231;ais</a>
+		<b>|</b>
+
+		<a href="/change_language.gne?lang=ko-kr&magic_cookie=f4eae56207e29e39b5b49ff1b71a8da7" class="image_link" id="lang_ko-kr"><img src="http://l.yimg.com/g/images/lang_ko-kr_11px_default.png" width="23" height="13" id="langselect_ko-kr" alt="한글"></a>		<b>|</b>
+		<a href="/change_language.gne?lang=it-it&magic_cookie=f4eae56207e29e39b5b49ff1b71a8da7" >Italiano</a>
+		<b>|</b>
+		<a href="/change_language.gne?lang=pt-br&magic_cookie=f4eae56207e29e39b5b49ff1b71a8da7" >Portugu&#234;s</a>
+			</span>
+	
+		<script type="text/javascript">if (_ge('langselect_zh-hk')) F.decorate(_ge('langselect_zh-hk'), F._link_button).button_go_go_go();</script>
+
+	<script type="text/javascript">if (_ge('langselect_ko-kr')) F.decorate(_ge('langselect_ko-kr'), F._link_button).button_go_go_go();</script>
+	Copyright &copy; 2009 Yahoo! Inc. All rights reserved.
+	</p>  	</p>
+	
+
+<br />
+
+	
+</div>
+</div>
+<div style="background: #000; color: #0f0; text-align: left; font-family: &quot;Courier New&quot;, Courier, monospace;"></div>
+
+
+
+
+<script type="text/javascript">
+try{
+	if (window.personmenu_init) personmenu_init(0);
+} catch(er) {}
+
+</script>
+
+
+
+
+<!-- page generated by www84 (in mud) at 13:12:46 01/02/09 in 3735ms -->
+
+
+
+<script src="http://us.adserver.yahoo.com/a?f=792600186&p=flickr&l=FOOT9&c=r"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>
