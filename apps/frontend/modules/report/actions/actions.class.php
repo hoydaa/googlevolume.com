@@ -151,7 +151,17 @@ class reportActions extends sfActions
     {
         $this->pager = ReportPeer::findByUser($this->getUser()->getGuardUser()->getId(), $request->getParameter('page', 1), 10);
     }
-    
+
+    public function executeListMyPublicReports($request)
+    {
+        $this->pager = ReportPeer::findByUserAndPublic($this->getUser()->getGuardUser()->getId(), true, $request->getParameter('page', 1), 10);
+    }
+
+    public function executeListMyPrivateReports($request)
+    {
+        $this->pager = ReportPeer::findByUserAndPublic($this->getUser()->getGuardUser()->getId(), false, $request->getParameter('page', 1), 10);
+    }
+
     public function executeUserReports($request)
     {
         $username = $request->getParameter('username');
