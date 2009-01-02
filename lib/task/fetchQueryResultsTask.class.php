@@ -25,7 +25,7 @@ EOF;
         $stop_watch->start();
         logline('Started processing.');
         
-        $searchEngine = new GoogleRegexp();
+        $searchEngine = new GoogleHitFetcher();
         $databaseManager = new sfDatabaseManager($this->configuration);
         $queries = QueryPeer::doSelect(new Criteria());
 
@@ -35,7 +35,7 @@ EOF;
                         
             $qr = new QueryResultBulk();
             $qr->setQuery($query);
-            $result_size = $searchEngine->search($query->getQuery());
+            $result_size = $searchEngine->fetch($query->getQuery());
             $qr->setResultSize($result_size);
 
             logline(sprintf("Found %s results for %s.", $result_size, $query->getQuery()));
