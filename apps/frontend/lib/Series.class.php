@@ -2,8 +2,18 @@
 
 class Series
 {
-    
-    protected $colors = array('800080', '0000FF', '00FFFF', '00FF00', 'FFFF00', 'FF8040', 'F00000');
+    protected $colors = array(
+        '00FFFF', // aqua
+        '0000FF', // blue
+        'FF00FF', // fuchsia
+        '008000', // green
+        '00FF00', // lime
+        '808000', // olive
+        'FFA500', // orange
+        '800080', // purple
+        'FF0000', // red
+        'FFFF00'  // yellow
+    );
 
     private $series = array();
 
