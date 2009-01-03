@@ -26,5 +26,5 @@ class reportComponents extends sfComponents
         $this->search_form = new SearchReportForm();
         $this->search_form->bind($request->getParameter('searchreport'));
     }
-        
+
 }
