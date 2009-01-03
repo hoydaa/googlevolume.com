@@ -242,6 +242,8 @@ class reportActions extends sfActions
         ReportPeer::retrieveByPK(1);
         $report = sfPropelFriendlyUrl::retrieveByFriendlyUrl('Report', $id);
 
+        $this->forward404Unless($report->getPublicRecord());
+
         $start_date = date('Y-m-d', strtotime(date('Ymd') . ' -1 months'));
         $end_date  = date('Y-m-d', strtotime(date('Ymd') . ' +1 days'));
         $frequency = QueryResultPeer::FREQUENCY_DAY;
