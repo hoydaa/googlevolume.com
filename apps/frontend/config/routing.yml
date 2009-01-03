@@ -17,3 +17,7 @@ default:
 isics_sitemap_xml:
   url:   /sitemap.xml
   param: { module: isicsSitemapXML, action: index }
+
+chart_image:
+  url: /report/:id.png
+  param: { module: report, action: showImage }
