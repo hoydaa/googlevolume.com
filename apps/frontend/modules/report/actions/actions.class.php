@@ -82,7 +82,7 @@ class reportActions extends sfActions
         ReportPeer::retrieveByPK(1);
         $this->report = sfPropelFriendlyUrl::retrieveByFriendlyUrl('Report', $id);
 
-        if($this->report->getUserId() && !Utils::isUserRecord('ReportPeer', $id, $this->getUser()->getId()))
+        if(!$this->report->getPublicRecord() && !Utils::isUserRecord('ReportPeer', $this->getReport()->getId(), $this->getUser()->getId()))
         {
             $this->getUser()->setFlash('error', 'You don\'t have enough credentials to edit this snippet.');
             $this->forward('site', 'message');
