@@ -28,7 +28,7 @@ class reportActions extends sfActions
         $this->form = new NewReportForm($report);
         if(!$id)
         {
-            $this->form->setDefaults(array('public' => true));   
+            $this->form->setDefaults(array('public' => true));
         }
     }
 
@@ -64,7 +64,7 @@ class reportActions extends sfActions
         {
             $cacheManager = $this->getContext()->getViewCacheManager();
             $cacheManager->remove('@sf_cache_partial?module=report&action=_miniChart&sf_cache_key='.$report->getId());
-            
+
             return $this->redirect("report/show?id=" . $report->getFriendlyUrl());
         }
     }
@@ -74,16 +74,22 @@ class reportActions extends sfActions
         $id = $request->getParameter('id');
 
         $this->forward404Unless($id);
-         
+
+        if(!Utils::isUserRecord('ReportPeer', $id, $this->getUser()->getId()))
+        {
+            $this->getUser()->setFlash('error', 'You don\'t have enough credentials to edit this snippet.');
+            $this->forward('site', 'message');
+        }
+
         $this->form = new DateSelectorForm();
         //$this->form->bind($request->getParameter('date_selector'));
 
         //$this->report = ReportPeer::retrieveByPK($id);
         ReportPeer::retrieveByPK(1);
         $this->report = sfPropelFriendlyUrl::retrieveByFriendlyUrl('Report', $id);
-        
+
         $this->forward404Unless($this->report);
-        
+
         $this->report->incrementCounter();
         $this->report->save();
     }
@@ -93,19 +99,19 @@ class reportActions extends sfActions
         $id = $request->getParameter('id');
 
         $this->forward404Unless($id);
-        
+
         if(!Utils::isUserRecord('ReportPeer', $id, $this->getUser()->getId()))
         {
             $this->getUser()->setFlash('error', 'You don\'t have enough credentials to delete this snippet.');
             $this->forward('site', 'message');
         }
-        
+
         $this->form = new DateSelectorForm();
 
         $this->report = ReportPeer::retrieveByPK($id);
-        
+
         $this->forward404Unless($this->report);
-        
+
         if($request->getParameter('delete') == 'Yes')
         {
             ReportPeer::doDelete(array($id));
@@ -113,7 +119,7 @@ class reportActions extends sfActions
             $this->forward('site', 'message');
         }
     }
-    
+
     public function executeChart($request)
     {
         $this->form = new DateSelectorForm();
@@ -173,10 +179,10 @@ class reportActions extends sfActions
     {
         $username = $request->getParameter('username');
         $this->forward404Unless($username);
-        
+
         $user = sfGuardUserPeer::retrieveByUsername($username);
         $this->forward404Unless($user);
-        
+
         $this->pager = ReportPeer::findByUserAndPublic($user->getId(), true, $request->getParameter('page', 1), 10);
         $this->setTemplate('listMyReports');
     }
@@ -188,7 +194,7 @@ class reportActions extends sfActions
         {
             $order = 'desc';
         }
-        
+
         $this->pager = ReportPeer::findNewReports($request->getParameter('page', 1), 10, $order);
         $this->setTemplate('list');
     }
@@ -200,11 +206,11 @@ class reportActions extends sfActions
         {
             $order = 'desc';
         }
-        
+
         $this->pager = ReportPeer::findByPopularity($request->getParameter('page', 1), 10, $order);
         $this->setTemplate('list');
     }
-    
+
     public function executeShowByStability($request)
     {
         $order = $this->getRequestParameter('order');
@@ -212,11 +218,11 @@ class reportActions extends sfActions
         {
             $order = 'asc';
         }
-        
+
         $this->pager = ReportPeer::findByStability($request->getParameter('page', 1), 10, $order);
         $this->setTemplate('list');
     }
-    
+
     public function executeShowByAmount($request)
     {
         $order = $this->getRequestParameter('order');
@@ -224,7 +230,7 @@ class reportActions extends sfActions
         {
             $order = 'desc';
         }
-        
+
         $this->pager = ReportPeer::findByAmount($request->getParameter('page', 1), 10, $order);
         $this->setTemplate('list');
     }
