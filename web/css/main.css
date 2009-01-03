@@ -102,6 +102,10 @@ input, select {
 
 /* form */
 
+input[type=text] {
+    width: 200px;
+}
+
 .radio_list {
     margin: 0;
     padding: 0;
