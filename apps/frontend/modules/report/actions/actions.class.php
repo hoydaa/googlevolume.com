@@ -242,7 +242,7 @@ class reportActions extends sfActions
         ReportPeer::retrieveByPK(1);
         $report = sfPropelFriendlyUrl::retrieveByFriendlyUrl('Report', $id);
 
-        $start_date = date('Y-m-d', strtotime(date('Ymd') . ' -12 days'));
+        $start_date = date('Y-m-d', strtotime(date('Ymd') . ' -1 months'));
         $end_date  = date('Y-m-d', strtotime(date('Ymd') . ' +1 days'));
         $frequency = QueryResultPeer::FREQUENCY_DAY;
         $decorator = new DefaultChartDecorator();
