@@ -75,18 +75,18 @@ class reportActions extends sfActions
 
         $this->forward404Unless($id);
 
-        if(!Utils::isUserRecord('ReportPeer', $id, $this->getUser()->getId()))
-        {
-            $this->getUser()->setFlash('error', 'You don\'t have enough credentials to edit this snippet.');
-            $this->forward('site', 'message');
-        }
-
         $this->form = new DateSelectorForm();
         //$this->form->bind($request->getParameter('date_selector'));
 
         //$this->report = ReportPeer::retrieveByPK($id);
         ReportPeer::retrieveByPK(1);
         $this->report = sfPropelFriendlyUrl::retrieveByFriendlyUrl('Report', $id);
+
+        if($this->report->getUserId() && !Utils::isUserRecord('ReportPeer', $id, $this->getUser()->getId()))
+        {
+            $this->getUser()->setFlash('error', 'You don\'t have enough credentials to edit this snippet.');
+            $this->forward('site', 'message');
+        }
 
         $this->forward404Unless($this->report);
 
