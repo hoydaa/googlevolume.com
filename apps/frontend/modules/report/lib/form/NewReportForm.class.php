@@ -51,7 +51,7 @@ class NewReportForm extends ObjectForm
       'description'    => new sfValidatorString(array('required' => false)),
       'query_texts'    => new sfValidatorString(array('required' => true), array('required' => 'You have to enter at least one query.')),
       'query_titles'   => new sfValidatorString(array('required' => true), array('required' => 'You have to enter at least one query.')),
-      'frequency'      => new sfValidatorString(array('required' => true)),
+      'frequency'      => new sfValidatorString(array('required' => false)),
       'private'        => new sfValidatorString(array('required' => false)),
       'tags'           => new sfValidatorString(array('required' => false)),
       'user_id'        => new sfValidatorString(array('required' => false))
