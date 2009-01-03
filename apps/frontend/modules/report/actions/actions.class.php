@@ -144,7 +144,14 @@ class reportActions extends sfActions
             return;
         }
 
-        $this->pager = ReportPeer::search($this->search_form->getValue('query'), $this->search_form->getValue('page', 1), 10);
+        if ($this->getUser()->isAuthenticated())
+        {
+            $this->pager = ReportPeer::search($this->search_form->getValue('query'), $this->getUser()->getGuardUser()->getId(), $this->search_form->getValue('source'), $this->search_form->getValue('page', 1), 10);
+        }
+        else
+        {
+            $this->pager = ReportPeer::search($this->search_form->getValue('query'), null, null, $this->search_form->getValue('page', 1), 10);
+        }
     }
 
     public function executeListMyReports($request)
