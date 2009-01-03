@@ -18,7 +18,3 @@ $t->is($result, 0, 'Result count has to be 0 for google.nothing.html');
 
 $result = $engine->findResultCount(file_get_contents(dirname(__FILE__).'/google.very.much.results.html'));
 $t->is($result, 95700000, 'Result count has to be 95700000 for google.very.much.results.html');
-
-function getResult($filename) {
-	return file_get_contents(dirname(__FILE__).'/'.$filename);
-}
