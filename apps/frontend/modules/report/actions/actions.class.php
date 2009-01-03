@@ -81,13 +81,7 @@ class reportActions extends sfActions
         //$this->report = ReportPeer::retrieveByPK($id);
         ReportPeer::retrieveByPK(1);
         $this->report = sfPropelFriendlyUrl::retrieveByFriendlyUrl('Report', $id);
-
-        if(!$this->report->getPublicRecord() && !Utils::isUserRecord('ReportPeer', $this->getReport()->getId(), $this->getUser()->getId()))
-        {
-            $this->getUser()->setFlash('error', 'You don\'t have enough credentials to edit this snippet.');
-            $this->forward('site', 'message');
-        }
-
+        
         $this->forward404Unless($this->report);
 
         $this->report->incrementCounter();
@@ -233,5 +227,26 @@ class reportActions extends sfActions
 
         $this->pager = ReportPeer::findByAmount($request->getParameter('page', 1), 10, $order);
         $this->setTemplate('list');
+    }
+
+    public function executeShowImage($request)
+    {
+        $id = $request->getParameter('id');
+        
+        ReportPeer::retrieveByPK(1);
+        $report = sfPropelFriendlyUrl::retrieveByFriendlyUrl('Report', $id);
+
+        $start_date = date('Y-m-d', strtotime(date('Ymd') . ' -12 days'));
+        $end_date  = date('Y-m-d', strtotime(date('Ymd') . ' +1 days'));
+        $frequency = QueryResultPeer::FREQUENCY_DAY;
+        $decorator = new DefaultChartDecorator();
+
+        $chart= ReportPeer::getReportChart($report, $start_date, $end_date, $frequency, $decorator);
+
+        $response = $this->getResponse();
+        $response->clearHttpHeaders(); 
+        $response->setContentType('image/png');
+        $response->setContent(file_get_contents($chart));
+        $response->send();
     }
 }
