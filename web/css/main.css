@@ -23,7 +23,7 @@ input, select {
 
 #search-bar-wrapper {
     clear: right;
-    background: url("/images/bg-bar.gif") bottom;
+    background: #E4E2DB url("/images/bg-bar.gif") bottom repeat-x;
 }
 
 #search-bar {
@@ -98,6 +98,18 @@ input, select {
     float: left;
     width: 150px;
     font-weight: bold;
+}
+
+/* form */
+
+.radio_list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.radio_list li {
+    display: inline;
 }
 
 /* error */
