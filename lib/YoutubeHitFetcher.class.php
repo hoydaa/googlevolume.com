@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Grabs search results size of a specified query from youtube.com using regular expression
+ *
+ * @author Utku Utkan, <utku.utkan@hoydaa.org>
+ */
 class YoutubeHitFetcher extends AbstractHitFetcher
 {
     protected function getUrl()
@@ -12,13 +17,14 @@ class YoutubeHitFetcher extends AbstractHitFetcher
         return 'search_query';
     }
 
-    protected function extractHit($html)
+    //<strong>1 - 20</strong> of about <strong>25,200</strong>
+    public function extractHit($html)
     {
         $pattern = '/<strong>1 \- (\d+)<\/strong> of about <strong>([0-9,]+)<\/strong>/';
 
         $matches = null;
 
-        preg_match($pattern, $content, $matches);
+        preg_match($pattern, $html, $matches);
 
         if (sizeof($matches) == 3)
         {
