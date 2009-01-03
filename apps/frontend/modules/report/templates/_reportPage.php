@@ -16,3 +16,5 @@
 <?php include_partial('report/report', array('report' => $report, 'form' => $form)) ?>
 
 <?php include_partial('report/actualQueries', array('report' => $report)) ?>
+
+<?php include_partial('report/share', array('report' => $report)) ?>
