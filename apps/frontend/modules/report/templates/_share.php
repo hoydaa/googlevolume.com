@@ -1,9 +1,9 @@
 <?php
 
-$url = url_for('@chart_image?id=' . $report->getId(), true);
+$url = url_for('@chart_image?id=' . $sf_params->get('id'), true);
 
 $embed = '
-<a href="' . url_for('report/show?id=' . $report->getId(), true) . '" title="Google Volume">
+<a href="' . url_for('report/show?id=' . $sf_params->get('id'), true) . '" title="Google Volume">
     <img src="' . $url . '" alt="' . $report->getTitle() . '" />
 </a>';
 
