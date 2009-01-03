@@ -14,7 +14,9 @@ after svn co https://hoydaa.org/svnroot/project-y/trunk blahblahblah follow the 
     pear install pecl_http
       in order to install pecl_http you have to install the following debian packages
         apt-get install make php5-dev libcurl3-dev
-
+    create a directory named charts under project-home/web/images and give web user write permissions
+        this directory will be used to store chart images downloaded from google for the charts which are cacheable
+        currently mail task is using cacheable charts
     
 in order to load test data execute the following commands
     symfony propel:data-load frontend
