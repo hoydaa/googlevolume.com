@@ -10,12 +10,29 @@
 class ReportPeer extends BaseReportPeer
 {
 
-    public static function search($query, $page, $size)
+    public static function search($query, $user_id, $source, $page, $size)
     {
         $keywords = split(' ', trim($query));
 
         $c = new Criteria();
-        $c->add(ReportPeer::PUBLIC_RECORD, true);
+
+        if ($user_id)
+        {
+            if ($source == 'U')
+            {
+                $c->add(ReportPeer::USER_ID, $user_id);
+            }
+            else
+            {
+                $source_criterion = $c->getNewCriterion(ReportPeer::USER_ID, $user_id);
+                $source_criterion->addOr($c->getNewCriterion(ReportPeer::PUBLIC_RECORD, true));
+                $c->add($source_criterion);
+            }
+        }
+        else
+        {
+            $c->add(ReportPeer::PUBLIC_RECORD, true);
+        }
 
         foreach ($keywords as $keyword)
         {
