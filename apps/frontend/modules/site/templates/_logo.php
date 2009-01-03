@@ -1,7 +1,7 @@
 <?php
-    $google = new GoogleRegexp();
-    $volume_hit = $google->search('volume');
-    $google_hit = $google->search('google');
+    $google = new GoogleHitFetcher();
+    $volume_hit = $google->fetch('volume');
+    $google_hit = $google->fetch('google');
     $volume_percent = $volume_hit / ($volume_hit + $google_hit) * 100;
     $google_percent = 100 - $volume_percent;
 ?>
