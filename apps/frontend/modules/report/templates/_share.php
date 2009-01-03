@@ -4,7 +4,7 @@ $url = url_for('@chart_image?id=' . $report->getId(), true);
 
 $embed = '
 <a href="' . url_for('report/show?id=' . $report->getId(), true) . '" title="Google Volume">
-    <img src="' . $chart_url . '" alt="' . $report->getTitle() . '" />
+    <img src="' . $url . '" alt="' . $report->getTitle() . '" />
 </a>';
 
 ?>
