@@ -86,7 +86,7 @@ input, select {
     margin: 0;
 }
 
-.panel div {
+.panel div.row {
     margin-bottom: 10px;
 }
 
