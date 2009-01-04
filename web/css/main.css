@@ -102,7 +102,7 @@ input, select {
 
 /* form */
 
-input[type=text] {
+input[type=text], input[type=password] {
     width: 200px;
 }
 
