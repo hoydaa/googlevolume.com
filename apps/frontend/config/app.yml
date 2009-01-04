@@ -6,3 +6,6 @@ all:
     charts_dir: charts
   isicsSitemapXML:
     modules:  [report]
+  recaptcha:
+    publickey: 6LeefAQAAAAAAFQE45ZyTerF6Op-ZxO7vh6dLdfu
+    privatekey: 6LeefAQAAAAAAMoGfya5J6YVBIeGqpsCBumPrsun
