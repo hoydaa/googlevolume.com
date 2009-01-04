@@ -15,7 +15,8 @@ class SignUpForm extends sfForm
       'first_name' => new sfWidgetFormInput(),
       'last_name' => new sfWidgetFormInput(),
       'gender' => new sfWidgetFormSelect(array('choices' => self::$genders)),
-      'birthday' => new sfWidgetFormDate(array('years' => Utils::years_array()))
+      'birthday' => new sfWidgetFormDate(array('years' => Utils::years_array())),
+      'captcha' => new sfWidgetFormCaptcha()
     ));
 
     $this->widgetSchema->setNameFormat('form[%s]');
@@ -36,7 +37,8 @@ class SignUpForm extends sfForm
       new sfValidatorPropelUnique(array('model' => 'sfGuardUser', 'column' => 'username')),
       new sfValidatorSchemaCompare('password', sfValidatorSchemaCompare::EQUAL, 'password_again'),
       new sfValidatorSchemaCompare('email', sfValidatorSchemaCompare::EQUAL, 'email_again'),
-      new sfValidatorPropelUnique(array('model' => 'sfGuardUserProfile', 'column' => 'email'))
+      new sfValidatorPropelUnique(array('model' => 'sfGuardUserProfile', 'column' => 'email')),
+      new sfValidatorCallback(array('callback' => array('sfValidatorCaptcha', 'execute')))
     )));
   }
 }
