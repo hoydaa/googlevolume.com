@@ -11,6 +11,7 @@ Options +FollowSymLinks +ExecCGI
   RewriteCond %{REQUEST_URI} \..+$
   RewriteCond %{REQUEST_URI} !\.html$
   RewriteCond %{REQUEST_URI} !sitemap\.xml$
+  RewriteCond %{REQUEST_URI} !\.png$
   RewriteRule .* - [L]
 
   # we check if the .html version is here (caching)
