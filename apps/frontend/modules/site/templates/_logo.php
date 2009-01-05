@@ -1,5 +1,5 @@
 <?php
-    $google = new GoogleHitFetcher();
+    $google = AbstractHitFetcher::getInstance(Query::SOURCE_GOOGLE);
     $volume_hit = $google->fetch('volume');
     $google_hit = $google->fetch('google');
     $volume_percent = $volume_hit / ($volume_hit + $google_hit) * 100;
