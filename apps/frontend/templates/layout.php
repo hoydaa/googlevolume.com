@@ -63,7 +63,8 @@
         </div>
         <div id="footer-wrapper">
             <div id="footer">
-                <p>Copyright &copy; <?php echo date("Y") ?> <?php echo link_to('Hoydaa Inc.', 'http://www.hoydaa.org', array('target' => '_blank', 'title' => 'deliver few, deliver complete')) ?> All rights reserved.</p>
+                <p>Copyright &copy; <?php echo date("Y") ?> <?php echo link_to('Hoydaa Inc.', 'http://www.hoydaa.org', array('target' => '_blank', 'title' => 'deliver few, deliver complete')) ?> All rights reserved. 
+                <?php echo link_to(image_tag('feed.png', 'New reports.'), 'report/feed', array('title' => 'New Reports')) ?></p>
             </div>
         </div>
         <?php if ($sf_context->getConfiguration()->getEnvironment() == 'prod'): ?>
