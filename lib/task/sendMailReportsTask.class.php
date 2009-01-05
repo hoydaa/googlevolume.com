@@ -38,37 +38,45 @@ EOF;
         logline(sprintf('Started processing %s mails.', $frequencies[$frequency]));
 
         $databaseManager = new sfDatabaseManager($this->configuration);
-        $c = new Criteria();
-        $c->add(ReportPeer::USER_ID, null, Criteria::ISNOTNULL);
-        $c->add(ReportPeer::MAIL_FREQUENCY, $frequency);
-        $reports = ReportPeer::doSelect($c);
 
-        logline(sprintf("There are %s reprots to process.", sizeof($reports)));
-        foreach ($reports as $report)
+        $c1 = new Criteria();
+        $c1->addJoin(sfGuardUserPeer::ID, ReportPeer::USER_ID);
+        $c1->add(ReportPeer::MAIL_FREQUENCY, $frequency);
+        $c1->setDistinct();
+        $users = sfGuardUserPeer::doSelect($c1);
+
+        foreach($users as $user)
         {
-            $rtn = ReportPeer::_getReportChart(
-            $report, date('Y-m-d', strtotime(date('Ymd') . ' -1 months')),
-            date('Y-m-d', strtotime(date('Y-m-d') . ' +1 days')),
-            QueryResultPeer::FREQUENCY_DAY, new MailChartDecorator());
-            $data = $rtn['values'];
-            $line_chart = $rtn['chart'];
-            $image_path = $local_url = sfConfig::get('app_web_images') . '/' . $line_chart->__toString();
+            $c = new Criteria();
+            $c->add(ReportPeer::USER_ID, $user->getId());
+            $c->add(ReportPeer::MAIL_FREQUENCY, $frequency);
+            $reports = ReportPeer::doSelect($c);
 
-            $sfGuardUserProfile = $report->getsfGuardUser()->getsfGuardUserProfiles();
+            logline(sprintf("There are %s reports to process.", sizeof($reports)));
+
+            $sfGuardUserProfile = $user->getsfGuardUserProfiles();
             $sfGuardUserProfile = $sfGuardUserProfile[0];
 
-            try
+            $connection = new Swift_Connection_SMTP('mail.sis-nav.com', 25);
+            $connection->setUsername('umut.utkan@sistemas.com.tr');
+            $connection->setPassword('gahve123');
+
+            $mailer = new Swift($connection);
+
+            $message = new Swift_Message(sprintf("Goole Volume - %s notifications.", $frequencies[$frequency]));
+
+            $images = array();
+            foreach ($reports as $report)
             {
-                $connection = new Swift_Connection_SMTP('mail.sis-nav.com', 25);
-                $connection->setUsername('umut.utkan@sistemas.com.tr');
-                $connection->setPassword('gahve123');
+                $rtn = ReportPeer::_getReportChart(
+                $report, date('Y-m-d', strtotime(date('Ymd') . ' -1 months')),
+                date('Y-m-d', strtotime(date('Y-m-d') . ' +1 days')),
+                QueryResultPeer::FREQUENCY_DAY, new MailChartDecorator());
+                $data = $rtn['values'];
+                $line_chart = $rtn['chart'];
+                $image_path = $local_url = sfConfig::get('app_web_images') . '/' . $line_chart->__toString();
 
-                $mailer = new Swift($connection);
-
-                $message = new Swift_Message(sprintf("Goole Volume - %s report for '%s'", $frequencies[$frequency], $report->getTitle()));
-
-                $images = array();
-                $images['report'] = new Swift_Message_Image(new Swift_File($image_path));
+                $images[$report->getTitle()] = new Swift_Message_Image(new Swift_File($image_path));
 
                 $imageReferences = array();
                 foreach ($images as $name => $image)
@@ -78,12 +86,14 @@ EOF;
 
                 $mailContext = array(
         			'data' => $data,
-                    'title' => $report->getTitle(),
                     'full_name' => $sfGuardUserProfile->getFullName(),
                     'report' => $report,
                     'images' => $imageReferences
                 );
+            }
 
+            try
+            {
                 $message->attach(new Swift_Message_Part(get_partial('mail/mailReportHtmlBody', $mailContext), 'text/html'));
                 $message->attach(new Swift_Message_Part(get_partial('mail/mailReportTextBody', $mailContext), 'text/plain'));
 
@@ -96,7 +106,8 @@ EOF;
                 $mailer->disconnect();
             }
 
-            logline(sprintf('Sent mail to %s about %s.', $sfGuardUserProfile->getEmail(), $report->getTitle()));
+            logline(sprintf('Sent mail to %s.', $sfGuardUserProfile->getEmail()));
+
         }
 
         logline(sprintf("Finished processing."));
