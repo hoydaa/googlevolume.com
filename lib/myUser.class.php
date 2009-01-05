@@ -15,5 +15,26 @@ class myUser extends sfGuardSecurityUser
   	{
   	    return strpos($this->getUsername(), "utkan") != null;
   	}
+  	
+  	public function getProfile()
+  	{
+        if($this->getGuardUser())
+        {
+            $sfGuardUserProfile = $this->getGuardUser()->getsfGuardUserProfile();
+            $sfGuardUserProfile = $sfGuardUserProfile[0];
+            return $sfGuardUserProfile;
+        }
+        return null;
+  	}
+  	
+  	public function getFullname() 
+  	{
+  	    $profile = $this->getProfile();
+  	    if($profile == null)
+  	    {
+  	        return null;
+  	    }
+  	    return $profile->getFirstname() . ' ' . $profile->getLastname();
+  	}
   
 }
