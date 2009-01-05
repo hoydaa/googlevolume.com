@@ -290,7 +290,7 @@ class reportActions extends sfActions
             $titles = array();
             foreach($report->getReportQuerys() as $report_query)
             {
-                $titles[] = $report_query->getQuery()->getQuery();
+                $titles[] = $report_query->getTitle();
             }
             //print_r($titles);
             $item->setDescription(($report->getDescription() ? $report->getDescription() . " " : "") . 'Queries: ' . implode(', ', $titles));
