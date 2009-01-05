@@ -9,6 +9,10 @@
 class Query extends BaseQuery
 {
 
+    const SOURCE_GOOGLE  = 1;
+    const SOURCE_YOUTUBE = 2;
+    const SOURCE_FLICKR  = 3;
+    
     // save method is overriden in order to get
     // the first query results if there is no.
     public function save($con = null)
