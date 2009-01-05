@@ -257,4 +257,48 @@ class reportActions extends sfActions
         $response->setContent(file_get_contents($chart));
         $response->send();
     }
+
+    public function executeFeed($request)
+    {
+        $pager = ReportPeer::findNewReports(1, 10, 'desc');
+        $reports = $pager->getResults();
+
+        $feed = new sfAtom1Feed();
+
+        $feed->setTitle('Google Volume - New Reports');
+        $feed->setLink('http://www.googlevolume.com');
+        $feed->setAuthorEmail('info@googlevolume.com');
+        $feed->setAuthorName('Info');
+
+        //$feedImage = new sfFeedImage();
+        //$feedImage->setFavicon('http://www.googlevolume.com/favicon.ico');
+        //$feed->setImage($feedImage);
+
+        foreach ($reports as $report)
+        {
+            $item = new sfFeedItem();
+            $item->setTitle($report->getTitle());
+            $item->setLink('report/show?id='.$report->getFriendlyUrl());
+            if($report->getsfGuardUser())
+            {
+                $item->setAuthorName($report->getsfGuardUser()->getProfile()->getFirstname() . ' ' . $report->getsfGuardUser()->getProfile()->getLastname());
+                $item->setAuthorEmail($report->getsfGuardUser()->getProfile()->getEmail());
+            }
+            $item->setPubdate($report->getCreatedAt('U'));
+            $item->setUniqueId($report->getFriendlyUrl());
+            
+            $titles = array();
+            foreach($report->getReportQuerys() as $report_query)
+            {
+                $titles[] = $report_query->getQuery()->getQuery();
+            }
+            //print_r($titles);
+            $item->setDescription(($report->getDescription() ? $report->getDescription() . " " : "") . 'Queries: ' . implode(', ', $titles));
+
+            $feed->addItem($item);
+        }
+
+        $this->feed = $feed;
+    }
+
 }
