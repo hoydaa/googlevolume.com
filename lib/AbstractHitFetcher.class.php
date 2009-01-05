@@ -2,6 +2,26 @@
 
 abstract class AbstractHitFetcher implements HitFetcher
 {
+    private static $providers = array();
+    
+    public static function getInstance($source)
+    {
+        if(!array_key_exists($source, self::$providers))
+        {
+            if($source == Query::SOURCE_GOOGLE)
+            {
+                self::$providers[$source] = new GoogleHitFetcher();
+            } else if($source == Query::SOURCE_YOUTUBE)
+            {
+                self::$providers[$source] = new YoutubeHitFetcher();
+            } else if($source == Query::SOURCE_FLICKR)
+            {
+                self::$providers[$source] = new FlickrHitFetcher();
+            }
+        }
+        return self::$providers[$source];
+    }
+    
     abstract protected function getUrl();
 
     abstract protected function getParamName();
