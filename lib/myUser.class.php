@@ -36,5 +36,13 @@ class myUser extends sfGuardSecurityUser
   	    }
   	    return $profile->getFirstname() . ' ' . $profile->getLastname();
   	}
+  	
+  	public static function retrieveByUsername($username)
+  	{
+  	    $c = new Criteria();
+  	    $c->add(sfGuardUserPeer::USERNAME, $username);
+  	    
+  	    return sfGuardUserPeer::doSelectOne($c);
+  	}
   
 }
