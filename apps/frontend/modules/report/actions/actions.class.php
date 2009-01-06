@@ -274,6 +274,42 @@ class reportActions extends sfActions
         //$feedImage->setFavicon('http://www.googlevolume.com/favicon.ico');
         //$feed->setImage($feedImage);
 
+        self::addToFeed($feed, $reports);
+
+        $this->feed = $feed;
+    }
+
+    public function executeMyFeed($request)
+    {
+        $username = $request->getParameter('username');
+
+        $sfGuardUser = myUser::retrieveByUsername($username);
+
+        $profile = $sfGuardUser->getsfGuardUserProfiles();
+        $profile = $profile[0];
+
+        $feed = new sfAtom1Feed();
+
+        $feed->setTitle('Google Volume - '. $profile->getFirstName() . ' ' . $profile->getLastname() .'\'s New Reports');
+        $feed->setLink('http://www.googlevolume.com');
+        $feed->setAuthorEmail('info@googlevolume.com');
+        $feed->setAuthorName('Info');
+
+        $c = new Criteria();
+        $c->add(ReportPeer::USER_ID, $sfGuardUser->getId());
+        $c->add(ReportPeer::PUBLIC_RECORD, true);
+        $c->addDescendingOrderByColumn(ReportPeer::CREATED_AT);
+        $c->setLimit(10);
+
+        self::addToFeed($feed, ReportPeer::doSelect($c));
+
+        $this->feed = $feed;
+
+        $this->setTemplate('feed');
+    }
+
+    private static function addToFeed($feed, $reports)
+    {
         foreach ($reports as $report)
         {
             $item = new sfFeedItem();
@@ -286,7 +322,7 @@ class reportActions extends sfActions
             }
             $item->setPubdate($report->getCreatedAt('U'));
             $item->setUniqueId($report->getFriendlyUrl());
-            
+
             $titles = array();
             foreach($report->getReportQuerys() as $report_query)
             {
@@ -297,8 +333,13 @@ class reportActions extends sfActions
 
             $feed->addItem($item);
         }
-
-        $this->feed = $feed;
+    }
+    
+    public static function download($request)
+    {
+        $frequency = $request->getParameter('frequency');
+        $start_date = $request->getParameter('start_date');
+        $end_date = $request->getParameter('end_date');
     }
 
 }
