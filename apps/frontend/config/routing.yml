@@ -19,5 +19,5 @@ isics_sitemap_xml:
   param: { module: isicsSitemapXML, action: index }
 
 chart_image:
-  url: /report/:id.png
+  url:   /report/:id.png
   param: { module: report, action: showImage }
