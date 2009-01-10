@@ -247,31 +247,33 @@ class reportActions extends sfActions
         $start_date = date('Y-m-d', strtotime(date('Ymd') . ' -1 months'));
         $end_date  = date('Y-m-d', strtotime(date('Ymd') . ' +1 days'));
         $frequency = QueryResultPeer::FREQUENCY_DAY;
-        $decorator = new DefaultChartDecorator();
+        $decorator = new PermanentChartDecorator();
 
         $chart= ReportPeer::getReportChart($report, $start_date, $end_date, $frequency, $decorator);
 
         $response = $this->getResponse();
         $response->clearHttpHeaders();
         $response->setContentType('image/png');
-        $response->setContent(file_get_contents($chart));
+        $response->setContent(file_get_contents(sfConfig::get('app_web_images') . '/' . $chart->__toString()));
         $response->send();
     }
 
     public function executeFeed($request)
     {
+        $prefix = "Atom1";
+        $class = 'sf'.$prefix.'Feed';
+        
+        $feed = new $class();
         if(!$request->getParameter('username'))
         {
             $pager = ReportPeer::findNewReports(1, 10, 'desc');
             $reports = $pager->getResults();
 
-            $feed = new sfAtom1Feed();
-
             $feed->setTitle('Google Volume - New Reports');
             $feed->setLink('http://www.googlevolume.com');
             $feed->setAuthorEmail('info@googlevolume.com');
-            $feed->setAuthorName('Info');
-
+            $feed->setAuthorName('Info');            
+            
             //$feedImage = new sfFeedImage();
             //$feedImage->setFavicon('http://www.googlevolume.com/favicon.ico');
             //$feed->setImage($feedImage);
@@ -285,8 +287,6 @@ class reportActions extends sfActions
 
             $profile = $sfGuardUser->getsfGuardUserProfiles();
             $profile = $profile[0];
-
-            $feed = new sfAtom1Feed();
 
             $feed->setTitle('Google Volume - '. $profile->getFirstName() . ' ' . $profile->getLastname() .'\'s New Reports');
             $feed->setLink('http://www.googlevolume.com');
