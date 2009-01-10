@@ -1,5 +1,9 @@
 # default rules
-snippet:
+feed:
+  url:   /feed/*
+  param: { module: report, action: feed }
+
+show_report:
   url:   /:id
   param: { module: report, action: show }
 
