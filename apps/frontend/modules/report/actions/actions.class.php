@@ -260,8 +260,13 @@ class reportActions extends sfActions
 
     public function executeFeed($request)
     {
-        $prefix = "Atom1";
-        $class = 'sf'.$prefix.'Feed';
+        $feed_versions = array('Atom1', 'Rss091', 'Rss10', 'Rss201');
+        $type = $request->getParameter('type');
+        if(!$type || !in_array($type, $feed_versions))
+        {
+            $type = 'Atom1';
+        }
+        $class = 'sf'.$type.'Feed';
         
         $feed = new $class();
         if(!$request->getParameter('username'))
