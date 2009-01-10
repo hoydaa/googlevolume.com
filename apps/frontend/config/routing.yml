@@ -1,4 +1,8 @@
 # default rules
+snippet:
+  url:   /:id
+  param: { module: report, action: show }
+
 homepage:
   url:   /
   param: { module: report, action: showByDate, order: desc }
@@ -20,4 +24,4 @@ isics_sitemap_xml:
 
 chart_image:
   url:   /report/:id.png
-  param: { module: report, action: showImage }
+  param: { module: report, action: showImage } 
