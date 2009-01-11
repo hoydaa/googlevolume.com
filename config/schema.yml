@@ -8,6 +8,7 @@ propel:
     last_name:        { type: varchar, size: 255, required: true }
     activation_key:   { type: varchar, size: 32 }
     gender:           { type: char, size: 1, required: false }
+    webpage:          { type: varchar, size: 255, required: false }
     birthday:         { type: date, required: false }
 
   projecty_query:
