@@ -72,6 +72,22 @@ class ReportPeer extends BaseReportPeer
 
         return $pager;
     }
+    
+    public static function findByQuery($query, $page, $size)
+    {
+        $c = new Criteria();
+        $c->addJoin(ReportPeer::ID, ReportQueryPeer::REPORT_ID);
+        $c->addJoin(ReportQueryPeer::QUERY_ID, QueryPeer::ID);
+        $c->add(QueryPeer::QUERY, $query);
+        $c->setDistinct();
+
+        $pager = new sfPropelPager('Report', $size);
+        $pager->setCriteria($c);
+        $pager->setPage($page);
+        $pager->init();
+
+        return $pager;
+    }
 
     public static function countUserReports($userId)
     {
