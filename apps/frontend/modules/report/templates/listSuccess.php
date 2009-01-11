@@ -1,3 +1,6 @@
+<?php sfContext::getInstance()->getResponse()->setTitle(
+        sfContext::getInstance()->getResponse()->getTitle() . ' :: ' . ' Measure your queries\' google performance.'); ?>
+
 <?php
     $menu = array('By Date' => 'showByDate',
         'By Popularity' => 'showByPopularity',
