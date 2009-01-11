@@ -10,7 +10,8 @@ class AccountSettingsForm extends sfForm
       'first_name' => new sfWidgetFormInput(),
       'last_name' => new sfWidgetFormInput(),
       'gender' => new sfWidgetFormSelect(array('choices' => self::$genders)),
-      'birthday' => new sfWidgetFormDate(array('years' => Utils::years_array()))
+      'birthday' => new sfWidgetFormDate(array('years' => Utils::years_array())),
+      'webpage' => new sfWidgetFormInput(),
     ));
 
     $this->widgetSchema->setNameFormat('profile[%s]');
@@ -19,7 +20,8 @@ class AccountSettingsForm extends sfForm
       'first_name' => new sfValidatorString(array('required' => true)),
       'last_name' => new sfValidatorString(array('required' => true)),
       'gender' => new sfValidatorChoice(array('choices' => array_keys(self::$genders))),
-      'birthday' => new sfValidatorDate(array('required' => false))
+      'birthday' => new sfValidatorDate(array('required' => false)),
+      'webpage' => new sfValidatorString(array('required' => false))
     ));
   }
 }
