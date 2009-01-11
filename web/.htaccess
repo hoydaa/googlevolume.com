@@ -12,6 +12,7 @@ Options +FollowSymLinks +ExecCGI
   RewriteCond %{REQUEST_URI} !\.html$
   RewriteCond %{REQUEST_URI} !sitemap\.xml$
   RewriteCond %{REQUEST_URI} !\.png$
+  RewriteCond %{REQUEST_URI} !query\/:+$
   #following line is added in order to avoid the problem 
   #caused by the possible dot character in username
   RewriteCond %{REQUEST_URI} !username\/.+$
