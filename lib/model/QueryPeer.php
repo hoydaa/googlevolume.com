@@ -16,6 +16,8 @@ class QueryPeer extends BaseQueryPeer
         $query = 'SELECT %s as query, COUNT(*) as count
               FROM %s
               INNER JOIN %s ON %s = %s
+              INNER JOIN %s ON %s = %s
+              WHERE %s = %s
               GROUP BY query
               ORDER BY count DESC';
 
@@ -24,7 +26,11 @@ class QueryPeer extends BaseQueryPeer
         QueryPeer::TABLE_NAME,
         ReportQueryPeer::TABLE_NAME,
         QueryPeer::ID,
-        ReportQueryPeer::QUERY_ID
+        ReportQueryPeer::QUERY_ID,
+        ReportPeer::TABLE_NAME,
+        ReportQueryPeer::REPORT_ID, 
+        ReportPeer::ID,
+        ReportPeer::PUBLIC_RECORD, true
         );
 
         $statement = $connection->prepareStatement($query);
