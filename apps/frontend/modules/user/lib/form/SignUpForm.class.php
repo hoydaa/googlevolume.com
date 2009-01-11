@@ -16,6 +16,7 @@ class SignUpForm extends sfForm
       'last_name' => new sfWidgetFormInput(),
       'gender' => new sfWidgetFormSelect(array('choices' => self::$genders)),
       'birthday' => new sfWidgetFormDate(array('years' => Utils::years_array())),
+      'webpage' => new sfWidgetFormInput(),
       'captcha' => new sfWidgetFormCaptcha()
     ));
 
@@ -30,7 +31,8 @@ class SignUpForm extends sfForm
       'first_name' => new sfValidatorString(array('required' => true)),
       'last_name' => new sfValidatorString(array('required' => true)),
       'gender' => new sfValidatorChoice(array('choices' => array_keys(self::$genders))),
-      'birthday' => new sfValidatorDate(array('required' => false))
+      'birthday' => new sfValidatorDate(array('required' => false)),
+      'webpage' => new sfValidatorString(array('required' => false))
     ));
 
     $this->validatorSchema->setPostValidator(new sfValidatorAnd(array(
