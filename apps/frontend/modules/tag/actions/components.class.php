@@ -1,9 +1,9 @@
 <?php
 
-class queryComponents extends sfComponents
-{   
+class tagComponents extends sfComponents
+{
     public function executeCloud()
     {
-        $this->queries = QueryPeer::getPopularTags();
+        $this->tags = ReportTagPeer::getPopularTags();
     }
 }
