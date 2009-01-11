@@ -55,6 +55,7 @@
                         <?php include_component('user', 'user') ?>
                     <?php endif; ?>
                     <?php include_component('tag', 'cloud') ?>
+                    <?php include_component('query', 'cloud') ?>
                 </div>
                 <div id="content">
                     <?php echo $sf_content ?>
