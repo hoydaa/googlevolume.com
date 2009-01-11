@@ -32,6 +32,7 @@ class userActions extends sfActions
         $sfGuardUserProfile->setLastName($this->form->getValue('last_name'));
         $sfGuardUserProfile->setGender($this->form->getValue('gender'));
         $sfGuardUserProfile->setBirthday($this->form->getValue('birthday'));
+        $sfGuardUserProfile->setWebpage($this->form->getValue('webpage'));
 
         $sfGuardUserProfile->save();
 
@@ -106,6 +107,7 @@ class userActions extends sfActions
         }
 
         $this->getRequest()->setParameter('birthday', $profile->getBirthday());
+        $this->getRequest()->setParameter('webpage', $profile->getWebpage());
     }
 
     public function executeUpdateAccountSettings($request)
@@ -120,7 +122,8 @@ class userActions extends sfActions
         'first_name' => $profile->getFirstName(),
         'last_name' => $profile->getLastName(),
         'gender' => $profile->getGender(),
-        'birthday' => $profile->getBirthday()
+        'birthday' => $profile->getBirthday(),
+        'webpage' => $profile->getWebpage()
             ));
 
             return;
@@ -137,6 +140,7 @@ class userActions extends sfActions
         $profile->setLastName($this->form->getValue('last_name'));
         $profile->setGender($this->form->getValue('gender'));
         $profile->setBirthday($this->form->getValue('birthday'));
+        $profile->setWebpage($this->form->getValue('webpage'));
 
         $profile->save();
 
