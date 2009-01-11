@@ -19,6 +19,14 @@
         <label><?php echo __('Birthday') ?></label>
         <?php echo $sf_params->get('birthday') ? format_date($sf_params->get('birthday')) : '-' ?>
     </div>
+    <div class="row">
+        <label><?php echo __('Webpage') ?></label>
+        <?php if($sf_params->get('webpage')): ?>
+        	<?php echo link_to($sf_params->get('webpage'), $sf_params->get('webpage')) ?>
+        <?php else: ?>
+       		&nbsp;
+        <?php endif ?>
+    </div>
     <div class="right_col">
         <?php echo link_to(__('Edit'), 'user/updateAccountSettings') ?><br />
     </div>
