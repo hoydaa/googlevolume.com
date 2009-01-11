@@ -14,6 +14,7 @@ sfGuardUserProfile:
     last_name: Utkan
     gender: M
     birthday: 1979-02-23
+    webpage: http://blogs.hoydaa.org/umut.utkan
   utku.utkan-profile:
     user_id: utku.utkan
     email: utku.utkan@gmail.com
@@ -21,7 +22,8 @@ sfGuardUserProfile:
     last_name: Utkan
     gender: M
     birthday: 1984-05-13
-    
+    webpage: http://utku-utkan.blogspot.com
+
 Query:
   opel:
     query: opel
