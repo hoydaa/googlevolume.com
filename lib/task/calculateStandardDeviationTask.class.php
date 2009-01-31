@@ -57,6 +57,7 @@ EOF;
             //logline(sprintf('Average stdev for query %s is %s.', $query->getQuery(), ($deviation/$mean)));
             
             $query->save();
+            $query = null;
             
             //logLine(sprintf("Standart deviation for %s is %s.", $query->getQuery(), $deviation));
         }
