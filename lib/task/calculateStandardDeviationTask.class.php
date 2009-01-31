@@ -34,7 +34,7 @@ EOF;
             $deviation = 0.0;
             
             $sql = "SELECT STD(%s) as result_size_mean FROM %s where %s=%s";
-            $sql = sprintf($sql, QueryResultPeer::RESULT_SIZE, QueryResultPeer::TABLE_NAME, QueryResultPeer::QUERY_ID, $query->getId(), QueryResultPeer::RESULT_DATE);
+            $sql = sprintf($sql, QueryResultPeer::RESULT_SIZE, QueryResultPeer::TABLE_NAME, QueryResultPeer::QUERY_ID, $query->getId());
             
             $connection = Propel::getConnection();
             $statement = $connection->prepareStatement($sql);
