@@ -35,19 +35,15 @@ EOF;
             
             $sql = "SELECT STD(%s) as standard_deviation FROM %s where %s=%s";
             $sql = sprintf($sql, QueryResultPeer::RESULT_SIZE, QueryResultPeer::TABLE_NAME, QueryResultPeer::QUERY_ID, $query->getId());
-            
             $statement = $connection->prepareStatement($sql);
             $resultset = $statement->executeQuery();
-
             $resultset->next();
             $std = $resultset->getString('standard_deviation');
             
-            $sql = "SELECT MEAN(%s) as mean_of_all FROM %s where %s=%s";
-            $sql = sprintf($sql, QueryResultPeer::RESULT_SIZE, QueryResultPeer::TABLE_NAME, QueryResultPeer::QUERY_ID, $query->getId());            
-            
+            $sql = "SELECT AVG(%s) as mean_of_all FROM %s where %s=%s";
+            $sql = sprintf($sql, QueryResultPeer::RESULT_SIZE, QueryResultPeer::TABLE_NAME, QueryResultPeer::QUERY_ID, $query->getId());
             $statement = $connection->prepareStatement($sql);
             $resultset = $statement->executeQuery();
-
             $resultset->next();
             $mean = $resultset->getString('mean_of_all');
             
