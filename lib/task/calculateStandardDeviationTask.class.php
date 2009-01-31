@@ -36,6 +36,8 @@ EOF;
             $sql = "SELECT STD(%s) as result_size_mean FROM %s where %s=%s";
             $sql = sprintf($sql, QueryResultPeer::RESULT_SIZE, QueryResultPeer::TABLE_NAME, QueryResultPeer::QUERY_ID, $query->getId());
             
+            logLine("Using sql: " . $sql);
+            
             $connection = Propel::getConnection();
             $statement = $connection->prepareStatement($sql);
             $resultset = $statement->executeQuery();
