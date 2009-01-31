@@ -43,7 +43,7 @@ EOF;
             $resultset->next();
             $mean = $resultset->getString('result_size_mean');
             
-            //logLine(sprintf('Average for query %s is %s.', $query->getQuery(), $mean));
+            logLine(sprintf('Average for query %s is %s.', $query->getQuery(), $mean));
             
             $result_count = sizeof($query->getQueryResults());
             foreach($query->getQueryResults() as $result) 
