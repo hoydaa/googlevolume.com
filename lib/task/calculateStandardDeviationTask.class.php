@@ -31,23 +31,29 @@ EOF;
         logline(sprintf("There are %s queries to process.", sizeof($queries)));
         foreach ($queries as $query)
         {
-            $deviation = 0.0;
+            $connection = Propel::getConnection();
             
-            $sql = "SELECT STD(%s) as result_size_mean FROM %s where %s=%s";
+            $sql = "SELECT STD(%s) as standard_deviation FROM %s where %s=%s";
             $sql = sprintf($sql, QueryResultPeer::RESULT_SIZE, QueryResultPeer::TABLE_NAME, QueryResultPeer::QUERY_ID, $query->getId());
             
-            logLine("Using sql: " . $sql);
-            
-            $connection = Propel::getConnection();
             $statement = $connection->prepareStatement($sql);
             $resultset = $statement->executeQuery();
 
             $resultset->next();
-            $mean = $resultset->getString('result_size_mean');
+            $std = $resultset->getString('standard_deviation');
             
-            $query->setStandardDeviation($mean);
+            $sql = "SELECT MEAN(%s) as mean_of_all FROM %s where %s=%s";
+            $sql = sprintf($sql, QueryResultPeer::RESULT_SIZE, QueryResultPeer::TABLE_NAME, QueryResultPeer::QUERY_ID, $query->getId());            
             
-            logline(sprintf('Average stdev for query %s is %s.', $query->getQuery(), ($deviation/$mean)));
+            $statement = $connection->prepareStatement($sql);
+            $resultset = $statement->executeQuery();
+
+            $resultset->next();
+            $mean = $resultset->getString('mean_of_all');
+            
+            $query->setStandardDeviation($std/$mean);
+            
+            logline(sprintf('Average stdev for query %s is %s.', $query->getQuery(), $query->getStandardDeviation()));
             
             $query->save();
             
