@@ -14,7 +14,7 @@
         <div id="header-wrapper">
             <div id="header">
             	<p class="quote">
-            		"Track your query results with Google Volume. Create a report of your queries and let us track them daily. And whenever you want, come back and see the changes on charts."
+            		"Track your Google search results. Create a report for your searches and let us track them daily. And whenever you want, come back and see the changes on charts."
             	</p>
                 <ul class="nav">
             	    <li><?php echo link_to('Create New', 'report/edit', array('title' => 'create new report')) ?></li>
