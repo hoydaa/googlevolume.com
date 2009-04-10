@@ -10,4 +10,10 @@
  */
 class reportActions extends autoreportActions
 {
+
+    protected function updateReportFromRequest() {
+        $cacheManager = $this->getContext()->getViewCacheManager();
+        $cacheManager->remove('@sf_cache_partial?module=report&action=_miniChart&sf_cache_key='.$this->report->getId());
+    }
+
 }
