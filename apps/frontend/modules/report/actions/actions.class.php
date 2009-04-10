@@ -100,7 +100,7 @@ class reportActions extends sfActions
 
         $this->forward404Unless($id);
 
-        if(!Utils::isUserRecord('ReportPeer', $id, $this->getUser()->getId()))
+        if(!$this->getUser()->hasCredential('admin') && !Utils::isUserRecord('ReportPeer', $id, $this->getUser()->getId()))
         {
             $this->getUser()->setFlash('error', 'You don\'t have enough credentials to delete this snippet.');
             $this->forward('site', 'message');
