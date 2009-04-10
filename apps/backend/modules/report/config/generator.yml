@@ -1,0 +1,32 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+    model_class:      Report
+    theme:            default
+
+    fields:
+      title:                { name: Title }
+      description:          { name: Description }
+      created_at:           { name: Create Date }
+      updated_at:           { name: Update Date }
+      report_queries:       { name: Report Queries }
+      user_id:              { name: User }
+
+    list:
+      title:                report list
+      display:              [id, title, description, created_at, updated_at]
+      fields:
+        created_at:         { params: date_format='dd/MM/yyyy' }
+        updated_at:         { params: date_format='dd/MM/yyyy' }
+      sort: id
+      filters:              [id, title, description]
+      
+    edit:
+      title:                report add & edit
+      display:
+        "Editable":         [title, description, report_queries, user_id]
+        "Informative":      [created_at, updated_at]
+      fields:
+        created_at:         { type: plain }
+        updated_at:         { type: plain }
+        report_queries:     { type: admin_double_list, params: through_class=ReportQuery }
