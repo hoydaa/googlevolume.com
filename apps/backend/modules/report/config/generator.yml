@@ -19,7 +19,7 @@ generator:
         created_at:         { params: date_format='dd/MM/yyyy' }
         updated_at:         { params: date_format='dd/MM/yyyy' }
       sort: id
-      filters:              [title, description, user_id]
+      filters:              [id, title, description, user_id]
       
     edit:
       title:                report add & edit
