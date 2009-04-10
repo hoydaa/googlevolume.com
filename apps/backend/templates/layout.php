@@ -15,6 +15,7 @@
 <div id="menu">
 	<ul>
 		<li><?php echo link_to('Queries', 'query/list') ?></li>
+		<li><?php echo link_to('Reports', 'report/list') ?></li>
 	</ul>
 </div>
 
