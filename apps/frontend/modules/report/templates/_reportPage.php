@@ -3,7 +3,7 @@
 <h1>
     <?php echo $report->getTitle() ?>
     <?php if($sf_user->isAuthenticated()): ?>
-    	<?php if(Utils::isUserRecord('ReportPeer', $report->getId(), $sf_user->getId())): ?>
+    	<?php if($sf_user->hasCredential('admin') || Utils::isUserRecord('ReportPeer', $report->getId(), $sf_user->getId())): ?>
     		<?php echo ' (' . 
     		    link_to('Edit', 'report/edit?id=' . $report->getId()) . ' | ' .
     		    link_to('Delete', 'report/delete?id=' . $report->getId()) . ')' ?>
