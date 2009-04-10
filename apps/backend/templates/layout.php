@@ -12,6 +12,12 @@
 </head>
 <body>
 
+<div id="menu">
+	<ul>
+		<li><?php echo link_to('Queries', 'query/list') ?></li>
+	</ul>
+</div>
+
 <?php echo $sf_content ?>
 
 </body>
