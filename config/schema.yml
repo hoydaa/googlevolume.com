@@ -42,7 +42,7 @@ propel:
   projecty_query_result_daily:
     _attributes:      { phpName: QueryResult }
     id:               ~
-    query_id:         { type: integer, required: true, primaryKey: true, foreignTable: projecty_query, foreignReference: id }
+    query_id:         { type: integer, required: true, primaryKey: true, foreignTable: projecty_query, foreignReference: id, onDelete: cascade }
     result_size:      { type: bigint, required: true }
     result_date:      { type: date, required: true }
     result_count:     { type: integer, required: true, default: 1 }
@@ -52,7 +52,7 @@ propel:
   projecty_query_result:
     _attributes:      { phpName: QueryResultBulk }
     id:               ~
-    query_id:         { type: integer, required: true, primaryKey: true, foreignTable: projecty_query, foreignReference: id }
+    query_id:         { type: integer, required: true, primaryKey: true, foreignTable: projecty_query, foreignReference: id, onDelete: cascade }
     result_size:      { type: bigint, required: true }
     created_at:       ~
 
