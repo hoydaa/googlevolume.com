@@ -38,5 +38,9 @@ class Query extends BaseQuery
             $query_result->save();
         }
     }
+    
+    public function __toString() {
+        return $this->getQuery();
+    }
 
 }
