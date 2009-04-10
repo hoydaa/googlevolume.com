@@ -18,7 +18,7 @@ class reportActions extends sfActions
             $report = ReportPeer::retrieveByPK($id);
             $this->forward404Unless($report);
 
-            if(!Utils::isUserRecord('ReportPeer', $id, $this->getUser()->getId()))
+            if(!$this->getUser()->hasCredential('admin') && !Utils::isUserRecord('ReportPeer', $id, $this->getUser()->getId()))
             {
                 $this->getUser()->setFlash('error', 'You don\'t have enough credentials to edit this snippet.');
                 $this->forward('site', 'message');
@@ -43,7 +43,7 @@ class reportActions extends sfActions
 
             $this->forward404Unless($report);
 
-            if(!Utils::isUserRecord('ReportPeer', $id, $this->getUser()->getId()))
+            if(!$this->getUser()->hasCredential('admin') && !Utils::isUserRecord('ReportPeer', $id, $this->getUser()->getId()))
             {
                 $this->getUser()->setFlash('error', 'You don\'t have enough credentials to edit this snippet.');
                 $this->forward('site', 'message');
@@ -52,7 +52,7 @@ class reportActions extends sfActions
          
         $this->form = new NewReportForm($report);
         $temp = $request->getParameter('report');
-        if($this->getUser()->isAuthenticated())
+        if(!$report->getUserId() && $this->getUser()->isAuthenticated())
         {
             $temp['user_id'] = $this->getUser()->getId();
         }
