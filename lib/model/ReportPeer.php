@@ -239,6 +239,127 @@ class ReportPeer extends BaseReportPeer
         return $pager;
     }
     
+    public static function getMeasurementInterval($report_id) {
+        $first_date = self::getFirstMeasurementDate($report_id);
+        $last_date  = self::getLastMeasurementDate($report_id);
+        if($first_date == $last_date) {
+            $last_date = date('Y-m-d', strtotime('+1 day', strtotime($last_date)));
+            $first_date = date('Y-m-d', strtotime('-1 day', strtotime($first_date)));
+        }
+        
+        $rtn = array('first' => $first_date, 'last' => $last_date);
+        
+        return $rtn;
+    }
+    
+    public static function getFirstMeasurementDate($report_id) {
+        $query = "
+        	SELECT MIN(%s) as first
+        	FROM %s
+        	INNER JOIN %s ON %s = %s
+        	INNER JOIN %s ON %s = %s
+        	WHERE %s = %s";
+        
+        $query = sprintf($query,
+            QueryResultPeer::RESULT_DATE,
+            QueryResultPeer::TABLE_NAME,
+            QueryPeer::TABLE_NAME,
+            QueryResultPeer::QUERY_ID,
+            QueryPeer::ID,
+            ReportQueryPeer::TABLE_NAME,
+            ReportQueryPeer::QUERY_ID,
+            QueryPeer::ID,
+            ReportQueryPeer::REPORT_ID,
+            $report_id);
+            
+        $resultset = self::_execute($query);
+        $resultset->next();
+        
+        return $resultset->getString('first');
+    }
+    
+    public static function getLastMeasurementDate($report_id) {
+        $query = "
+        	SELECT MAX(%s) as last
+        	FROM %s
+        	INNER JOIN %s ON %s = %s
+        	INNER JOIN %s ON %s = %s
+        	WHERE %s = %s";
+        
+        $query = sprintf($query,
+            QueryResultPeer::RESULT_DATE,
+            QueryResultPeer::TABLE_NAME,
+            QueryPeer::TABLE_NAME,
+            QueryResultPeer::QUERY_ID,
+            QueryPeer::ID,
+            ReportQueryPeer::TABLE_NAME,
+            ReportQueryPeer::QUERY_ID,
+            QueryPeer::ID,
+            ReportQueryPeer::REPORT_ID,
+            $report_id);
+            
+        $resultset = self::_execute($query);
+        $resultset->next();
+        
+        return $resultset->getString('last');
+    }
+    
+    public static function getReportChartt($report, $decorator = null) {
+        $rtn = self::_getReportChartt($report, $decorator);
+        if($rtn == null)
+        {
+            return null;
+        }
+        return $rtn['chart'];
+    }
+    
+    const DAY_COUNT   = 21;
+    const WEEK_COUNT  = 21;
+    const MONTH_COUNT = 21;
+    public static function _getReportChartt($report, $decorator = null) {
+        $interval = self::getMeasurementInterval($report->getId());
+        // fetch the date of the first measurement
+        $start_date = $interval['first'];
+        // fetch the date of the last measurement
+        $end_date = $interval['last'];
+        // number of daily measurements
+        $day_count = 0;
+        // number of weekly measurements
+        $week_count = 0;
+        // number of monthly measurements
+        $month_count = 0;
+        
+        foreach($report->getReportQuerys() as $report_query) {
+            sfContext::getInstance()->getLogger()->info("ARMUT ARMUT ARMUT");
+            
+            $temp = QueryResultPeer::countDaily($report_query->getQueryId());
+            if($temp > $day_count) {
+                $day_count = $temp;
+            }
+            $temp = QueryResultPeer::countWeekly($report_query->getQueryId());
+            if($temp > $week_count) {
+                $week_count = $temp;
+            }
+            $temp = QueryResultPeer::countMonthly($report_query->getQueryId());
+            if($temp > $month_count) {
+                $month_count = $temp;
+            }
+        }
+        
+        sfContext::getInstance()->getLogger()->info("$day_count $week_count $month_count");
+        
+        if($day_count <= self::DAY_COUNT) {
+            $decorator->setFrequency('D');
+            return self::_getReportChart($report, $start_date, $end_date, QueryResultPeer::FREQUENCY_DAY, $decorator);
+        } else if($week_count <= self::WEEK_COUNT) {
+            $decorator->setFrequency('W');
+            return self::_getReportChart($report, $start_date, $end_date, QueryResultPeer::FREQUENCY_WEEK, $decorator);
+        } else {
+            $decorator->setFrequency('M');
+            return self::_getReportChart($report, $start_date, $end_date, QueryResultPeer::FREQUENCY_MONTH, $decorator);
+        }
+    }
+    
     public static function getReportChart($report, $start_date, $end_date, $frequency, $decorator = null)
     {
         $rtn = self::_getReportChart($report, $start_date, $end_date, $frequency, $decorator);
@@ -403,6 +524,12 @@ class ReportPeer extends BaseReportPeer
             }
         }
         return true;
+    }
+    
+    private static function _execute($query) {
+        $connection = Propel::getConnection();
+        $statement = $connection->prepareStatement($query);
+        return $statement->executeQuery();
     }
 
 }

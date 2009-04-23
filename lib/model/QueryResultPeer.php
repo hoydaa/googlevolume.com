@@ -12,7 +12,65 @@ class QueryResultPeer extends BaseQueryResultPeer
     const FREQUENCY_DAY   = 'DAY';
     const FREQUENCY_WEEK  = 'WEEK';
     const FREQUENCY_MONTH = 'MONTH';
-
+    
+    public static function countDaily($query_id) {
+        $query = "
+        	SELECT COUNT(*) as cnt
+        	FROM %s
+        	WHERE %s = %s";
+        
+        $query = sprintf($query,
+        QueryResultPeer::TABLE_NAME,
+        QueryResultPeer::QUERY_ID,
+        $query_id);
+        
+        $resultset = self::_execute($query);
+        $resultset->next();
+        
+        return $resultset->getInt('cnt');
+    }
+    
+    public static function countWeekly($query_id) {
+        $query = "
+        	SELECT COUNT(*) as cnt FROM (
+        	SELECT DISTINCT CONCAT(YEAR(%s), (WEEK(%s) + 1)) FROM %s
+        	WHERE %s = %s) as bidi";
+        
+        $query = sprintf($query,
+        QueryResultPeer::RESULT_DATE,
+        QueryResultPeer::RESULT_DATE,
+        QueryResultPeer::TABLE_NAME,
+        QueryResultPeer::QUERY_ID,
+        $query_id
+        );
+        
+        $resultset = self::_execute($query);
+        $resultset->next();
+        
+        return $resultset->getInt('cnt');
+    }
+    
+    public static function countMonthly($query_id) {
+        $query = "
+        	SELECT COUNT(*) as cnt FROM (
+        	SELECT DISTINCT CONCAT(YEAR(%s), MONTH(%s))
+        	FROM %s
+        	WHERE %s = %s) as bidi";
+        
+        $query = sprintf($query,
+        QueryResultPeer::RESULT_DATE,
+        QueryResultPeer::RESULT_DATE,
+        QueryResultPeer::TABLE_NAME,
+        QueryResultPeer::QUERY_ID,
+        $query_id
+        );
+        
+        $resultset = self::_execute($query);
+        $resultset->next();
+        
+        return $resultset->getInt('cnt');
+    }
+    
     public static function getChartData($query_id, $frequency, $start_date, $end_date)
     {
         if($frequency == QueryResultPeer::FREQUENCY_MONTH)
@@ -124,9 +182,7 @@ class QueryResultPeer extends BaseQueryResultPeer
 
     private static function _execute_query($query)
     {
-        $connection = Propel::getConnection();
-        $statement = $connection->prepareStatement($query);
-        $resultset = $statement->executeQuery();
+        $resultset = self::_execute($query);
 
         $rtn = array();
         while($resultset->next())
@@ -135,5 +191,11 @@ class QueryResultPeer extends BaseQueryResultPeer
         }
         
         return $rtn;
+    }
+    
+    private static function _execute($query) {
+        $connection = Propel::getConnection();
+        $statement = $connection->prepareStatement($query);
+        return $statement->executeQuery();
     }
 }
