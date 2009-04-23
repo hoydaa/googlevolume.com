@@ -106,6 +106,10 @@ input[type=text], input[type=password] {
     width: 200px;
 }
 
+input[type=text].medium {
+    width: 130px;
+}
+
 .radio_list {
     margin: 0;
     padding: 0;
@@ -128,6 +132,10 @@ ul.error_list li {
     padding-left: 16px;
     background: url("/images/bullet_error.png") no-repeat;
     color: #FF0000;
+}
+
+.query .error_list {
+    margin-left: 0;
 }
 
 /* TAG CLOUD */
@@ -360,4 +368,21 @@ ul.tool-bar li div a:hover {
 	-moz-opacity:0.4;
 	-khtml-opacity: 0.4;
 	opacity: 0.4;
+}
+
+/* buttons */
+
+.button {
+    padding: 4px 6px 4px 18px;
+    background: transparent no-repeat 0 2px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.add-button {
+    background-image: url("/images/add.png");
+}
+
+.delete-button {
+    background-image: url("/images/delete.png");
 }
