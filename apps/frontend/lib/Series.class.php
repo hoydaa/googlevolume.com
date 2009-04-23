@@ -82,6 +82,9 @@ class Series
     public function setSerieLabelsEnabled($enabled)
     {
         $this->serie_labels_enabled = $enabled;
+        foreach($this->series as $serie) {
+            $serie->setMarkersEnabled($enabled);
+        }
     }
 
     public function addSerie($serie)
@@ -156,26 +159,24 @@ class Series
             // chart data
             $series_text = 'chd=t:' . implode('|', $this->series);
             $rtn .= '&' . $series_text;
-
-            // line styles
-            $styles_arr = array();
-            foreach($this->series as $serie) {
-                $styles_arr[] = $serie->getStyleText();
-            }
-            $rtn .= '&chls=' . implode('|', $styles_arr);
             
-            // labels, colors, markers
+            // labels, colors, markers, styles
             $labels_arr = array();
             $colors_arr = array();
             $markers_arr = array();
+            $styles_arr = array();
             $counter = 0;
             foreach($this->series as $serie)
             {
+                $styles_arr[] = $serie->getStyleText();
                 $labels_arr[] = $serie->getLabel();
                 $colors_arr[] = $serie->getColor();
-                $markers_arr[] = 'o,'.$serie->getColor().','.$counter.',-1,6';
+                if($this->markers_enabled || !$serie->isMoreThanOne()) {
+                    $markers_arr[] = 'o,'.$serie->getColor().','.$counter.',-1,6';
+                }
                 $counter++;
             }
+            $rtn .= '&chls=' . implode('|', $styles_arr);
             // serie labels
             if($this->serie_labels_enabled)
             {
@@ -201,7 +202,7 @@ class Series
             }
             $colors_text = 'chco=' . implode(',', $colors_arr);
             $rtn .= '&' . $colors_text;
-            if($this->markers_enabled)
+            if($markers_arr)
             {
                 $rtn .= '&chm=' . implode('|', $markers_arr);
             }

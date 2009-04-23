@@ -132,6 +132,19 @@ class Serie
         $this->data[] = $data;
     }
 
+    public function isMoreThanOne() {
+        $counter = 0;
+        foreach($this->data as $item) {
+            if($item != "-1") {
+                $counter++;
+            }
+            if($counter > 1) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
     /**
      * Calculates the maximum
      *
