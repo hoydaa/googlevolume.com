@@ -5,20 +5,15 @@ class reportComponents extends sfComponents
     public function executeChart($request)
     {
         $decorator = new DefaultChartDecorator();
-        $end_date = date('Y-m-d', strtotime($this->end_date . ' +1 days'));
-        $this->line_chart = ReportPeer::getReportChart($this->report, $this->start_date, $end_date, $this->frequency, $decorator);
+        $this->line_chart = ReportPeer::getReportChartt($this->report, $decorator);
     }
 
     public function executeMiniChart($request)
-    {
-        $start_date = date('Y-m-d', strtotime(date('Ymd') . ' -12 days'));
-        $end_date  = date('Y-m-d', strtotime(date('Ymd') . ' +1 days'));
-        $frequency = QueryResultPeer::FREQUENCY_DAY;
-
-        $x_labels = array($start_date, $end_date);
+    {   
+        $interval = ReportPeer::getMeasurementInterval($this->report->getId());
+        $x_labels = array($interval['first'], $interval['last']);
         $decorator = new ThumbnailChartDecorator($x_labels);
-
-        $this->chart = ReportPeer::getReportChart($this->report, $start_date, $end_date, $frequency, $decorator);
+        $this->chart = ReportPeer::getReportChartt($this->report, $decorator);
     }
 
     public function executeSearch($request)
