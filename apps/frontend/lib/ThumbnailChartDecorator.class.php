@@ -21,6 +21,7 @@ class ThumbnailChartDecorator extends BaseChartDecorator
         $chart->setHeight('125');
         $chart->getSeries()->autoSetYLabels(2);
         $chart->getSeries()->setSerieLabelsEnabled(false);
+        $chart->getSeries()->setMarkersEnabled(false);
         $chart->setTitle(null);
         
         $labels = null;

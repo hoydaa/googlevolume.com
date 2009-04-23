@@ -27,9 +27,10 @@ class Utils
     }
 
     public static function get_date_of_first_day_in_a_week($week_number, $year) {
-        $time = strtotime($year . '0104 +' . ($week_number - 1) . ' weeks');
-        $monday_time = strtotime('-' . (date('w', $time) - 1) . ' days', $time);
-        return date('Y-m-d', $monday_time);
+        return date('Y-m-d', strtotime("$year-W$week_number-1"));
+//        $time = strtotime($year . '0104 +' . ($week_number - 1) . ' weeks');
+//        $monday_time = strtotime('-' . (date('w', $time) - 1) . ' days', $time);
+//        return date('Y-m-d', $monday_time);
     }
 
     public static function date_array_to_format($array, $format)
@@ -74,6 +75,12 @@ class Utils
         $c->add($class->getConstant('ID'), $record_id);
         $record = $class->getMethod('doSelectOne')->invoke(null, $c);
         return $record != null;
+    }
+    
+    public static function print_debug($exp) {
+        echo "<pre>";
+        print_r($exp);
+        echo "</pre>";
     }
 
 }
