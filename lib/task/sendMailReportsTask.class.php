@@ -68,10 +68,11 @@ EOF;
             $images = array();
             foreach ($reports as $report)
             {
-                $rtn = ReportPeer::_getReportChart(
-                $report, date('Y-m-d', strtotime(date('Ymd') . ' -1 months')),
-                date('Y-m-d', strtotime(date('Y-m-d') . ' +1 days')),
-                QueryResultPeer::FREQUENCY_DAY, new MailChartDecorator());
+//                $rtn = ReportPeer::_getReportChart(
+//                $report, date('Y-m-d', strtotime(date('Ymd') . ' -1 months')),
+//                date('Y-m-d', strtotime(date('Y-m-d') . ' +1 days')),
+//                QueryResultPeer::FREQUENCY_DAY, new MailChartDecorator());
+                $rtn = ReportPeer::_getReportChartt($report, new MailChartDecorator());
                 $data = $rtn['values'];
                 $line_chart = $rtn['chart'];
                 $image_path = $local_url = sfConfig::get('app_web_images') . '/' . $line_chart->__toString();
