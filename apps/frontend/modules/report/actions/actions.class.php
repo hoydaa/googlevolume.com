@@ -102,8 +102,6 @@ class reportActions extends sfActions
             $this->forward('site', 'message');
         }
 
-        $this->form = new DateSelectorForm();
-
         $this->report = ReportPeer::retrieveByPK($id);
 
         $this->forward404Unless($this->report);
