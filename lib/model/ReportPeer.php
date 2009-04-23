@@ -351,9 +351,9 @@ class ReportPeer extends BaseReportPeer
         if($day_count <= self::DAY_COUNT) {
             $decorator->setFrequency('D');
             return self::_getReportChart($report, $start_date, $end_date, QueryResultPeer::FREQUENCY_DAY, $decorator);
-        } else if($week_count <= self::WEEK_COUNT) {
-            $decorator->setFrequency('W');
-            return self::_getReportChart($report, $start_date, $end_date, QueryResultPeer::FREQUENCY_WEEK, $decorator);
+        //} else if($week_count <= self::WEEK_COUNT) {
+        //    $decorator->setFrequency('W');
+        //    return self::_getReportChart($report, $start_date, $end_date, QueryResultPeer::FREQUENCY_WEEK, $decorator);
         } else {
             $decorator->setFrequency('M');
             return self::_getReportChart($report, $start_date, $end_date, QueryResultPeer::FREQUENCY_MONTH, $decorator);
