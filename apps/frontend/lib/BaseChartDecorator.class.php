@@ -8,6 +8,8 @@
 abstract class BaseChartDecorator implements ChartDecorator
 {
 
+    protected $frequency = null;
+    
     public function decorate($chart) {
         self::formatYLabels($chart);
         $this->selfDecorate($chart);
@@ -32,6 +34,10 @@ abstract class BaseChartDecorator implements ChartDecorator
             }
         }
         $chart->getSeries()->setYLabels($y_labels);
+    }
+    
+    public function setFrequency($frequency) {
+        $this->frequency = $frequency;
     }
 
 }

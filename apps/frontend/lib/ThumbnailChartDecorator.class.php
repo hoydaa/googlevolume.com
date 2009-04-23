@@ -22,10 +22,19 @@ class ThumbnailChartDecorator extends BaseChartDecorator
         $chart->getSeries()->autoSetYLabels(2);
         $chart->getSeries()->setSerieLabelsEnabled(false);
         $chart->setTitle(null);
-        if($this->xLabels)
-        {
-            $chart->getSeries()->setXLabels($this->xLabels);
+        
+        $labels = null;
+        if($this->xLabels) {
+            $labels = $this->xLabels; 
+        } else {
+            $labels = array('start', 'end');
         }
+        if($this->frequency) {
+            array_splice($labels, 1, 0, '('.$this->frequency.')'); 
+        }
+        
+        $chart->getSeries()->setXLabels($labels);
+        
         self::formatYLabels($chart);
     }
 
