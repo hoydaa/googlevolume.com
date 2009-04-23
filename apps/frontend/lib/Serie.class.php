@@ -35,6 +35,8 @@ class Serie
      * @var boolean
      */
     private $markers_enabled = true;
+
+    private $thickness = 1;
     
     /**
      * Constructs a new serie object according to the given data and label.
@@ -48,6 +50,18 @@ class Serie
         $this->label = $label;
     }
 
+    public function getThickness() {
+        return $this->thickness;
+    }
+    
+    public function setThickness($thickness) {
+        $this->thickness = $thickness;
+    }
+    
+    public function getStyleText() {
+        return $this->thickness . ",0,0";
+    }
+    
     /**
      * Returns the label of the serie
      *

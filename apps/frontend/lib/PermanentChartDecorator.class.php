@@ -12,6 +12,8 @@ class PermanentChartDecorator extends BaseChartDecorator
         $chart->getSeries()->setSerieLabelsPosition(BaseChart::PLACEMENT_BOTTOM);
         $chart->setWidth(580);
         $chart->setCacheable(true);
+        $chart->getSeries()->setMarkersEnabled(false);
+        $chart->getSeries()->setThickness(2);
     }
 
 }

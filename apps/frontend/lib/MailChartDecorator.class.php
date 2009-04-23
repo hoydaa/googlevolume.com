@@ -13,6 +13,8 @@ class MailChartDecorator extends BaseChartDecorator
         $chart->setCacheable(true);
         $chart->getSeries()->setSerieLabelsPosition(BaseChart::PLACEMENT_BOTTOM);
         $chart->setWidth(580);
+        $chart->getSeries()->setMarkersEnabled(false);
+        $chart->getSeries()->setThickness(2);
     }
 
 }

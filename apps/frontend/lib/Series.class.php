@@ -38,7 +38,12 @@ class Series
     private $serie_labels_enabled = true;
     
     private $serie_labels_position = BaseChart::PLACEMENT_RIGHT;
-
+    
+    public function setThickness($thickness) {
+        foreach($this->series as $serie) {
+            $serie->setThickness($thickness);
+        }
+    }
     
     public function setSerieLabelsPosition($position) {
         $this->serie_labels_position = $position;
@@ -152,6 +157,13 @@ class Series
             $series_text = 'chd=t:' . implode('|', $this->series);
             $rtn .= '&' . $series_text;
 
+            // line styles
+            $styles_arr = array();
+            foreach($this->series as $serie) {
+                $styles_arr[] = $serie->getStyleText();
+            }
+            $rtn .= '&chls=' . implode('|', $styles_arr);
+            
             // labels, colors, markers
             $labels_arr = array();
             $colors_arr = array();

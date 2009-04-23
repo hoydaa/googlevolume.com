@@ -12,6 +12,8 @@ class DefaultChartDecorator extends BaseChartDecorator
         $chart->setTitle($chart->getTitle() . ($this->frequency ? ' ('.$this->frequency.')' : '') . "|" . "by www.googlevolume.com");
         $chart->getSeries()->setSerieLabelsPosition(BaseChart::PLACEMENT_BOTTOM);
         $chart->setWidth(580);
+        $chart->getSeries()->setMarkersEnabled(false);
+        $chart->getSeries()->setThickness(2);
     }
 
 }
