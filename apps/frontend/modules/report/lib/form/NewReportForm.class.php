@@ -8,27 +8,48 @@ class NewReportForm extends ObjectForm
     {
         $is_hidden = !(sfContext::getInstance()->getUser()->isAuthenticated());
 
-        $arr = array();
-      	$arr['id']           = new sfWidgetFormInputHidden();
-      	$arr['title']        = new sfWidgetFormInput();
-      	$arr['description']  = new sfWidgetFormTextarea();
-      	$arr['query_texts']  = new sfWidgetFormTextarea();
-      	$arr['query_titles'] = new sfWidgetFormTextarea();
+        $widgets = array();
+        $widgets['id']           = new sfWidgetFormInputHidden();
+        $widgets['title']        = new sfWidgetFormInput();
+        $widgets['description']  = new sfWidgetFormTextarea();
+        $widgets['query_text_1']  = new sfWidgetFormInput();
+        $widgets['query_label_1']  = new sfWidgetFormInput();
+        $widgets['query_text_2']  = new sfWidgetFormInput();
+        $widgets['query_label_2']  = new sfWidgetFormInput();
+        $widgets['query_text_3']  = new sfWidgetFormInput();
+        $widgets['query_label_3']  = new sfWidgetFormInput();
+        $widgets['query_text_4']  = new sfWidgetFormInput();
+        $widgets['query_label_4']  = new sfWidgetFormInput();
+        $widgets['query_text_5']  = new sfWidgetFormInput();
+        $widgets['query_label_5']  = new sfWidgetFormInput();
+        $widgets['query_text_6']  = new sfWidgetFormInput();
+        $widgets['query_label_6']  = new sfWidgetFormInput();
+        $widgets['query_text_7']  = new sfWidgetFormInput();
+        $widgets['query_label_7']  = new sfWidgetFormInput();
+        $widgets['query_text_8']  = new sfWidgetFormInput();
+        $widgets['query_label_8']  = new sfWidgetFormInput();
+        $widgets['query_text_9']  = new sfWidgetFormInput();
+        $widgets['query_label_9']  = new sfWidgetFormInput();
+        $widgets['query_text_10']  = new sfWidgetFormInput();
+        $widgets['query_label_10']  = new sfWidgetFormInput();
+        $widgets['query_texts']  = new sfWidgetFormTextarea();
+        $widgets['query_titles'] = new sfWidgetFormTextarea();
 
         if (!$is_hidden)
         {
-            $arr['private']   = new sfWidgetFormInputCheckbox();
+            $widgets['private']   = new sfWidgetFormInputCheckbox();
         }
 
-        $arr['tags']         = new sfWidgetFormInput(array(), array('autocomplete' => 'off'));
+        $widgets['tags']         = new sfWidgetFormInput(array(), array('autocomplete' => 'off'));
 
         if (!$is_hidden) 
         {
-            $arr['frequency']= new sfWidgetFormSelect(array('choices' => self::$frequencies));
+            $widgets['frequency']= new sfWidgetFormSelect(array('choices' => self::$frequencies));
         }
 
-        $arr['user_id']      = new sfWidgetFormInputHidden();
-        $this->setWidgets($arr);
+        $widgets['user_id']      = new sfWidgetFormInputHidden();
+
+        $this->setWidgets($widgets);
 
         $this->widgetSchema->setLabels(array(
             'title'          => 'Title *',
@@ -52,6 +73,26 @@ class NewReportForm extends ObjectForm
             'id'             => new sfValidatorString(array('required' => false)),
             'title'          => new sfValidatorString(array('required' => true), array('required' => 'Title is required.')),
             'description'    => new sfValidatorString(array('required' => false)),
+            'query_text_1'   => new sfValidatorString(array('required' => true), array('required' => 'Query text is required.')),
+            'query_label_1'  => new sfValidatorString(array('required' => true), array('required' => 'Query label is required.')),
+            'query_text_2'   => new sfValidatorString(array('required' => false)),
+            'query_label_2'  => new sfValidatorString(array('required' => false)),
+            'query_text_3'   => new sfValidatorString(array('required' => false)),
+            'query_label_3'  => new sfValidatorString(array('required' => false)),
+            'query_text_4'   => new sfValidatorString(array('required' => false)),
+            'query_label_4'  => new sfValidatorString(array('required' => false)),
+            'query_text_5'   => new sfValidatorString(array('required' => false)),
+            'query_label_5'  => new sfValidatorString(array('required' => false)),
+            'query_text_6'   => new sfValidatorString(array('required' => false)),
+            'query_label_6'  => new sfValidatorString(array('required' => false)),
+            'query_text_7'   => new sfValidatorString(array('required' => false)),
+            'query_label_7'  => new sfValidatorString(array('required' => false)),
+            'query_text_8'   => new sfValidatorString(array('required' => false)),
+            'query_label_8'  => new sfValidatorString(array('required' => false)),
+            'query_text_9'   => new sfValidatorString(array('required' => false)),
+            'query_label_9'  => new sfValidatorString(array('required' => false)),
+            'query_text_10'  => new sfValidatorString(array('required' => false)),
+            'query_label_10' => new sfValidatorString(array('required' => false)),
             'query_texts'    => new sfValidatorString(array('required' => true), array('required' => 'You have to enter at least one query.')),
             'query_titles'   => new sfValidatorString(array('required' => true), array('required' => 'You have to enter at least one query.')),
             'frequency'      => new sfValidatorString(array('required' => false)),
@@ -60,34 +101,84 @@ class NewReportForm extends ObjectForm
             'user_id'        => new sfValidatorString(array('required' => false))
         ));
 
-        $this->validatorSchema->setPostValidator(
-            new sfValidatorCallback(array('callback' => array($this, 'checkQueries')))
-        );
+        $this->validatorSchema->setPostValidator(new sfValidatorAnd(array(
+            new sfValidatorCallback(
+                array(
+                    'callback' => array($this, 'checkQuery'),
+                    'arguments' => array('i' => 2)
+                )
+            ),
+            new sfValidatorCallback(
+                array(
+                    'callback' => array($this, 'checkQuery'),
+                    'arguments' => array('i' => 3)
+                )
+            ),
+            new sfValidatorCallback(
+                array(
+                    'callback' => array($this, 'checkQuery'),
+                    'arguments' => array('i' => 4)
+                )
+            ),
+            new sfValidatorCallback(
+                array(
+                    'callback' => array($this, 'checkQuery'),
+                    'arguments' => array('i' => 5)
+                )
+            ),
+            new sfValidatorCallback(
+                array(
+                    'callback' => array($this, 'checkQuery'),
+                    'arguments' => array('i' => 6)
+                )
+            ),
+            new sfValidatorCallback(
+                array(
+                    'callback' => array($this, 'checkQuery'),
+                    'arguments' => array('i' => 7)
+                )
+            ),
+            new sfValidatorCallback(
+                array(
+                    'callback' => array($this, 'checkQuery'),
+                    'arguments' => array('i' => 8)
+                )
+            ),
+            new sfValidatorCallback(
+                array(
+                    'callback' => array($this, 'checkQuery'),
+                    'arguments' => array('i' => 9)
+                )
+            ),
+            new sfValidatorCallback(
+                array(
+                    'callback' => array($this, 'checkQuery'),
+                    'arguments' => array('i' => 10)
+                )
+            )
+        )));
 
         $this->widgetSchema->setNameFormat('report[%s]');
     }
 
-    public function checkQueries($validator, $values)
+    public function checkQuery($validator, $values, $arguments)
     {
-        $query_texts = explode("\n", str_replace("\r", "", $values['query_texts']));
-        $query_titles = explode("\n", str_replace("\r", "", $values['query_titles']));
+        $i = $arguments['i'];
 
-        if (sizeof($query_titles) > 10)
+        if (!isset($values['query_text_' . $i]))
         {
-            $error = new sfValidatorError($validator, 'You can enter up to 10 queries.');
-            throw new sfValidatorErrorSchema($validator, array("query_titles" => $error));
+            return $values;
         }
 
-        if (sizeof($query_texts) > 10)
+        if ($values['query_text_' . $i] == null && $values['query_label_' . $i] != null)
         {
-            $error = new sfValidatorError($validator, 'You can enter up to 10 queries.');
-            throw new sfValidatorErrorSchema($validator, array("query_texts" => $error));
+            $error = new sfValidatorError($validator, 'Query text is required.');
+            throw new sfValidatorErrorSchema($validator, array('query_text_' . $i => $error));
         }
-
-        if (sizeof($query_texts) != sizeof($query_titles))
+        else if ($values['query_text_' . $i] != null && $values['query_label_' . $i] == null)
         {
-            $error = new sfValidatorError($validator, 'Query text and query title numbers do not match.');
-            throw new sfValidatorErrorSchema($validator, array("query_titles" => $error, "query_texts" => $error));
+            $error = new sfValidatorError($validator, 'Query label is required.');
+            throw new sfValidatorErrorSchema($validator, array('query_label_' . $i => $error));
         }
 
         return $values;
