@@ -49,7 +49,7 @@ class reportActions extends sfActions
                 $this->forward('site', 'message');
             }
         }
-         
+    
         $this->form = new NewReportForm($report);
         $temp = $request->getParameter('report');
         if(!$report->getUserId() && $this->getUser()->isAuthenticated())
@@ -75,10 +75,6 @@ class reportActions extends sfActions
 
         $this->forward404Unless($id);
 
-        $this->form = new DateSelectorForm();
-        //$this->form->bind($request->getParameter('date_selector'));
-
-        //$this->report = ReportPeer::retrieveByPK($id);
         ReportPeer::retrieveByPK(1);
         $this->report = sfPropelFriendlyUrl::retrieveByFriendlyUrl('Report', $id);
 
@@ -122,9 +118,6 @@ class reportActions extends sfActions
 
     public function executeChart($request)
     {
-        $this->form = new DateSelectorForm();
-        $this->form->bind($request->getParameter('date_selector'));
-
         $id = $request->getParameter('id');
 
         $this->forward404Unless($id);
@@ -244,12 +237,8 @@ class reportActions extends sfActions
 
         $this->forward404Unless($report->getPublicRecord());
 
-        $start_date = date('Y-m-d', strtotime(date('Ymd') . ' -1 months'));
-        $end_date  = date('Y-m-d', strtotime(date('Ymd') . ' +1 days'));
-        $frequency = QueryResultPeer::FREQUENCY_DAY;
         $decorator = new PermanentChartDecorator();
-
-        $chart= ReportPeer::getReportChart($report, $start_date, $end_date, $frequency, $decorator);
+        $chart = ReportPeer::getReportChartt($report, $decorator);
 
         $response = $this->getResponse();
         $response->clearHttpHeaders();
