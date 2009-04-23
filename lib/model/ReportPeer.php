@@ -351,9 +351,9 @@ class ReportPeer extends BaseReportPeer
         if($day_count <= self::DAY_COUNT) {
             $decorator->setFrequency('D');
             return self::_getReportChart($report, $start_date, $end_date, QueryResultPeer::FREQUENCY_DAY, $decorator);
-        //} else if($week_count <= self::WEEK_COUNT) {
-        //    $decorator->setFrequency('W');
-        //    return self::_getReportChart($report, $start_date, $end_date, QueryResultPeer::FREQUENCY_WEEK, $decorator);
+        } else if($week_count <= self::WEEK_COUNT) {
+            $decorator->setFrequency('W');
+            return self::_getReportChart($report, $start_date, $end_date, QueryResultPeer::FREQUENCY_WEEK, $decorator);
         } else {
             $decorator->setFrequency('M');
             return self::_getReportChart($report, $start_date, $end_date, QueryResultPeer::FREQUENCY_MONTH, $decorator);
@@ -449,21 +449,24 @@ class ReportPeer extends BaseReportPeer
             $counter = 0;
             foreach($arrays as $array)
             {
-                $min_custom = strtotime(Utils::get_date_of_first_day_in_a_week(date('W', $min_date), date('Y', $min_date)));
-                $max_custom = strtotime(Utils::get_date_of_first_day_in_a_week(date('W', $max_date), date('Y', $max_date)));
+                $min_custom = strtotime(Utils::get_date_of_first_day_in_a_week(date('W', $min_date), date('o', $min_date)));
+                $max_custom = strtotime(Utils::get_date_of_first_day_in_a_week(date('W', $max_date), date('o', $max_date)));
                 $weeks = ceil((($max_date - $min_date) / 24 / 60 / 60 / 7));
 
                 $rtn[] = array();
-                for($i = 0; $i < $weeks; $i++)
-                {
-                    $min_custom = strtotime(date('Y-m-d', $min_custom) .' +1 weeks');
+//                for($i = 0; $i < $weeks; $i++)
+//                {
+                while($min_custom <= $max_custom) {
                     if(array_key_exists(date('Y-m-d', $min_custom), $array))
                     {
-                        $rtn[$counter][date('Y-m-d', $min_custom)] = $array[date('Y-m-d', $min_custom)];
+                        //$rtn[$counter][date('Y-m-d', $min_custom)] = $array[date('Y-m-d', $min_custom)];
+                        $rtn[$counter][date('o', $min_custom) . '-' . date('W', $min_custom)] = $array[date('Y-m-d', $min_custom)];
                     } else
                     {
-                        $rtn[$counter][date('Y-m-d', $min_custom)] = -1;
+                        //$rtn[$counter][date('Y-m-d', $min_custom)] = -1;
+                        $rtn[$counter][date('o', $min_custom) . '-' . date('W', $min_custom)] = -1;
                     }
+                    $min_custom = strtotime(date('Y-m-d', $min_custom) .' +1 weeks');
                 }
                 $counter++;
             }
@@ -490,15 +493,16 @@ class ReportPeer extends BaseReportPeer
             }
         } else
         {
-            $days = ceil((($max_date - $min_date) / 24 / 60 / 60));
+            $days = ceil((($max_date - $min_date) / 24 / 60 / 60)) + 1;
 
             $counter = 0;
             foreach($arrays as $array)
             {
                 $rtn[] = array();
-                for($i = 0; $i < $days; $i++)
+//                for($i = 0; $i < $days; $i++)
+                $date_temp = $min_date;
+                while($date_temp <= $max_date)
                 {
-                    $date_temp = strtotime('+'.$i.' day', $min_date);
                     if(array_key_exists(date('Y-m-d', $date_temp), $array))
                     {
                         $rtn[$counter][date('Y-m-d', $date_temp)] = $array[date('Y-m-d', $date_temp)];
@@ -506,6 +510,7 @@ class ReportPeer extends BaseReportPeer
                     {
                         $rtn[$counter][date('Y-m-d', $date_temp)] = -1;
                     }
+                    $date_temp = strtotime('+1 day', $date_temp);
                 }
                 $counter++;
             }

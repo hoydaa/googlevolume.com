@@ -33,11 +33,10 @@ class QueryResultPeer extends BaseQueryResultPeer
     public static function countWeekly($query_id) {
         $query = "
         	SELECT COUNT(*) as cnt FROM (
-        	SELECT DISTINCT CONCAT(YEAR(%s), (WEEK(%s) + 1)) FROM %s
+        	SELECT DISTINCT YEARWEEK(%s, 3) FROM %s
         	WHERE %s = %s) as bidi";
         
         $query = sprintf($query,
-        QueryResultPeer::RESULT_DATE,
         QueryResultPeer::RESULT_DATE,
         QueryResultPeer::TABLE_NAME,
         QueryResultPeer::QUERY_ID,
@@ -113,13 +112,12 @@ class QueryResultPeer extends BaseQueryResultPeer
     public static function weekly($query_id, $start_date, $end_date)
     {
         $query = "
-      		SELECT CONCAT(YEAR(%s), (WEEK(%s) + 1)) as result_date, AVG(%s) as result_size 
+      		SELECT YEARWEEK(%s, 3) as result_date, AVG(%s) as result_size 
       		FROM %s 
       		WHERE %s >= '%s' AND %s <= '%s' AND %s = %s 
-      		GROUP BY CONCAT(YEAR(%s), WEEK(%s)) 
+      		GROUP BY YEARWEEK(%s, 3) 
       		ORDER BY %s";
         $query = sprintf($query,
-        QueryResultPeer::RESULT_DATE,
         QueryResultPeer::RESULT_DATE,
         QueryResultPeer::RESULT_SIZE,
         QueryResultPeer::TABLE_NAME,
@@ -129,7 +127,6 @@ class QueryResultPeer extends BaseQueryResultPeer
         $end_date,
         QueryResultPeer::QUERY_ID,
         $query_id,
-        QueryResultPeer::RESULT_DATE,
         QueryResultPeer::RESULT_DATE,
         QueryResultPeer::RESULT_DATE
         );
