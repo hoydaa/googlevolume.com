@@ -1,2 +1,4 @@
+editSuccess:
+  javascripts: [report/edit.js]
 showImageSuccess:
   has_layout: off
