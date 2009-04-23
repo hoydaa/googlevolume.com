@@ -9,7 +9,7 @@ class reportComponents extends sfComponents
     }
 
     public function executeMiniChart($request)
-    {   
+    {
         $interval = ReportPeer::getMeasurementInterval($this->report->getId());
         $x_labels = array($interval['first'], $interval['last']);
         $decorator = new ThumbnailChartDecorator($x_labels);
