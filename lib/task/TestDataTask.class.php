@@ -3,12 +3,6 @@
 class TestDataTask extends sfPropelBaseTask
 {
 
-    const RANDOM_PERCENTAGE    = 5;
-    private $BASE_OBAMA  = 188000000;
-    private $BASE_MCCAIN = 98000000;
-    const DIFF_OBAMA           = 19000;
-    const DIFF_MCCAIN          = 9000;
-
     const RANDOM_TEXT          = 'lorem ipsum le scala ';
     private static $TAGS = array('hede', 'hodo', 'pede', 'podo', 'dede', 'dodo', 'modo');
 
@@ -30,7 +24,7 @@ EOF;
         // add other options here
     }
 
-    private function addReport($options)
+    private function addReport($options, $connection)
     {
         $report = new Report();
         $report->setDescription(self::generateDescription());
@@ -61,11 +55,16 @@ EOF;
                     $query_result->setQuery($query);
                     $start += rand($value['rand_min'], $value['rand_max']) * $value['rand_diff'];
                     $query_result->setResultSize($start);
-                    $query_result->setCreatedAt(date('Y-m-d', $date_start));
+                    $query_result->setCreatedAt($date_start);
                     $query_result->save();
                 }
                 $date_start = strtotime(date('Y-m-d', $date_start) . ' +1 days');
             }
+            
+            $sql = "DELETE FROM %s where date(%s) = '%s' and %s = %s";
+            $sql = sprintf($sql, QueryResultPeer::TABLE_NAME, QueryResultPeer::RESULT_DATE, date('Y-m-d'), QueryResultPeer::QUERY_ID, $query->getId());
+            $statement = $connection->prepareStatement($sql);
+            $statement->executeQuery();
         }
 
         $tags = self::generateTags();
@@ -101,7 +100,7 @@ EOF;
         )),
         'start_date' => '2007-01-01', 
         'end_date' => date('Y-m-d')
-        )
+        ), $connection
         );
 
         $this->addReport(
@@ -135,9 +134,9 @@ EOF;
             'rand_min' => -5,
             'rand_max' => 12
         )),
-        'start_date' => '2007-01-01', 
+        'start_date' => '2007-03-01', 
         'end_date' => date('Y-m-d')
-        )
+        ), $connection
         );
 
         $this->addReport(
@@ -157,9 +156,9 @@ EOF;
             'rand_min' => -10,
             'rand_max' => 12
         )),
-        'start_date' => '2007-01-01', 
+        'start_date' => '2008-04-01', 
         'end_date' => date('Y-m-d')
-        )
+        ), $connection
         );
 
         $this->addReport(
@@ -179,9 +178,9 @@ EOF;
             'rand_min' => -10,
             'rand_max' => 12
         )),
-        'start_date' => '2007-01-01', 
+        'start_date' => '2008-05-01', 
         'end_date' => date('Y-m-d')
-        )
+        ), $connection
         );
 
         $this->addReport(
@@ -201,9 +200,9 @@ EOF;
             'rand_min' => -10,
             'rand_max' => 12
         )),
-        'start_date' => '2007-01-01', 
+        'start_date' => '2009-01-01', 
         'end_date' => date('Y-m-d')
-        )
+        ), $connection
         );
 
         $this->addReport(
@@ -223,9 +222,9 @@ EOF;
             'rand_min' => -10,
             'rand_max' => 12
         )),
-        'start_date' => '2007-01-01', 
+        'start_date' => '2009-04-05', 
         'end_date' => date('Y-m-d')
-        )
+        ), $connection
         );
     }
 
